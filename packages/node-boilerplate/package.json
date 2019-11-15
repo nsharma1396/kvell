@@ -1,0 +1,28 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate creator for node.js applications.",
+  "main": "src/main.js",
+  "bin": {
+    "create-node-app": "bin/create.js"
+  },
+  "keywords": [
+    "create-node-app",
+    "node.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^4.1.1",
+    "chalk": "^2.4.2",
+    "chokidar": "^3.3.0",
+    "commander": "^4.0.0",
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.0",
+    "ncp": "^2.0.0",
+    "validate-npm-package-name": "^3.0.0"
+  }
+}
