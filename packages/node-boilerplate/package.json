@@ -21,8 +21,8 @@
     "chokidar": "^3.3.0",
     "commander": "^4.0.0",
     "esm": "^3.2.25",
+    "fs-extra": "^8.1.0",
     "inquirer": "^7.0.0",
-    "ncp": "^2.0.0",
     "validate-npm-package-name": "^3.0.0"
   }
 }

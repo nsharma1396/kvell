@@ -38,7 +38,7 @@ export const validatePackageName = packageName => {
   } else {
     // No project directory specified
     log();
-    log("Please specifiy a project directory");
+    log("Please specifiy a project directory:");
     log(
       `  ${chalk.blue("create-node-app")} ${chalk.green("<project-directory>")}`
     );
@@ -52,8 +52,9 @@ export const validatePackageName = packageName => {
 };
 
 export const validateOptions = parsedArgs => {
-  let databaseName = parsedArgs["--database"] || "mongodb",
-    packageName = parsedArgs._[0];
+  let databaseName = parsedArgs["--database"] || "mongodb";
+  const packageName = parsedArgs._[0],
+    enableAutoWatchers = parsedArgs["--auto-template-watcher"];
 
   if (databaseName !== "mongodb" && databaseName !== "postgres") {
     log();
@@ -69,7 +70,8 @@ export const validateOptions = parsedArgs => {
       valid: true,
       argsData: {
         packageName,
-        databaseName
+        databaseName,
+        enableAutoWatchers
       }
     };
   }
