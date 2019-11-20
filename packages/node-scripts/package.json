@@ -1,0 +1,25 @@
+{
+  "name": "node-scripts-dev",
+  "version": "1.0.0",
+  "description": "Scripts to run node-boilerplate",
+  "main": "src/index.js",
+  "bin": {
+    "node-scripts-dev": "bin/node-scripts.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "cross-spawn": "^7.0.1",
+    "eslint": "^6.6.0",
+    "eslint-plugin-node": "^10.0.0",
+    "express": "^4.17.1",
+    "ora": "^4.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
