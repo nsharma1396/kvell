@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const runStartScript = require("../scripts/start/runStartScript");
+const parseApiDocs = require("../scripts/start/parseApiDocs");
 
 // Parsing logic resembles to that in create-react-app's react-scripts
 const args = process.argv.slice(2);
@@ -19,6 +20,7 @@ const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
 const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : []; // So that other arguments do not get missed (like maybe environment variables, etc)
 
 if (["start"].includes(script)) {
+  parseApiDocs();
   runStartScript(args, script, scriptIndex, nodeArgs);
 } else {
   console.error("Invalid command");

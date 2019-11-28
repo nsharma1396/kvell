@@ -1,8 +1,8 @@
 {
-  "name": "node-scripts-dev",
+  "name": "@tek/node-scripts-dev",
   "version": "1.0.0",
   "description": "Scripts to run node-boilerplate",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "bin": {
     "node-scripts-dev": "bin/node-scripts.js"
   },
@@ -12,14 +12,25 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tek/eslint-config-tek-node": "^1.0.0",
     "chalk": "^3.0.0",
+    "cors": "^2.8.5",
     "cross-spawn": "^7.0.1",
+    "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
     "eslint-plugin-node": "^10.0.0",
     "express": "^4.17.1",
+    "inquirer": "^7.0.0",
+    "ip": "^1.1.5",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.0.1",
+    "nodemon": "^1.19.4",
     "ora": "^4.0.3"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "@babel/code-frame": "^7.5.5",
+    "apidoc": "^0.18.0",
+    "chokidar": "^3.3.0",
+    "fs-extra": "^8.1.0"
   }
 }

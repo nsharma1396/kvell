@@ -2,38 +2,41 @@
 process.env.NODE_ENV = "development";
 
 const chalk = require("chalk");
-const runServer = require("../../src/server");
+const runServer = require("../../lib/server");
 const runLinter = require("../utils/runLinter");
-const validateEntryPoint = require("./validateEntryPoint");
 const parseScriptsConfig = require("../utils/parseScriptsConfig");
 
-const log = console.log;
+process.on("unhandledRejection", exception => {
+  console.log();
+  console.log(chalk.redBright(`ERROR (${exception.code}): ${exception.message}`));
+  console.log();
+  console.log(chalk.redBright(`Stack Trace:\n${exception.stack}`));
+  console.log();
+
+  process.exit(1);
+});
 
 const appSrcDirectory = process.cwd();
 
 const executeStartScript = async () => {
   const parsedConfig = await parseScriptsConfig(appSrcDirectory);
 
-  const { isAppEntryPointValid, invalidErrorMessage, entryPointAbsolutePath } = validateEntryPoint(
-    parsedConfig.appEntryPoint,
-    appSrcDirectory
-  );
+  // const { isAppEntryPointValid, invalidErrorMessage } = validateEntryPoint(
+  //   parsedConfig.appEntryPoint,
+  //   appSrcDirectory
+  // );
 
-  if (isAppEntryPointValid) {
-    const lintStatus = runLinter(appSrcDirectory);
-    if (lintStatus === "success") {
-      log();
-      log(chalk.blue("Starting the server..."));
-      log();
-      runServer(() => {
-        // Require the starting point of the app when server starts running successfully
-        require(entryPointAbsolutePath);
-      });
-    }
-  } else {
-    log();
-    log(invalidErrorMessage);
+  // if (isAppEntryPointValid) {
+  const lintStatus = runLinter(appSrcDirectory);
+  if (lintStatus === "success") {
+    runServer(parsedConfig, () => {
+      // On success - do something if needed
+    });
   }
+  // } else {
+  //   log();
+  //   log(invalidErrorMessage);
+  // }
 };
 
 executeStartScript();

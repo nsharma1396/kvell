@@ -2,7 +2,7 @@ const doesFileExistsInPath = filePath => {
   try {
     require.resolve(filePath);
     return true;
-  } catch {
+  } catch (exception) {
     return false;
   }
 };

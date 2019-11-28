@@ -2,7 +2,7 @@ const path = require("path");
 const chalk = require("chalk");
 const doesFileExistsInPath = require("../utils/doesFileExistsInPath");
 
-const validateEntryPoint = (entryPoint = "src/index.js", appSrcDirectory) => {
+const validateEntryPoint = (entryPoint = path.resolve("src", "index"), appSrcDirectory) => {
   const parsedEntryPoint = path.parse(entryPoint);
   const entryPointAbsolutePath = entryPoint ? path.resolve(appSrcDirectory, entryPoint) : "";
   const doesEntryPointExists = doesFileExistsInPath(entryPointAbsolutePath);
