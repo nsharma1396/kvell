@@ -1,8 +1,7 @@
 const express = require("express");
 const chalk = require("chalk");
-const logger = require("morgan");
-const cors = require("cors");
 const getServerUrls = require("./utils/getServerUrls");
+const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
 const { requireRouteFiles, updateAppRoutes } = require("./utils/updateAppRoutes");
 
 const log = console.log;
@@ -10,6 +9,8 @@ const log = console.log;
 const PORT = process.env.PORT || 5001;
 
 const runServer = async (scriptConfig, onSuccess) => {
+  require("dotenv").config();
+  const { initHandler } = require("../scripts/utils/getDBPlugin");
   const routeFiles = requireRouteFiles();
 
   const app = express();
@@ -17,29 +18,36 @@ const runServer = async (scriptConfig, onSuccess) => {
   const { routes, protocol } = scriptConfig;
   const isHTTP = protocol === "http";
 
-  app.use(cors());
-
-  app.use(logger("dev"));
+  // add middlewares before starting the server
+  attachGlobalMiddlewares(app);
 
   const shouldStartServer = await updateAppRoutes(app, routes, routeFiles);
 
   if (shouldStartServer) {
-    log();
-    log(chalk.blue("Starting the server..."));
-    log();
+    initHandler()
+      .then(() => {
+        log();
+        log(chalk.blue("Starting the server..."));
+        log();
 
-    app.listen(PORT, () => {
-      const ipDetails = getServerUrls();
-      log(
-        chalk.blue(`Server running on:`),
-        chalk.yellowBright(`${isHTTP ? "http://" : "https://"}${ipDetails.localIp}:${PORT}`)
-      );
-      log(
-        chalk.blue(`You can also use: `),
-        chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}`)
-      );
-      onSuccess();
-    });
+        app.listen(PORT, () => {
+          const ipDetails = getServerUrls();
+          log(
+            chalk.blue(`Server running on:`),
+            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}${ipDetails.localIp}:${PORT}`)
+          );
+          log(
+            chalk.blue(`You can also use: `),
+            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}`)
+          );
+          onSuccess();
+        });
+      })
+      .catch(e => {
+        log();
+        log(chalk.redBright(e.stack));
+        log();
+      });
   } else {
     // process.exit(1);
   }

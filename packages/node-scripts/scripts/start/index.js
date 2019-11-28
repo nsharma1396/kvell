@@ -7,10 +7,10 @@ const runLinter = require("../utils/runLinter");
 const parseScriptsConfig = require("../utils/parseScriptsConfig");
 
 process.on("unhandledRejection", exception => {
+  // console.log();
+  // console.log(chalk.red(`ERROR (${exception.code}): ${exception.message}`));
   console.log();
-  console.log(chalk.redBright(`ERROR (${exception.code}): ${exception.message}`));
-  console.log();
-  console.log(chalk.redBright(`Stack Trace:\n${exception.stack}`));
+  console.log(chalk.red(`${exception.stack}`));
   console.log();
 
   process.exit(1);

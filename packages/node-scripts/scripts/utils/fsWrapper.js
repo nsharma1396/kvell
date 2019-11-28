@@ -8,5 +8,6 @@ const readFromFile = promisify(fs.readFile);
 module.exports = {
   readFromFile,
   writeToFile,
-  ensureDirSync: fse.ensureDirSync
+  // ensureDirSync: fse.ensureDirSync,
+  ...fse
 };

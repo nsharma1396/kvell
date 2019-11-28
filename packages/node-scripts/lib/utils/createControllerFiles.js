@@ -6,26 +6,26 @@ const generateControllerIndexTemplate = require("../../scripts/templates/generat
 
 const log = console.log;
 
-const createRouteFiles = async (unresolvedFiles, allRoutes) => {
+const createControllerFiles = async (unresolvedFiles, allcontrollers) => {
   const appDirectoryPath = process.cwd();
-  const routeDirPath = path.resolve(appDirectoryPath, "routes");
+  const controllerDirPath = path.resolve(appDirectoryPath, "controllers");
   for await (const unresolvedFile of unresolvedFiles) {
     log();
     const fileName = unresolvedFile.name;
     const fileExt = ".js";
-    const filePath = path.resolve(routeDirPath, `${fileName}${fileExt}`);
+    const filePath = path.resolve(controllerDirPath, `${fileName}${fileExt}`);
     log(chalk.blue(`Creating ${fileName}${fileExt} in ${filePath}...`));
-    const routeTemplateData = generateControllerTemplate(fileName);
-    await writeToFile(filePath, routeTemplateData);
+    const controllerTemplateData = generateControllerTemplate(fileName);
+    await writeToFile(filePath, controllerTemplateData);
     log(chalk.green(`Created ${fileName}${fileExt}...`));
   }
   log();
-  const routeIndexPath = path.resolve(routeDirPath, "index.js");
-  const routeIndexData = generateControllerIndexTemplate(allRoutes);
-  await writeToFile(routeIndexPath, routeIndexData);
-  log(`Updated ${routeIndexPath}...`);
+  const controllerIndexPath = path.resolve(controllerDirPath, "index.js");
+  const controllerIndexData = generateControllerIndexTemplate(allcontrollers);
+  await writeToFile(controllerIndexPath, controllerIndexData);
+  log(`Updated ${controllerIndexPath}...`);
   log();
   return true;
 };
 
-module.exports = createRouteFiles;
+module.exports = createControllerFiles;
