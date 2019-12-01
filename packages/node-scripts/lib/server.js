@@ -2,26 +2,29 @@ const express = require("express");
 const chalk = require("chalk");
 const getServerUrls = require("./utils/getServerUrls");
 const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
-const { requireRouteFiles, updateAppRoutes } = require("./utils/updateAppRoutes");
+const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
+const { updateAppRoutesAndModels } = require("./utils/updateAppRoutesAndModels");
 
 const log = console.log;
 
 const PORT = process.env.PORT || 5001;
 
 const runServer = async (scriptConfig, onSuccess) => {
-  require("dotenv").config();
+  parseEnvironmentVariables();
+
   const { initHandler } = require("../scripts/utils/getDBPlugin");
-  const routeFiles = requireRouteFiles();
+
+  // fileLogger.setLevel("warn");
 
   const app = express();
 
-  const { routes, protocol } = scriptConfig;
+  const { routes, protocol, models } = scriptConfig;
   const isHTTP = protocol === "http";
 
   // add middlewares before starting the server
   attachGlobalMiddlewares(app);
 
-  const shouldStartServer = await updateAppRoutes(app, routes, routeFiles);
+  const shouldStartServer = await updateAppRoutesAndModels(app, routes, models);
 
   if (shouldStartServer) {
     initHandler()
@@ -40,6 +43,11 @@ const runServer = async (scriptConfig, onSuccess) => {
             chalk.blue(`You can also use: `),
             chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}`)
           );
+          log(
+            chalk.blue(`Api Docs available on:`),
+            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}/docs`)
+          );
+
           onSuccess();
         });
       })

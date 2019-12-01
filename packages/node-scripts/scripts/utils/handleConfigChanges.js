@@ -1,31 +1,39 @@
 const parseScriptsConfig = require("./parseScriptsConfig");
 const createControllerFiles = require("../../lib/utils/createControllerFiles");
-const { requireRouteFiles, createRouteFiles } = require("../../lib/utils/updateAppRoutes");
+const {
+  validateRouteFiles,
+  createRouteFiles
+} = require("../../lib/utils/updateAppRoutesAndModels");
+const { validateModelFiles, createModelFiles } = require("../../lib/utils/updateAppModels");
 const log = console.log;
 
 const handleConfigChanges = async () => {
   const appSrcDirectory = process.cwd();
-  const [routeFiles, parsedScriptsConfig] = await Promise.all([
-    requireRouteFiles(),
-    parseScriptsConfig(appSrcDirectory)
-  ]);
-  const unresolvedRoutes = [];
-  parsedScriptsConfig.routes.forEach(route => {
-    if (!routeFiles[route.name]) {
-      unresolvedRoutes.push(route);
-    }
-  });
-  if (unresolvedRoutes.length) {
+  const { routes, models } = await parseScriptsConfig(appSrcDirectory);
+  const { allRoutesResolved, unresolvedRouteFiles } = validateRouteFiles(routes);
+  const { allModelsResolved, unresolvedModelFiles } = validateModelFiles(models);
+
+  if (!allRoutesResolved) {
     // onConfigChange();
     log();
     log(
-      `Creating route file template for the new route${unresolvedRoutes.length === 1 ? "" : "s"}`
+      `Creating route file template for the new route${
+        unresolvedRouteFiles.length === 1 ? "" : "s"
+      }`
     );
     log();
-    createRouteFiles(unresolvedRoutes, parsedScriptsConfig.routes);
-    createControllerFiles(unresolvedRoutes, parsedScriptsConfig.routes);
-  } else {
-    // Restart the server somehow
+    createRouteFiles(unresolvedRouteFiles, routes);
+    createControllerFiles(unresolvedRouteFiles, routes);
+  }
+  if (!allModelsResolved) {
+    log();
+    log(
+      `Creating model file template for the new model${
+        unresolvedModelFiles.length === 1 ? "" : "s"
+      }`
+    );
+    log();
+    createModelFiles(unresolvedModelFiles, models);
   }
 };
 

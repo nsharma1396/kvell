@@ -45,11 +45,11 @@ const runStartScript = (args, script, scriptIndex, nodeArgs) => {
   };
 
   async function handleConfigFileChange() {
-    function onConfigChange() {
-      printOptions.shouldClear = false;
-    }
-    await handleConfigChanges(onConfigChange, nodemon);
-    printOptions.canToggleShouldClear = true;
+    // function onConfigChange() {
+    //   printOptions.shouldClear = false;
+    // }
+    await handleConfigChanges();
+    // printOptions.canToggleShouldClear = true;
   }
 
   nodemon

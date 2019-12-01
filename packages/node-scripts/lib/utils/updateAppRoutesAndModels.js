@@ -6,6 +6,8 @@ const writeToFile = require("../../scripts/utils/fsWrapper").writeToFile;
 const generateRouteTemplate = require("../../scripts/templates/generateRouteTemplate");
 const generateRouteIndexTemplate = require("../../scripts/templates/generateRouteIndexTemplate");
 const createControllerFiles = require("./createControllerFiles");
+const { validateModelFiles, createModelFiles } = require("./updateAppModels");
+const capitalizeFirstLetter = require("../../scripts/utils/capitalizeFirstLetter");
 
 const log = console.log;
 
@@ -45,20 +47,24 @@ const attachApiDocRoute = app => {
   const libPath = path.dirname(path.dirname(__dirname));
   const docSrc = path.resolve(libPath, "apidocs");
   app.use(express.static(docSrc));
-  app.use("/", (_req, res) => {
-    res.sendFile("index.html");
+  app.use("(^/docs$)", (_req, res) => {
+    res.sendFile(path.resolve(docSrc, "index.html"));
+  });
+  app.use("/", (req, res) => {
+    res.send("hey");
   });
 };
 
 const attachRoutes = (app, routes, routeFiles) => {
-  attachApiDocRoute(app);
   routes.forEach(route => {
     app.use(route.path, routeFiles[route.name]);
   });
+  attachApiDocRoute(app);
   return true;
 };
 
-const updateAppRoutes = (app, routes, routeFiles) => {
+const validateRouteFiles = routes => {
+  const routeFiles = requireRouteFiles();
   let allRoutesResolved = true,
     unresolvedRouteFiles = [];
   routes.forEach(route => {
@@ -67,39 +73,78 @@ const updateAppRoutes = (app, routes, routeFiles) => {
       unresolvedRouteFiles.push(route);
     }
   });
-  if (allRoutesResolved) {
+  return {
+    allRoutesResolved,
+    unresolvedRouteFiles,
+    routeFiles
+  };
+};
+
+const updateAppRoutesAndModels = (app, routes, models) => {
+  const { allRoutesResolved, unresolvedRouteFiles, routeFiles } = validateRouteFiles(routes);
+  const { allModelsResolved, unresolvedModelFiles } = validateModelFiles(models);
+  if (allRoutesResolved && allModelsResolved) {
     return attachRoutes(app, routes, routeFiles);
   } else {
     log();
     log(
       chalk.redBright(
-        `Seems like there is no corresponding \`Route\` and \`Controller\` files for the following routes in your application:`
+        "Seems like there are no corresponding files for the following in your application:"
       )
     );
-    log();
-    unresolvedRouteFiles.forEach((unresolvedRoute, index) => {
-      log(chalk.redBright(`${index + 1}. ${unresolvedRoute.name} (${unresolvedRoute.path})`));
-    });
+    if (!allRoutesResolved) {
+      log();
+      log(chalk.redBright("Routes:"));
+      unresolvedRouteFiles.forEach((unresolvedRoute, index) => {
+        log(chalk.redBright(`${index + 1}. ${unresolvedRoute.name} (${unresolvedRoute.path})`));
+      });
+    }
+    if (!allModelsResolved) {
+      log();
+      log(chalk.redBright("Models:"));
+      unresolvedModelFiles.forEach((unresolvedModel, index) => {
+        log(
+          chalk.redBright(
+            `${index + 1}. ${unresolvedModel} (${capitalizeFirstLetter(unresolvedModel)})`
+          )
+        );
+      });
+    }
     log();
     return inquirer
       .prompt([
         {
-          name: "fixUnresolvedRoutes",
+          name: "fixUnresolvedRoutesAndModels",
           type: "confirm",
           message: chalk.blueBright("Would you like us to create the files for you ?")
         }
       ])
       .then(async answers => {
-        if (answers.fixUnresolvedRoutes) {
-          await createRouteFiles(unresolvedRouteFiles, routes);
-          await createControllerFiles(unresolvedRouteFiles, routes);
-          return updateAppRoutes(app, routes, routeFiles);
+        if (answers.fixUnresolvedRoutesAndModels) {
+          if (unresolvedRouteFiles.length) {
+            await createRouteFiles(unresolvedRouteFiles, routes);
+            await createControllerFiles(unresolvedRouteFiles, routes);
+          }
+          if (unresolvedModelFiles.length) {
+            await createModelFiles(unresolvedModelFiles, models);
+          }
+          return updateAppRoutesAndModels(app, routes, routeFiles);
         } else {
-          process.kill(process.pid, "SIGINT");
-          return false;
+          log();
+          throw new Error(
+            `Please add the above mentioned files to run the application, or restart the server and answer ${chalk.redBright(
+              `yes`
+            )} to automatically create all the files with their templates.`
+          );
+          // return false;
         }
       });
   }
 };
 
-module.exports = { requireRouteFiles, updateAppRoutes, createRouteFiles };
+module.exports = {
+  requireRouteFiles,
+  updateAppRoutesAndModels,
+  createRouteFiles,
+  validateRouteFiles
+};

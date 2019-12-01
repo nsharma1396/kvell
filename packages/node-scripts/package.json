@@ -20,17 +20,18 @@
     "eslint": "^6.6.0",
     "eslint-plugin-node": "^10.0.0",
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
     "inquirer": "^7.0.0",
     "ip": "^1.1.5",
     "morgan": "^1.9.1",
     "mysql2": "^2.0.1",
     "nodemon": "^1.19.4",
-    "ora": "^4.0.3"
-  },
-  "devDependencies": {
+    "ora": "^4.0.3",
     "@babel/code-frame": "^7.5.5",
     "apidoc": "^0.18.0",
     "chokidar": "^3.3.0",
-    "fs-extra": "^8.1.0"
-  }
+    "fs-extra": "^8.1.0",
+    "simple-node-logger": "^18.12.23"
+  },
+  "devDependencies": {}
 }

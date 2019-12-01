@@ -1,9 +1,9 @@
-const fs = require("fs");
+// const fs = require("fs");
 const fse = require("fs-extra");
-const { promisify } = require("util");
+// const { promisify } = require("util");
 
-const writeToFile = promisify(fs.writeFile);
-const readFromFile = promisify(fs.readFile);
+const writeToFile = fse.writeFile; // promisify(fs.writeFile);
+const readFromFile = fse.readFile; // promisify(fs.readFile);
 
 module.exports = {
   readFromFile,

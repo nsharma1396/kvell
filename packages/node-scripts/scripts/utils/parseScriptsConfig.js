@@ -6,7 +6,7 @@ const parsedConfigInit = require("../config/appDefaultConfig");
 const readFileFromPath = promisify(readFile);
 const configFileName = "nodescript.config.json";
 
-const configErrorKeys = ["routes", "protocol", "database"];
+const configErrorKeys = ["routes", "protocol", "models"];
 
 const createConfigObject = parsedConfigs => {
   const configKeysStatus = {
@@ -18,15 +18,15 @@ const createConfigObject = parsedConfigs => {
         ? true
         : ["http", "https"].indexOf(parsedConfigs.protocol) !== -1
     },
-    database: {
-      valid: parsedConfigs.database && parsedConfigs.database.pluginName
+    models: {
+      valid: !parsedConfigs.models ? true : Array.isArray(parsedConfigs.models)
     }
   };
 
-  const { routes, protocol, database } = configKeysStatus;
+  const { routes, protocol, models } = configKeysStatus;
 
   let configObject = {};
-  if (!routes.valid || !protocol.valid || !database) {
+  if (!routes.valid || !protocol.valid || !models) {
     const errorString = `Your ./${configFileName} contains invalid config values for:\n${configErrorKeys
       .filter(configKey => !configKeysStatus[configKey].valid)
       .join("\n")}`;
@@ -35,7 +35,7 @@ const createConfigObject = parsedConfigs => {
     configObject = {
       routes: parsedConfigs.routes || parsedConfigInit.routes,
       protocol: parsedConfigs.protocol || parsedConfigInit.protocol,
-      database: parsedConfigs.database
+      models: parsedConfigs.models || parsedConfigInit.models
     };
   }
   return configObject;
