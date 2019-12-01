@@ -6,11 +6,11 @@ export const parseArgVector = argv => {
   try {
     const parsedArgs = arg(
       {
-        "--database": String,
-        "--auto-template-watcher": Boolean,
+        // "--database": String,
+        // "--auto-template-watcher": Boolean,
         "--help": Boolean,
-        "-d": "--database",
-        "-w": "--auto-template-watcher",
+        // "-d": "--database",
+        // "-w": "--auto-template-watcher",
         "-h": "--help"
       },
       { argv }

@@ -1,10 +1,9 @@
 {
-  "name": "boilerplate",
+  "name": "@tek/node-boilerplate",
   "version": "1.0.0",
   "description": "Boilerplate creator for node.js applications.",
-  "main": "src/main.js",
   "bin": {
-    "create-node-app": "bin/create.js"
+    "create-node-app": "bin/create-node-app.js"
   },
   "keywords": [
     "create-node-app",
@@ -17,12 +16,13 @@
   "license": "ISC",
   "dependencies": {
     "arg": "^4.1.1",
+    "babel-eslint": "^10.0.3",
     "chalk": "^2.4.2",
-    "chokidar": "^3.3.0",
-    "commander": "^4.0.0",
+    "cross-spawn": "^7.0.1",
+    "eslint": "^6.7.1",
+    "eslint-plugin-node": "^10.0.0",
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
-    "inquirer": "^7.0.0",
     "validate-npm-package-name": "^3.0.0"
   }
 }

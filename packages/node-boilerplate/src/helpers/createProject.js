@@ -1,9 +1,12 @@
 import chalk from "chalk";
+import path from "path";
 import { resolve } from "path";
 import { mkdir, writeFile, readFile } from "fs";
-import { copy, remove } from "fs-extra";
+import url from "url";
+import { copy, remove, ensureFile } from "fs-extra";
 import { promisify } from "util";
-import { spawn } from "child_process";
+import { runChildProcess } from "./runChildProcess";
+import generateNpmRcTemplate from "./generateNpmRcTemplate";
 
 const makeDir = promisify(mkdir);
 const readFileFromPath = promisify(readFile);
@@ -29,19 +32,14 @@ const makeDirectory = async projectDirectoryPath => {
 };
 
 const copyTemplate = async (
-  databaseName,
+  // databaseName,
   templateFolderPath,
   projectDirectoryPath,
   directoryName
 ) => {
   try {
     await copy(templateFolderPath, projectDirectoryPath);
-    log(
-      chalk.greenBright(
-        `Added ${chalk.blue(databaseName)} template to ${directoryName}`
-      )
-    );
-    log();
+    log(chalk.greenBright(`Added Node.js basic template to ${directoryName}`));
   } catch (exception) {
     log();
     log("Could not add boilerplate template.");
@@ -49,6 +47,13 @@ const copyTemplate = async (
     log(chalk.redBright(exception.message));
     log();
   }
+};
+
+const ensureNpmrc = async (projectDirectoryPath, _directoryName) => {
+  const npmRcPath = path.resolve(projectDirectoryPath, ".npmrc");
+  console.log(npmRcPath);
+  await ensureFile(npmRcPath);
+  await writeFileToPath(npmRcPath, generateNpmRcTemplate());
 };
 
 const updatePackageJSON = async (projectDirectoryPath, directoryName) => {
@@ -69,57 +74,55 @@ const updatePackageJSON = async (projectDirectoryPath, directoryName) => {
   }
 };
 
+const initializeGit = async directoryPath => {
+  const command = "git";
+  const args = ["init"];
+  const options = { cwd: directoryPath, stdio: "inherit" };
+
+  try {
+    log();
+    // log("Initializing empty git repository...");
+    log();
+    await runChildProcess(command, args, options);
+    log();
+    // log(`${chalk.green("Initialized git repository.")}`);
+    log();
+    return true;
+  } catch (exception) {
+    log();
+    log(`${chalk.red("Failed")} to initialize git repository.`);
+    log("Skipping git initialization...");
+    log();
+    return false;
+  }
+};
+
 const installDependencies = async directoryPath => {
   // Change current working directory to the project directory
   log("Installing dependencies...");
   log();
-  return new Promise((resolve, reject) => {
-    // process.chdir(directoryPath);
-    const command = "npm";
-    const args = ["install", "--save", "--save-exact", "--loglevel", "error"];
-    const child = spawn(command, args, {
-      cwd: directoryPath,
-      stdio: "inherit"
-    });
-    child.on("close", code => {
-      if (code !== 0) {
-        reject({
-          command: `${command} ${args.join(" ")}`
-        });
-        return;
-      }
-      resolve();
-    });
-  });
+  // process.chdir(directoryPath);
+  const command = "npm";
+  const args = ["install", "--save", "--save-exact", "--loglevel", "error"];
+  const options = { cwd: directoryPath, stdio: "inherit" };
+  await runChildProcess(command, args, options);
 };
 
-export const createProject = async (
-  directoryName,
-  databaseName,
-  enableAutoWatchers
-) => {
+export const createProject = async directoryName => {
   const currentPathURL = import.meta.url;
-  const currentPathName = new URL(currentPathURL).pathname;
-  const resolvedPath = resolve(
-    currentPathName,
-    `../../../templates${
-      enableAutoWatchers
-        ? "/autoWatcherTemplates"
-        : "/withoutAutoWatcherTemplates"
-    }`,
-    databaseName
-  );
+  // Commenting URL since it is only available after Node v10.0.0
+  // const currentPathName = new URL(currentPathURL).pathname;
+  const currentPathName = new url.URL(currentPathURL).pathname;
+  const resolvedPath = resolve(currentPathName, `..`, `..`, `..`, `templates`, `basic`); // databaseName);
 
   const templateFolderPath = resolvedPath;
 
   const projectDirectoryParentPath = process.cwd();
-  const projectDirectoryPath = `${projectDirectoryParentPath}/${directoryName}`;
+  const projectDirectoryPath = path.resolve(projectDirectoryParentPath, directoryName);
 
   log();
   log(
-    `Creating new Node boilerplate in ${chalk.bold.green(
-      projectDirectoryPath
-    )} with database as ${chalk.bold.green(databaseName)}.`
+    `Creating new Node boilerplate in ${chalk.bold.green(projectDirectoryPath)}` // with database as ${chalk.bold.green(databaseName)}.`
   );
   log();
 
@@ -128,23 +131,26 @@ export const createProject = async (
 
     log(`Created directory ${chalk.greenBright(directoryName)}`);
     log();
-    log("Adding boilerplate template...");
+    // log("Adding boilerplate template...");
 
-    await copyTemplate(
-      databaseName,
-      templateFolderPath,
-      projectDirectoryPath,
-      directoryName
-    );
+    await copyTemplate(templateFolderPath, projectDirectoryPath, directoryName);
 
+    await ensureNpmrc(projectDirectoryPath, directoryName);
     await updatePackageJSON(projectDirectoryPath, directoryName);
 
+    // const isGitInitialized =
+    await initializeGit(projectDirectoryPath);
+
     await installDependencies(projectDirectoryPath);
-  } catch {
+  } catch (e) {
+    // log(e.message);
+    log();
+    console.error(e.message);
+    log();
     log(`Removing directory ${directoryName}...`);
     log();
     await remove(projectDirectoryPath);
     log("Directory removed.");
-    process.exit(0);
+    // process.exit(0);
   }
 };
