@@ -9,6 +9,6 @@ module.exports = {
   json: express.json,
   static: express.static,
   urlencoded: express.urlencoded,
-  router: express.router,
+  router: express.Router,
   devLog
 };
