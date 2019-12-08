@@ -45,7 +45,7 @@ const createModelFiles = async (unresolvedFiles, allModels) => {
       `${fileName}Model${fileExt}`
     );
     log(chalk.blue(`Creating ${fileName} model files in ${currentModelDirPath}...`));
-    const modelTemplateData = generateModelTemplate(fileName);
+    const modelTemplateData = generateModelTemplate(fileName, process.env.DB_NAME);
     const modelFunctionalityData = generateModelFunctionalityTemplate(fileName);
     ensureDirSync(currentModelDirPath);
     await writeToFile(modelFunctionalityFilePath, modelTemplateData);

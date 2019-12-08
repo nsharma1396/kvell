@@ -1,4 +1,4 @@
-const appRouter = require("express").Router; //();
+const express = require("express"); //();
 const path = require("path");
 const devLog = require("simple-node-logger").createSimpleFileLogger(
   path.resolve(process.cwd(), "logs", "appLog.log")
@@ -6,6 +6,9 @@ const devLog = require("simple-node-logger").createSimpleFileLogger(
 
 // Export if anything is needed to be exported.
 module.exports = {
-  router: appRouter,
+  json: express.json,
+  static: express.static,
+  urlencoded: express.urlencoded,
+  router: express.router,
   devLog
 };
