@@ -54,6 +54,10 @@ const runStartScript = (args, script, scriptIndex, nodeArgs) => {
 
   nodemon
     .on("start", function() {
+      /*
+      // Commenting the models part for now as this will run before the db file can be initialized hence causing
+      // errors like: sequelize.define is not a function
+
       if (!hasAppRanOnce) {
         hasAppRanOnce = true;
         // clearConsole();
@@ -63,7 +67,8 @@ const runStartScript = (args, script, scriptIndex, nodeArgs) => {
         });
         watcher.on("change", handleConfigFileChange);
       }
-      // getUrls();
+      */
+
       log(chalk.green(`Running ${chalk.yellow(projectName)} in development mode...`));
     })
     .on("crash", function() {

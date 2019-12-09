@@ -1,9 +1,7 @@
 const path = require("path");
-const readFile = require("fs").readFile;
-const promisify = require("util").promisify;
+const readFileFromPath = require("./fsWrapper").readFromFile;
 const parsedConfigInit = require("../config/appDefaultConfig");
 
-const readFileFromPath = promisify(readFile);
 const configFileName = "nodescript.config.json";
 
 const configErrorKeys = ["routes", "protocol", "models"];
