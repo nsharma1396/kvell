@@ -7,6 +7,7 @@ import { copy, remove, ensureFile } from "fs-extra";
 import { promisify } from "util";
 import { runChildProcess } from "./runChildProcess";
 import generateNpmRcTemplate from "./generateNpmRcTemplate";
+import generateGitIgnoreTemplate from "./generateGitIgnoreTemplate";
 
 const makeDir = promisify(mkdir);
 const readFileFromPath = promisify(readFile);
@@ -49,9 +50,14 @@ const copyTemplate = async (
   }
 };
 
+const ensureGitIgnore = async (projectDirectoryPath, _directoryName) => {
+  const gitIgnorePath = path.resolve(projectDirectoryPath, ".gitignore");
+  await ensureFile(gitIgnorePath);
+  await writeFileToPath(gitIgnorePath, generateGitIgnoreTemplate());
+};
+
 const ensureNpmrc = async (projectDirectoryPath, _directoryName) => {
   const npmRcPath = path.resolve(projectDirectoryPath, ".npmrc");
-  console.log(npmRcPath);
   await ensureFile(npmRcPath);
   await writeFileToPath(npmRcPath, generateNpmRcTemplate());
 };
@@ -135,6 +141,7 @@ export const createProject = async directoryName => {
 
     await copyTemplate(templateFolderPath, projectDirectoryPath, directoryName);
 
+    await ensureGitIgnore(projectDirectoryPath, directoryName);
     await ensureNpmrc(projectDirectoryPath, directoryName);
     await updatePackageJSON(projectDirectoryPath, directoryName);
 
