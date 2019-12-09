@@ -1,6 +1,6 @@
 {
   "name": "@tek/node-scripts-dev",
-  "version": "1.3.0",
+  "version": "1.2.0",
   "description": "Scripts to run node-boilerplate",
   "main": "lib/index.js",
   "bin": {

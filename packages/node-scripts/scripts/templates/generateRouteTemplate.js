@@ -3,19 +3,19 @@ const routeTemplate = routeName =>
 // eslint-disable-next-line no-unused-vars
 const ${routeName}Controller = require("../controllers").${routeName};
 
-${routeName}Router.get("/", (_request, _response) => {
+${routeName}Router.get("/", (request, response) => {
   // get method
 });
 
-${routeName}Router.post("/", (_request, _response) => {
+${routeName}Router.post("/", (request, response) => {
   // post method
 });
 
-${routeName}Router.put("/", (_request, _response) => {
+${routeName}Router.put("/", (request, response) => {
   // put method
 });
 
-${routeName}Router.delete("/", (_request, _response) => {
+${routeName}Router.delete("/", (request, response) => {
   // delete method
 });
 
