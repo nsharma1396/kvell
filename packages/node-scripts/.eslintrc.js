@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: "@tek/eslint-config-tek-node",
+  extends: "",
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"

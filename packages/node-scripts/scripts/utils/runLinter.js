@@ -3,7 +3,7 @@ const path = require("path");
 const ora = require("ora");
 const chalk = require("chalk");
 // const writeFile = require("fs").writeFile;
-const lintBaseConfig = require("@tek/eslint-config-tek-node");
+const lintBaseConfig = require("eslint-config-kvell-scripts");
 const rulesObject = require("../config/lintExtendedRules");
 const customLintResultFormatter = require("../utils/customLintResultFormatter");
 

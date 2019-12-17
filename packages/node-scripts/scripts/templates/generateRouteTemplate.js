@@ -1,5 +1,5 @@
 const routeTemplate = routeName =>
-  `const ${routeName}Router = require("@tek/node-scripts-dev").router();
+  `const ${routeName}Router = require("kvell-scripts").router();
 // eslint-disable-next-line no-unused-vars
 const ${routeName}Controller = require("../controllers").${routeName};
 
