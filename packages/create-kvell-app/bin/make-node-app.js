@@ -3,4 +3,4 @@
 require = require("esm")(module);
 const { makeNodeApp } = require("../src/main");
 
-createNodeApp(process.argv.slice(2));
+makeNodeApp(process.argv.slice(2));
