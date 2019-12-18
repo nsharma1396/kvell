@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kvell-scripts",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,5 @@
     "eslint": "^6.6.0",
     "eslint-plugin-node": "^10.0.0"
   },
-  "dependencies": {},
   "description": ""
 }
