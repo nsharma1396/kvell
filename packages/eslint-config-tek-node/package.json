@@ -1,0 +1,28 @@
+{
+  "name": "eslint-config-kvell-scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "kvell-scripts",
+    "create-kvell-app",
+    "kvell"
+  ],
+  "repository": "https://github.com/nsharma1396/eslint-config-kvell-scripts",
+  "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
+  "license": "ISC",
+  "peerDependencies": {
+    "eslint": ">=6.6.0",
+    "eslint-plugin-node": ">=^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-plugin-node": "^10.0.0"
+  },
+  "dependencies": {},
+  "description": ""
+}
