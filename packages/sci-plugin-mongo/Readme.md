@@ -1,0 +1,1 @@
+# kvell-db-plugin-mongoose

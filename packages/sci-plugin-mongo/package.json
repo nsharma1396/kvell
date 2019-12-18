@@ -1,0 +1,22 @@
+{
+  "name": "kvell-db-plugin-mongoose",
+  "version": "1.0.0",
+  "description": "A barebones MongoDB Plugin using Mongoose ORM for kvell-scripts",
+  "main": "index.js",
+  "repository": "https://github.com/nsharma1396/kvell-db-plugin-mongoose",
+  "keywords": [
+    "kvell-plugins",
+    "kvell-scripts",
+    "create-kvell-app",
+    "node",
+    "mongoose"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.7.12"
+  }
+}
