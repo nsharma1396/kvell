@@ -1,7 +1,7 @@
 const nodemon = require("nodemon");
 const path = require("path");
 const chalk = require("chalk");
-const chokidar = require("chokidar");
+// const chokidar = require("chokidar");
 const clearConsole = require("../utils/clearConsole");
 const handleConfigChanges = require("../utils/handleConfigChanges");
 // const getUrls = require("../utils/getUrls");
@@ -24,11 +24,11 @@ const runStartScript = (args, script, scriptIndex, nodeArgs) => {
   // );
 
   // For running with nodemon
-  let hasAppRanOnce = false;
+  // let hasAppRanOnce = false;
 
   const projectPath = process.cwd();
   const projectName = path.basename(projectPath);
-  const appConfigFilePath = path.resolve(projectPath, ".", "nodescript.config.json"); // as we will use chokidar to watch it
+  // const appConfigFilePath = path.resolve(projectPath, ".", "nodescript.config.json"); // as we will use chokidar to watch it
 
   nodemon({
     script: nodeArgs

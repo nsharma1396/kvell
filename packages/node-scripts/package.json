@@ -6,10 +6,17 @@
   "bin": {
     "kvell-scripts": "bin/kvell-scripts.js"
   },
+  "keywords": [
+    "kvell-scripts",
+    "node-scripts",
+    "create-kvell-app",
+    "node"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
+  "repository": "https://github.com/nsharma1396/kvell-scripts",
   "license": "ISC",
   "dependencies": {
     "@babel/code-frame": "^7.5.5",
