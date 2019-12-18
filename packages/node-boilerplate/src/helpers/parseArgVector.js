@@ -7,7 +7,6 @@ export const parseArgVector = argv => {
     const parsedArgs = arg(
       {
         // "--database": String,
-        // "--auto-template-watcher": Boolean,
         "--help": Boolean,
         // "-d": "--database",
         // "-w": "--auto-template-watcher",

@@ -56,11 +56,11 @@ const ensureGitIgnore = async (projectDirectoryPath, _directoryName) => {
   await writeFileToPath(gitIgnorePath, generateGitIgnoreTemplate());
 };
 
-const ensureNpmrc = async (projectDirectoryPath, _directoryName) => {
-  const npmRcPath = path.resolve(projectDirectoryPath, ".npmrc");
-  await ensureFile(npmRcPath);
-  await writeFileToPath(npmRcPath, generateNpmRcTemplate());
-};
+// const ensureNpmrc = async (projectDirectoryPath, _directoryName) => {
+//   const npmRcPath = path.resolve(projectDirectoryPath, ".npmrc");
+//   await ensureFile(npmRcPath);
+//   await writeFileToPath(npmRcPath, generateNpmRcTemplate());
+// };
 
 const updatePackageJSON = async (projectDirectoryPath, directoryName) => {
   try {

@@ -1,19 +1,21 @@
 {
   "name": "create-kvell-app",
   "version": "1.0.0",
-  "description": "Boilerplate creator for node.js applications.",
+  "description": "Command line tool to setup Node.js applications",
   "bin": {
-    "create-kvell-app": "bin/make-node-app.js",
-    "kvell-gen": "bin/make-node-app.js"
+    "create-kvell-app": "bin/make-node-app.js"
   },
   "keywords": [
     "create-node-app",
-    "node.js"
+    "create-kvell-app",
+    "node app",
+    "node"
   ],
+  "repository": "https://github.com/nsharma1396/create-kvell-app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Neeraj Sharma",
+  "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "arg": "^4.1.1",
