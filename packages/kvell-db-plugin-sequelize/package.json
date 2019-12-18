@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/nsharma1396/kvell-db-plugin-sequelize",
+  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-sequelize",
   "keywords": [
     "kvell-plugins",
     "kvell-scripts",

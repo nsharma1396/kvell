@@ -1,7 +1,7 @@
 {
   "name": "kvell-scripts",
   "version": "1.0.0",
-  "description": "Scripts to run templates generated from create-kvell-app",
+  "description": "Scripts to run applocations generated from create-kvell-app",
   "main": "lib/index.js",
   "bin": {
     "kvell-scripts": "bin/kvell-scripts.js"
@@ -16,11 +16,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
-  "repository": "https://github.com/nsharma1396/kvell-scripts",
+  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-scripts",
   "license": "ISC",
   "dependencies": {
     "@babel/code-frame": "^7.5.5",
-    "eslint-config-kvell-scripts": "^1.1.0",
+    "eslint-config-kvell-scripts": "^1.0.0",
     "apidoc": "^0.18.0",
     "chalk": "^3.0.0",
     "chokidar": "^3.3.0",

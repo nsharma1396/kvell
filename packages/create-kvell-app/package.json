@@ -11,7 +11,7 @@
     "node app",
     "node"
   ],
-  "repository": "https://github.com/nsharma1396/create-kvell-app",
+  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/create-kvell-app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

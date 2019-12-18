@@ -12,7 +12,7 @@
     "create-kvell-app",
     "kvell"
   ],
-  "repository": "https://github.com/nsharma1396/eslint-config-kvell-scripts",
+  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/eslint-config-kvell-scripts",
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
   "license": "ISC",
   "peerDependencies": {

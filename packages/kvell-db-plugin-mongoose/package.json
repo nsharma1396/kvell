@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A barebones MongoDB Plugin using Mongoose ORM for kvell-scripts",
   "main": "index.js",
-  "repository": "https://github.com/nsharma1396/kvell-db-plugin-mongoose",
+  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-mongoose",
   "keywords": [
     "kvell-plugins",
     "kvell-scripts",
