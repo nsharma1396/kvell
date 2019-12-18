@@ -1,7 +1,7 @@
 {
   "name": "kvell-scripts",
   "version": "1.0.0",
-  "description": "Scripts to run node-boilerplate",
+  "description": "Scripts to run templates generated from create-kvell-app",
   "main": "lib/index.js",
   "bin": {
     "kvell-scripts": "bin/kvell-scripts.js"
