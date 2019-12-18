@@ -2,7 +2,7 @@ import { validatePackageName, doesDirectoryAlreadyExists } from "./helpers/valid
 import { createProject } from "./helpers/createProject";
 import { parseArgVector } from "./helpers/parseArgVector";
 
-export const createNodeApp = argv => {
+export const makeNodeApp = argv => {
   const validatedArgs = parseArgVector(argv);
   if (validatedArgs.valid) {
     const { packageName } = validatedArgs.argsData;

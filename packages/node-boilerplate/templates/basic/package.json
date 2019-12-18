@@ -3,18 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node-scripts-dev start",
-    "build": "node-scripts-dev build",
-    "debug": "node-scripts-dev debug",
-    "test": "node-scripts-dev test"
+    "start": "kvell-scripts start",
+    "build": "kvell-scripts build",
+    "debug": "kvell-scripts debug",
+    "test": "kvell-scripts test"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@tek/node-scripts-dev": "^1.0.0"
-  },
+  "dependencies": {},
   "eslintConfig": {
-    "extends": "@tek/eslint-config-tek-node"
+    "extends": "kvell-scripts"
   },
   "apidoc": {
     "name": "apidoc-example",

@@ -1,9 +1,10 @@
 {
-  "name": "@tek/node-boilerplate",
-  "version": "1.1.0",
+  "name": "create-kvell-app",
+  "version": "1.0.0",
   "description": "Boilerplate creator for node.js applications.",
   "bin": {
-    "create-node-app": "bin/create-node-app.js"
+    "create-kvell-app": "bin/make-node-app.js",
+    "kvell-gen": "bin/make-node-app.js"
   },
   "keywords": [
     "create-node-app",
@@ -12,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Neeraj Sharma",
   "license": "ISC",
   "dependencies": {
     "arg": "^4.1.1",

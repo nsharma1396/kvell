@@ -109,7 +109,7 @@ const installDependencies = async directoryPath => {
   log();
   // process.chdir(directoryPath);
   const command = "npm";
-  const args = ["install", "--save", "--save-exact", "--loglevel", "error"];
+  const args = ["install", "--save", "--save-exact", "--loglevel", "error", "kvell-scripts"];
   const options = { cwd: directoryPath, stdio: "inherit" };
   await runChildProcess(command, args, options);
 };
@@ -137,13 +137,16 @@ export const createProject = async directoryName => {
 
     log(`Created directory ${chalk.greenBright(directoryName)}`);
     log();
-    // log("Adding boilerplate template...");
 
     await copyTemplate(templateFolderPath, projectDirectoryPath, directoryName);
 
-    await ensureGitIgnore(projectDirectoryPath, directoryName);
-    await ensureNpmrc(projectDirectoryPath, directoryName);
+    // await ensureNpmrc(projectDirectoryPath, directoryName);
     await updatePackageJSON(projectDirectoryPath, directoryName);
+    try {
+      await ensureGitIgnore(projectDirectoryPath, directoryName);
+    } catch (e) {
+      // Do nothing for now if unable to add .gitignore
+    }
 
     // const isGitInitialized =
     await initializeGit(projectDirectoryPath);
