@@ -22,14 +22,14 @@ if (pluginName) {
   }
 
   module.exports = {
-    dbLib: dbPlugin.dbLib,
-    dbInstance: dbPlugin.dbInstance,
+    // dbLib: dbPlugin.dbLib,
+    // dbInstance: dbPlugin.dbInstance,
     initHandler: dbPlugin.initHandler
   };
 } else {
   module.exports = {
-    dbLib: "No database plugin specified",
-    dbInstance: "No database plugin specified",
+    // dbLib: "No database plugin specified",
+    // dbInstance: "No database plugin specified",
     initHandler: () => Promise.resolve()
   };
 }
