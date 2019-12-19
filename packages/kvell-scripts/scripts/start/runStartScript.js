@@ -3,7 +3,7 @@ const path = require("path");
 const chalk = require("chalk");
 // const chokidar = require("chokidar");
 const clearConsole = require("../utils/clearConsole");
-const handleConfigChanges = require("../utils/handleConfigChanges");
+// const handleConfigChanges = require("../utils/handleConfigChanges");
 // const getUrls = require("../utils/getUrls");
 
 const log = console.log;
@@ -44,13 +44,13 @@ const runStartScript = (args, script, scriptIndex, nodeArgs) => {
     canToggleShouldClear: false
   };
 
-  async function handleConfigFileChange() {
-    // function onConfigChange() {
-    //   printOptions.shouldClear = false;
-    // }
-    await handleConfigChanges();
-    // printOptions.canToggleShouldClear = true;
-  }
+  // async function handleConfigFileChange() {
+  //   // function onConfigChange() {
+  //   //   printOptions.shouldClear = false;
+  //   // }
+  //   await handleConfigChanges();
+  //   // printOptions.canToggleShouldClear = true;
+  // }
 
   nodemon
     .on("start", function() {

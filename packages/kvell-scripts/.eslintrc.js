@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: "",
+  extends: "kvell-scripts",
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"

@@ -1,14 +1,14 @@
 const path = require("path");
-const readFileFromPath = require("./fsWrapper").readFromFile;
+// const readFileFromPath = require("./fsWrapper").readFromFile;
 const parsedConfigInit = require("../config/appDefaultConfig");
 
 const configFileName = "kvell.config.js";
 
-const configErrorKeys = ["routes", "protocol", "models", "database"];
+const configErrorKeys = ["routes", "protocol", "models"];
 
-const isObject = obj => {
-  return !Array.isArray(obj) && obj === Object(obj);
-};
+// const isObject = obj => {
+//   return !Array.isArray(obj) && obj === Object(obj);
+// };
 
 const createConfigObject = parsedConfigs => {
   const configKeysStatus = {
@@ -22,16 +22,16 @@ const createConfigObject = parsedConfigs => {
     },
     models: {
       valid: !parsedConfigs.models ? true : Array.isArray(parsedConfigs.models)
-    },
-    database: {
-      valid: !parsedConfigs.database ? true : isObject(parsedConfigs.database)
     }
+    // database: {
+    //   valid: !parsedConfigs.database ? true : isObject(parsedConfigs.database)
+    // }
   };
 
-  const { routes, protocol, models, database } = configKeysStatus;
+  const { routes, protocol, models } = configKeysStatus;
 
   let configObject = {};
-  if (!routes.valid || !protocol.valid || !models.valid || !database.valid) {
+  if (!routes.valid || !protocol.valid || !models.valid) {
     const errorString = `Your ./${configFileName} contains invalid config values for:\n${configErrorKeys
       .filter(configKey => !configKeysStatus[configKey].valid)
       .join("\n")}`;
@@ -40,8 +40,8 @@ const createConfigObject = parsedConfigs => {
     configObject = {
       routes: parsedConfigs.routes || parsedConfigInit.routes,
       protocol: parsedConfigs.protocol || parsedConfigInit.protocol,
-      models: parsedConfigs.models || parsedConfigInit.models,
-      database: parsedConfigs.database || parsedConfigInit.database
+      models: parsedConfigs.models || parsedConfigInit.models
+      // database: parsedConfigs.database || parsedConfigInit.database
     };
   }
   return configObject;
