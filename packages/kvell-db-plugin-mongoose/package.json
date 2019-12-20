@@ -1,6 +1,6 @@
 {
   "name": "kvell-db-plugin-mongoose",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.1-alpha.1",
   "description": "A barebones MongoDB Plugin using Mongoose ORM for kvell-scripts",
   "main": "index.js",
   "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-mongoose",
