@@ -9,6 +9,11 @@ const log = console.log;
 
 const PORT = process.env.PORT || 5001;
 
+/**
+ * @function
+ * @param {import ("../scripts/utils/parseScriptsConfig").ScriptsConfig} scriptConfig
+ * @param {() => {}} onSuccess
+ */
 const runServer = async (scriptConfig, onSuccess) => {
   parseEnvironmentVariables();
 
@@ -18,13 +23,13 @@ const runServer = async (scriptConfig, onSuccess) => {
 
   const app = express();
 
-  const { routes, protocol, models } = scriptConfig;
+  const { routes, protocol, models, autoRequireRoutes } = scriptConfig;
   const isHTTP = protocol === "http";
 
   // add middlewares before starting the server
   attachGlobalMiddlewares(app);
 
-  const shouldStartServer = await updateAppRoutesAndModels(app, routes, models);
+  const shouldStartServer = await updateAppRoutesAndModels(app, routes, models, autoRequireRoutes);
 
   if (shouldStartServer) {
     initHandler()

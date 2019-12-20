@@ -1,6 +1,7 @@
 module.exports = {
   routes: [],
   models: [],
-  database: {},
+  // database: {},
+  autoRequireRoutes: true,
   protocol: "http"
 };

@@ -1,3 +1,15 @@
+/**
+ * @typedef {import ("express").Express} KvellAppObject
+ */
+
+/**
+ * @typedef {import ("express").Request} KvellRequestObject
+ */
+
+/**
+ * @typedef {import ("express").Response} KvellResponseObject
+ */
+
 const express = require("express"); //();
 const path = require("path");
 const devLog = require("simple-node-logger").createSimpleFileLogger(

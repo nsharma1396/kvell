@@ -9,6 +9,10 @@ const attachCustomGlobalMiddlewares = require(path.resolve(
   "globalMiddlewares"
 ));
 
+/**
+ *
+ * @param {import ("express").Express} app
+ */
 const attachGlobalMiddlewares = app => {
   app.disable("x-powered-by");
   app.use(

@@ -40,13 +40,35 @@ const createConfigObject = parsedConfigs => {
     configObject = {
       routes: parsedConfigs.routes || parsedConfigInit.routes,
       protocol: parsedConfigs.protocol || parsedConfigInit.protocol,
-      models: parsedConfigs.models || parsedConfigInit.models
+      models: parsedConfigs.models || parsedConfigInit.models,
+      autoRequireRoutes:
+        parsedConfigs.autoRequireRoutes === undefined
+          ? parsedConfigInit.autoRequireRoutes
+          : parsedConfigs.autoRequireRoutes
       // database: parsedConfigs.database || parsedConfigInit.database
     };
   }
   return configObject;
 };
 
+/**
+ * @typedef {Object} Routes
+ * @property {string} name
+ * @property {string} path
+ */
+
+/**
+ *
+ * @typedef {Object} ScriptsConfig
+ * @property {Routes} routes
+ * @property {string[]]} models
+ * @property {("http" | "https")} protocol
+ * @property {boolean} autoRequireRoutes
+ */
+
+/**
+ * @returns {Promise<ScriptsConfig>}
+ */
 const parseScriptsConfig = async appSrcDirectory => {
   let parsedConfig = parsedConfigInit;
   const configFilePath = path.join(appSrcDirectory, `./${configFileName}`);

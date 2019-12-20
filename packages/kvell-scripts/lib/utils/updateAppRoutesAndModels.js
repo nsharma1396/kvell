@@ -55,10 +55,12 @@ const attachApiDocRoute = app => {
   });
 };
 
-const attachRoutes = (app, routes, routeFiles) => {
-  routes.forEach(route => {
-    app.use(route.path, routeFiles[route.name]);
-  });
+const attachRoutes = (app, routes, routeFiles, autoRequireRoutes = true) => {
+  if (autoRequireRoutes) {
+    routes.forEach(route => {
+      app.use(route.path, routeFiles[route.name]);
+    });
+  }
   attachApiDocRoute(app);
   return true;
 };
@@ -80,11 +82,11 @@ const validateRouteFiles = routes => {
   };
 };
 
-const updateAppRoutesAndModels = (app, routes, models) => {
+const updateAppRoutesAndModels = (app, routes, models, autoRequireRoutes) => {
   const { allRoutesResolved, unresolvedRouteFiles, routeFiles } = validateRouteFiles(routes);
   const { allModelsResolved, unresolvedModelFiles } = validateModelFiles(models);
   if (allRoutesResolved && allModelsResolved) {
-    return attachRoutes(app, routes, routeFiles);
+    return attachRoutes(app, routes, routeFiles, autoRequireRoutes);
   } else {
     log();
     log(
