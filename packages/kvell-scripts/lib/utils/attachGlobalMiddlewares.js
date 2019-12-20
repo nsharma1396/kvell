@@ -26,7 +26,7 @@ const attachGlobalMiddlewares = app => {
     helmet.noCache()
   );
   app.use(cors());
-  app.use(logger("dev"));
+  app.use(logger("common"));
   attachCustomGlobalMiddlewares(app);
 };
 
