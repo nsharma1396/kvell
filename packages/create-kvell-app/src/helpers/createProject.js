@@ -6,6 +6,7 @@ import { copy, remove, ensureFile } from "fs-extra";
 import { promisify } from "util";
 import { runChildProcess } from "./runChildProcess";
 import generateGitIgnoreTemplate from "./generateGitIgnoreTemplate";
+import noop from "./noop";
 
 const makeDir = promisify(mkdir);
 const readFileFromPath = promisify(readFile);
@@ -44,7 +45,7 @@ const copyTemplate = async (
     log("Could not add boilerplate template.");
     log();
     log(chalk.redBright(exception.message));
-    log();
+    // log();
   }
 };
 
@@ -61,21 +62,20 @@ const ensureGitIgnore = async (projectDirectoryPath, _directoryName) => {
 // };
 
 const updatePackageJSON = async (projectDirectoryPath, directoryName) => {
-  try {
-    const pathToPackageJSON = `${projectDirectoryPath}/package.json`;
-    const packageJSON = await readFileFromPath(pathToPackageJSON, "utf-8");
-    log();
-    const parsedPackageJSON = JSON.parse(packageJSON);
-    parsedPackageJSON.name = directoryName;
-    const stringifiedJSON = JSON.stringify(parsedPackageJSON, null, 2);
-    await writeFileToPath(pathToPackageJSON, stringifiedJSON);
-    return "success";
-  } catch (exception) {
-    log("There was an issue while creating the template.");
-    log(chalk.redBright(`Error: ${exception.message}`));
-    // process.exit(0);
-    throw exception;
-  }
+  // try {
+  const pathToPackageJSON = `${projectDirectoryPath}/package.json`;
+  const packageJSON = await readFileFromPath(pathToPackageJSON, "utf-8");
+  const parsedPackageJSON = JSON.parse(packageJSON);
+  parsedPackageJSON.name = directoryName;
+  const stringifiedJSON = JSON.stringify(parsedPackageJSON, null, 2);
+  await writeFileToPath(pathToPackageJSON, stringifiedJSON);
+  return "success";
+  // } catch (exception) {
+  // log("There was an issue while creating the template.");
+  // log(chalk.redBright(`Error: ${exception.message}`));
+  // process.exit(0);
+  //   throw exception;
+  // }
 };
 
 const initializeGit = async directoryPath => {
@@ -83,22 +83,22 @@ const initializeGit = async directoryPath => {
   const args = ["init"];
   const options = { cwd: directoryPath, stdio: "inherit" };
 
-  try {
-    log();
-    // log("Initializing empty git repository...");
-    log();
-    await runChildProcess(command, args, options);
-    log();
-    // log(`${chalk.green("Initialized git repository.")}`);
-    log();
-    return true;
-  } catch (exception) {
-    log();
-    log(`${chalk.red("Failed")} to initialize git repository.`);
-    log("Skipping git initialization...");
-    log();
-    return false;
-  }
+  // try {
+  // log();
+  // log("Initializing empty git repository...");
+  log();
+  await runChildProcess(command, args, options);
+  log();
+  // log(`${chalk.green("Initialized git repository.")}`);
+  // log();
+  //   return true;
+  // } catch (exception) {
+  //   log();
+  //   log(`${chalk.red("Failed")} to initialize git repository.`);
+  //   log("Skipping git initialization...");
+  //   log();
+  //   return false;
+  // }
 };
 
 const installDependencies = async directoryPath => {
@@ -156,13 +156,12 @@ export const createProject = async directoryName => {
 
     await installDependencies(projectDirectoryPath);
 
-    log();
     log(chalk.green(`Successfully created new Node application '${directoryName}'.`));
     log();
     log(
-      `Switch to '${directoryName}' directory using\n\n${chalk.blue(
+      `Switch to '${directoryName}' directory using:\n\n${chalk.blue(
         `cd ${directoryName}`
-      )}\n\nThen run the server in development mode using\n\n${chalk.blue("npm start")}\n\n`
+      )}\n\nThen run the server in development mode using:\n\n${chalk.blue("npm start")}\n`
     );
   } catch (e) {
     // log(e.message);
