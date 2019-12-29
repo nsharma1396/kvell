@@ -7,8 +7,6 @@ const { updateAppRoutesAndModels } = require("./utils/updateAppRoutesAndModels")
 
 const log = console.log;
 
-const PORT = process.env.PORT || 5001;
-
 /**
  * @function
  * @param {import ("../scripts/utils/parseScriptsConfig").ScriptsConfig} scriptConfig
@@ -16,6 +14,8 @@ const PORT = process.env.PORT || 5001;
  */
 const runServer = async (scriptConfig, onSuccess) => {
   parseEnvironmentVariables();
+
+  const PORT = process.env.PORT || 5001;
 
   const { initHandler } = require("../scripts/utils/getDBPlugin");
 
