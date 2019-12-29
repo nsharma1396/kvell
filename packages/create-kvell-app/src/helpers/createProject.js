@@ -1,12 +1,10 @@
 import chalk from "chalk";
 import path from "path";
-import { resolve } from "path";
 import { mkdir, writeFile, readFile } from "fs";
 import url from "url";
 import { copy, remove, ensureFile } from "fs-extra";
 import { promisify } from "util";
 import { runChildProcess } from "./runChildProcess";
-import generateNpmRcTemplate from "./generateNpmRcTemplate";
 import generateGitIgnoreTemplate from "./generateGitIgnoreTemplate";
 
 const makeDir = promisify(mkdir);
@@ -118,8 +116,8 @@ export const createProject = async directoryName => {
   const currentPathURL = import.meta.url;
   // Commenting URL since it is only available after Node v10.0.0
   // const currentPathName = new URL(currentPathURL).pathname;
-  const currentPathName = new url.URL(currentPathURL).pathname;
-  const resolvedPath = resolve(currentPathName, `..`, `..`, `..`, `templates`, `basic`); // databaseName);
+  const currentPathName = url.fileURLToPath(currentPathURL);
+  const resolvedPath = path.resolve(currentPathName, `..`, `..`, `..`, `templates`, `basic`); // databaseName);
 
   const templateFolderPath = resolvedPath;
 
