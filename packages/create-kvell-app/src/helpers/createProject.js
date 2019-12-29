@@ -155,6 +155,15 @@ export const createProject = async directoryName => {
     }
 
     await installDependencies(projectDirectoryPath);
+
+    log();
+    log(chalk.green(`Successfully created new Node application '${directoryName}'.`));
+    log();
+    log(
+      `Switch to '${directoryName}' directory using\n\n${chalk.blue(
+        `cd ${directoryName}`
+      )}\n\nThen run the server in development mode using\n\n${chalk.blue("npm start")}\n\n`
+    );
   } catch (e) {
     // log(e.message);
     log();
