@@ -140,14 +140,19 @@ export const createProject = async directoryName => {
 
     // await ensureNpmrc(projectDirectoryPath, directoryName);
     await updatePackageJSON(projectDirectoryPath, directoryName);
-    try {
-      await ensureGitIgnore(projectDirectoryPath, directoryName);
-    } catch (e) {
-      // Do nothing for now if unable to add .gitignore
-    }
 
-    // const isGitInitialized =
-    await initializeGit(projectDirectoryPath);
+    try {
+      await initializeGit(projectDirectoryPath);
+      // Ensure .gitignore only when git is successfully initialized
+      await ensureGitIgnore(projectDirectoryPath, directoryName).catch(noop);
+    } catch (exception) {
+      log(
+        chalk.yellow(
+          `Could not initialize ${directoryName} as a git repository due to the following exception.`
+        )
+      );
+      log(chalk.yellow(exception.message));
+    }
 
     await installDependencies(projectDirectoryPath);
   } catch (e) {
