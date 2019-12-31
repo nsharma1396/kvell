@@ -1,7 +1,9 @@
 const express = require("express");
 const chalk = require("chalk");
+const httpServer = require("http").createServer;
+// const httpsServer = require("https").createServer;
 const getServerUrls = require("./utils/getServerUrls");
-const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
+// const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
 const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
 const { updateAppRoutesAndModels } = require("./utils/updateAppRoutesAndModels");
 
@@ -19,15 +21,18 @@ const runServer = async (scriptConfig, onSuccess) => {
 
   const { initHandler } = require("../scripts/utils/getDBPlugin");
 
-  // fileLogger.setLevel("warn");
-
   const app = express();
 
   const { routes, protocol, models, autoRequireRoutes } = scriptConfig;
   const isHTTP = protocol === "http";
 
+  // Create `server` variable for running 'http' or 'https' server based on user's configuration
+  // const server = isHTTP ? httpServer(app) : httpsServer(app);
+  const server = httpServer(app);
+
   // add middlewares before starting the server
-  attachGlobalMiddlewares(app);
+  require("./utils/attachGlobalMiddlewares")(app);
+  // attachGlobalMiddlewares(app);
 
   const shouldStartServer = await updateAppRoutesAndModels(app, routes, models, autoRequireRoutes);
 
@@ -38,7 +43,7 @@ const runServer = async (scriptConfig, onSuccess) => {
         log(chalk.blue("Starting the server..."));
         log();
 
-        app.listen(PORT, () => {
+        server.listen(PORT, () => {
           const ipDetails = getServerUrls();
           log(
             chalk.blue(`Server running on:`),
