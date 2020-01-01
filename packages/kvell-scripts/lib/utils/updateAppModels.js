@@ -44,17 +44,17 @@ const createModelFiles = async (unresolvedFiles, allModels) => {
       currentModelDirPath,
       `${fileName}Model${fileExt}`
     );
-    log(chalk.blue(`Creating ${fileName} model files in ${currentModelDirPath}...`));
+    log(chalk.blue(`Creating '${fileName}' model files in '${currentModelDirPath}'...`));
     const modelTemplateData = generateModelTemplate(
       fileName,
-      process.env.DB_NAME,
-      process.env.DB_PLUGIN_NAME
+      process.env.DB_NAME || "databaseName",
+      process.env.DB_PLUGIN_NAME || "databasePluginName"
     );
     const modelFunctionalityData = generateModelFunctionalityTemplate(fileName);
     ensureDirSync(currentModelDirPath);
     await writeToFile(modelFunctionalityFilePath, modelTemplateData);
     await writeToFile(modelFilePath, modelFunctionalityData);
-    log(chalk.green(`Created ${fileName}${fileExt}...`));
+    log(chalk.green(`Created '${fileName}${fileExt}'...`));
   }
   log();
   const modelIndexPath = path.resolve(modelDirPath, "index.js");

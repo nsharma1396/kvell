@@ -6,7 +6,8 @@
     "start": "kvell-scripts start",
     "build": "kvell-scripts build",
     "debug": "kvell-scripts debug",
-    "test": "kvell-scripts test"
+    "test": "kvell-scripts test",
+    "generate": "kvell-gen"
   },
   "author": "",
   "license": "ISC",

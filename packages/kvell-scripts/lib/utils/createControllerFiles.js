@@ -14,10 +14,10 @@ const createControllerFiles = async (unresolvedFiles, allcontrollers) => {
     const fileName = unresolvedFile.name;
     const fileExt = ".js";
     const filePath = path.resolve(controllerDirPath, `${fileName}${fileExt}`);
-    log(chalk.blue(`Creating ${fileName}${fileExt} in ${filePath}...`));
+    log(chalk.blue(`Creating '${fileName}${fileExt}' in '${filePath}'...`));
     const controllerTemplateData = generateControllerTemplate(fileName);
     await writeToFile(filePath, controllerTemplateData);
-    log(chalk.green(`Created ${fileName}${fileExt}...`));
+    log(chalk.green(`Created '${fileName}${fileExt}'...`));
   }
   log();
   const controllerIndexPath = path.resolve(controllerDirPath, "index.js");

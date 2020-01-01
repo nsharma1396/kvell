@@ -60,7 +60,7 @@ const createConfigObject = parsedConfigs => {
 /**
  *
  * @typedef {Object} ScriptsConfig
- * @property {Routes} routes
+ * @property {Routes[]} routes
  * @property {string[]]} models
  * @property {("http" | "https")} protocol
  * @property {boolean} autoRequireRoutes
