@@ -17,7 +17,7 @@ const args = process.argv.slice(2);
 const scriptIndex = args.findIndex(arg => arg === "start");
 
 const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
-const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : []; // So that other arguments do not get missed (like maybe environment variables, etc)
+const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : []; // So that other arguments do not get missed
 
 if (["start"].includes(script)) {
   parseApiDocs();

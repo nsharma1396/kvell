@@ -3,6 +3,10 @@
  */
 
 /**
+ * @typedef {import ("http").Server | import ("https").Server} KvellServerObject
+ */
+
+/**
  * @typedef {import ("express").Request} KvellRequestObject
  */
 

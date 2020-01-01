@@ -10,10 +10,10 @@ const attachCustomGlobalMiddlewares = require(path.resolve(
 ));
 
 /**
- *
  * @param {import ("express").Express} app
+ * @param {import ("http").Server | import ("https").Server} server
  */
-const attachGlobalMiddlewares = app => {
+const attachGlobalMiddlewares = (app, server) => {
   app.disable("x-powered-by");
   app.use(
     helmet.frameguard(),
@@ -27,7 +27,7 @@ const attachGlobalMiddlewares = app => {
   );
   app.use(cors());
   app.use(logger("common"));
-  attachCustomGlobalMiddlewares(app);
+  attachCustomGlobalMiddlewares(app, server);
 };
 
 module.exports = attachGlobalMiddlewares;

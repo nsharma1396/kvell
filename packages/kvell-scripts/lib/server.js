@@ -31,7 +31,7 @@ const runServer = async (scriptConfig, onSuccess) => {
   const server = httpServer(app);
 
   // add middlewares before starting the server
-  require("./utils/attachGlobalMiddlewares")(app);
+  require("./utils/attachGlobalMiddlewares")(app, server);
   // attachGlobalMiddlewares(app);
 
   const shouldStartServer = await updateAppRoutesAndModels(app, routes, models, autoRequireRoutes);
