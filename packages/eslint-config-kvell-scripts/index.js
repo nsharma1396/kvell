@@ -14,8 +14,8 @@ module.exports = {
   },
   rules: {
     "no-unused-vars": [
-      "error",
-      { argsIgnorePattern: "^_|^req|^res|^next|^err|^app$", ignoreRestSiblings: true }
+      "warning",
+      { argsIgnorePattern: "^_|^req|^res|^next|^err|^app$|^server$", ignoreRestSiblings: true }
     ]
   }
 };
