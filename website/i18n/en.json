@@ -5,10 +5,6 @@
     "previous": "Previous",
     "tagline": "Create Node.js applications with pre-defined configurations, app flow and abstractions.",
     "docs": {
-      "doc1": {
-        "title": "Latin-ish",
-        "sidebar_label": "Example Page"
-      },
       "doc2": {
         "title": "document number 2"
       },
@@ -20,15 +16,23 @@
       },
       "doc5": {
         "title": "Fifth Document"
+      },
+      "getting-started/installation": {
+        "title": "Install",
+        "sidebar_label": "Install"
+      },
+      "getting-started/introduction": {
+        "title": "Introduction",
+        "sidebar_label": "Introduction"
       }
     },
     "links": {
-      "Docs": "Docs"
+      "Docs": "Docs",
+      "Github": "Github"
     },
     "categories": {
-      "Docusaurus": "Docusaurus",
-      "First Category": "First Category",
-      "Second Category": "Second Category"
+      "Getting Started": "Getting Started",
+      "First Category": "First Category"
     }
   },
   "pages-strings": {
