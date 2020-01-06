@@ -4,7 +4,28 @@
       "getting-started/introduction",
       "getting-started/installation",
       "getting-started/kvell-config-js",
-      "getting-started/folder-structure"
+      "getting-started/available-scripts"
+    ],
+    "Guide": [
+      "guide/folder-structure",
+      "guide/apidocs",
+      "guide/global",
+      "guide/models",
+      "guide/routes-and-controllers",
+      "guide/logging",
+      "guide/packages-used"
+    ],
+    "Auto-Templating": [
+      "auto-templating/overview",
+      "auto-templating/using-generate-scripts",
+      "auto-templating/using-kvell-config-js"
+    ]
+  },
+  "database-plugins": {
+    "Kvell Database Plugins": [
+      "database-plugins/overview",
+      "database-plugins/kvell-db-plugin-sequelize",
+      "database-plugins/kvell-db-plugin-mongoose"
     ]
   }
 }

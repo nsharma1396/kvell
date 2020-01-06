@@ -14,6 +14,7 @@ const siteConfig = {
 
   headerLinks: [
     { doc: "getting-started/introduction", label: "Docs" },
+    { doc: "database-plugins/overview", label: "Database Plugins" },
     { href: "https://www.github.com/nsharma1396/kvell", label: "Github" }
     // { search: true }
   ],

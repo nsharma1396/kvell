@@ -5,8 +5,30 @@
     "previous": "Previous",
     "tagline": "Create Node.js applications with pre-defined configurations, app flow and abstractions.",
     "docs": {
-      "getting-started/folder-structure": {
-        "title": "Folder Structure"
+      "auto-templating/overview": {
+        "title": "Overview"
+      },
+      "auto-templating/using-generate-scripts": {
+        "title": "Generation Scripts in Kvell",
+        "sidebar_label": "Using Kvell's generation scripts"
+      },
+      "auto-templating/using-kvell-config-js": {
+        "title": "Using kvell.config.js to generate templates",
+        "sidebar_label": "Using kvell.config.js"
+      },
+      "database-plugins/kvell-db-plugin-mongoose": {
+        "title": "Mongoose Plugin for kvell",
+        "sidebar_label": "kvell-db-plugin-mongoose"
+      },
+      "database-plugins/kvell-db-plugin-sequelize": {
+        "title": "Mongoose Plugin for kvell",
+        "sidebar_label": "kvell-db-plugin-sequelize"
+      },
+      "database-plugins/overview": {
+        "title": "Overview"
+      },
+      "getting-started/available-scripts": {
+        "title": "Available Scripts"
       },
       "getting-started/installation": {
         "title": "Install",
@@ -18,14 +40,39 @@
       },
       "getting-started/kvell-config-js": {
         "title": "kvell.config.js"
+      },
+      "guide/apidocs": {
+        "title": "Api Documentation"
+      },
+      "guide/folder-structure": {
+        "title": "Folder Structure"
+      },
+      "guide/global": {
+        "title": "Global"
+      },
+      "guide/logging": {
+        "title": "Logging in Kvell"
+      },
+      "guide/models": {
+        "title": "Models"
+      },
+      "guide/packages-used": {
+        "title": "Packages Used In Kvell"
+      },
+      "guide/routes-and-controllers": {
+        "title": "Routes and Controllers"
       }
     },
     "links": {
       "Docs": "Docs",
+      "Database Plugins": "Database Plugins",
       "Github": "Github"
     },
     "categories": {
-      "Getting Started": "Getting Started"
+      "Getting Started": "Getting Started",
+      "Guide": "Guide",
+      "Auto-Templating": "Auto-Templating",
+      "Kvell Database Plugins": "Kvell Database Plugins"
     }
   },
   "pages-strings": {
