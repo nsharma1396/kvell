@@ -5,17 +5,8 @@
     "previous": "Previous",
     "tagline": "Create Node.js applications with pre-defined configurations, app flow and abstractions.",
     "docs": {
-      "doc2": {
-        "title": "document number 2"
-      },
-      "doc3": {
-        "title": "This is document number 3"
-      },
-      "doc4": {
-        "title": "Other Document"
-      },
-      "doc5": {
-        "title": "Fifth Document"
+      "getting-started/folder-structure": {
+        "title": "Folder Structure"
       },
       "getting-started/installation": {
         "title": "Install",
@@ -24,6 +15,9 @@
       "getting-started/introduction": {
         "title": "Introduction",
         "sidebar_label": "Introduction"
+      },
+      "getting-started/kvell-config-js": {
+        "title": "kvell.config.js"
       }
     },
     "links": {
@@ -31,8 +25,7 @@
       "Github": "Github"
     },
     "categories": {
-      "Getting Started": "Getting Started",
-      "First Category": "First Category"
+      "Getting Started": "Getting Started"
     }
   },
   "pages-strings": {

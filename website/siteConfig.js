@@ -18,6 +18,8 @@ const siteConfig = {
     // { search: true }
   ],
 
+  editUrl: "https://github.com/nsharma1396/kvell/edit/docs/docs/",
+
   /* path to images for header/footer */
   headerIcon: "img/favicon.png",
   footerIcon: "img/favicon.png",
@@ -52,7 +54,7 @@ const siteConfig = {
   twitter: true,
   twitterUsername: "nsharma1396",
 
-  // enableUpdateBy: true
+  enableUpdateBy: true,
 
   // Show documentation's last update time.
   enableUpdateTime: true

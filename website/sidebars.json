@@ -1,5 +1,10 @@
 {
   "docs": {
-    "Getting Started": ["getting-started/introduction", "getting-started/installation"]
+    "Getting Started": [
+      "getting-started/introduction",
+      "getting-started/installation",
+      "getting-started/kvell-config-js",
+      "getting-started/folder-structure"
+    ]
   }
 }
