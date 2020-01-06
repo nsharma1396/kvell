@@ -3,4 +3,40 @@ id: available-scripts
 title: Available Scripts
 ---
 
-This section covers all the available scripts in Kvell.
+Kvell.js has the following scripts available:
+
+## npm start
+
+`npm start` will run the server in development mode. Before starting the server, it will do two tasks:
+
+1. Parses files from your `apidocs` directory to create an API documentation for your application.
+2. Compiles your code using [eslint](https://eslint.org/). If your code compiles successfully, then a server will be started on [http://localhost:5001](http://localhost:5001) (If a custom port is provided, the server will start on that port). If your code fails to compile due to some errors, Kvell will console those errors with brief description.
+
+_Internally, kvell will use `nodemon` to run the server in the development mode._
+
+## npm run generate
+
+`npm run generate` can be used to generate one of the following two things in your application:
+
+1. Routes
+2. Models
+
+The generate scripts are explained in detail [**here**](auto-templating/using-generate-scripts.md).
+
+## npm run debug
+
+> `npm run debug` is currently under development and currently non-functional in the application
+
+This will run the application in a debug mode.
+
+## npm test
+
+> `npm test` is currently under development and currently non-functional in the application
+
+This will run the application in a test mode.
+
+## npm build
+
+> `npm run build` is currently under development and currently non-functional in the application
+
+This will run the application in a build mode.
