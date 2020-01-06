@@ -4,16 +4,17 @@
       "getting-started/introduction",
       "getting-started/installation",
       "getting-started/kvell-config-js",
-      "getting-started/available-scripts"
+      "getting-started/available-scripts",
+      "getting-started/packages-used",
+      "getting-started/api"
     ],
     "Guide": [
       "guide/folder-structure",
-      "guide/apidocs",
       "guide/global",
-      "guide/models",
       "guide/routes-and-controllers",
-      "guide/logging",
-      "guide/packages-used"
+      "guide/models",
+      "guide/apidocs",
+      "guide/logging"
     ],
     "Auto-Templating": [
       "auto-templating/overview",

@@ -27,6 +27,9 @@
       "database-plugins/overview": {
         "title": "Overview"
       },
+      "getting-started/api": {
+        "title": "API"
+      },
       "getting-started/available-scripts": {
         "title": "Available Scripts"
       },
@@ -40,6 +43,9 @@
       },
       "getting-started/kvell-config-js": {
         "title": "kvell.config.js"
+      },
+      "getting-started/packages-used": {
+        "title": "Packages Used In Kvell"
       },
       "guide/apidocs": {
         "title": "Api Documentation"
@@ -55,9 +61,6 @@
       },
       "guide/models": {
         "title": "Models"
-      },
-      "guide/packages-used": {
-        "title": "Packages Used In Kvell"
       },
       "guide/routes-and-controllers": {
         "title": "Routes and Controllers"
