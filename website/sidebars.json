@@ -14,7 +14,8 @@
       "guide/routes-and-controllers",
       "guide/models",
       "guide/apidocs",
-      "guide/logging"
+      "guide/logging",
+      "guide/custom-ports"
     ],
     "Auto-Templating": [
       "auto-templating/overview",

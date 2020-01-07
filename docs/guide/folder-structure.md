@@ -59,7 +59,7 @@ For example, an authentication middleware.
 > Note: The routes are not required to be registered anywhere in the application if the `autoRequireRoutes` key is set to **true** in `kvell.config.js`. If it is set to **false**, then you **must** register all your routes in `globalMiddlewares` using `app.use` method.
 
 - **dbSyncHandlers.js** exposes a function `onBeforeDbSync` which is a method which will run before your database is `synced`.
-This is mainly useful if you want to setup some table relationshipe and are using a library like `sequelize` which provides a `sync` method.
+This is mainly useful if you want to setup some table relationships globally and are using a library like `sequelize` which provides a `sync` method.
 
 More on `global` [**here**](global.md)
 

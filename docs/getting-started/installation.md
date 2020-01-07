@@ -34,3 +34,11 @@ npm start
 ```
 
 That's it! This will start you server on [http://localhost:5001](http://localhost:5001).
+
+## Optional Installation Method
+
+You can also create an application using the `npm init` script.
+
+```sh
+npm init kvell-app example-app
+```
