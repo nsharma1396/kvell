@@ -12,6 +12,7 @@ The packages are:
 - [cors](https://www.npmjs.com/package/cors)
 - [morgan](https://www.npmjs.com/package/morgan)
 - [nodemon](https://www.npmjs.com/package/nodemon)
+- [apidoc.js](https://apidocjs.com)
 - [helmet](https://www.npmjs.com/package/helmet)
 - [simple-node-logger](https://www.npmjs.com/package/simple-node-logger) <span style="color:red">*</span>
 

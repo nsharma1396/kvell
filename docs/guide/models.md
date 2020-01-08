@@ -8,11 +8,43 @@ It only handles the structure of the data and how can it be queried.
 
 ### Example
 ```javascript
+
+const sequelize = require("kvell-db-plugin-sequelize").dbInstance;
+const Sequelize = require("kvell-db-plugin-sequelize").dbLib;
+
+// Create your User model's schema here and export it.
+
+const User = sequelize.define(
+  "user",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      allowNull: false
+    },
+    email: {
+      unique: true,
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    userName: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+  }
+);
+
+module.exports = User;
+
 ```
 
 ### Folder and naming convention
 
-Models has a seperate folder in a Kvell Application and each model follows the following structure and naming convention:
+Models has a separate folder in a Kvell Application and each model follows the following structure and naming convention:
 
 ```
   ...

@@ -4,7 +4,7 @@ title: Generation Scripts in Kvell
 sidebar_label: Using generation scripts
 ---
 
-You can generate Routes and Models seperately using kvell's generation command. 
+You can generate Routes and Models separately using kvell's generation command. 
 The `generate` script is exposed as `kvell-gen` command. But, instead of using `kvell-gen` directly, you can use `npm run generate` which
 wraps up `kvell-gen`.
 
@@ -15,11 +15,19 @@ wraps up `kvell-gen`.
 For `npm run generate` to work, add the following in the `scripts` object of your application's `package.json`:
 
 ```json
+"scripts": {
+  ...
   "generate": "kvell-gen"
+  ...
+}
 ```
 
 
 ## Route
+
+```typescript
+routes: Array<{ name: string, path: string }>
+```
 
 For generating a route:
 
@@ -49,6 +57,10 @@ For more details on Routing, [click here](https://expressjs.com/en/guide/routing
 ## Model
 
 > A Model file is only useful when you have a database plugin configured. To install and configure a database plugin in Kvell, view the [Database Plugins docs](database-plugins/overview.md)
+
+```typescript
+models: Array<string>
+```
 
 For generating a model:
 

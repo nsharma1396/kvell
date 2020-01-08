@@ -7,6 +7,6 @@ Kvell provided **Automatic Templating** to generate route/controller and model t
 
 There are two ways you can use the Auto Templating by following either of the following approaches:
 
-- Using Generate Scripts
+- [Using Generate Scripts](using-generate-scripts.md)
 
-- Using kvell.config.js
+- [Using kvell.config.js](using-kvell-config-js.md)

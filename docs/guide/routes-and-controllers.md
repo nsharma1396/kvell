@@ -12,11 +12,24 @@ As mentioned above, the `Routes` layer handles all incoming requests and parses 
 ### Example
 
 ```javascript
+const userRouter = require("kvell-scripts").router();
+const userController = require("../controllers").user;
+
+userRouter.get("/:userid", async (request, response) => {
+  try {
+    // parse your request data in a suitable format for your controller
+    const userId = request.params.userid;
+    const result = await userController.getUserData(userId);
+    response.status(result.status).send(result.userData);
+  } catch (exception) {
+    // Send appropriate error message
+  }
+});
 ```
 
 ### Folder and naming convention
 
-Routes has a seperate folder in a Kvell Application and each file follows the following structure and naming convention:
+Routes has a separate folder in a Kvell Application and each file follows the following structure and naming convention:
 
 ```
   ...
@@ -39,11 +52,22 @@ The `Controller` then gets the parsed data as it's parameter and performs requir
 ### Example
 
 ```javascript
+const userController = {};
+const User = require("../models/User"); 
+
+userController.getUserData( async userId => {
+  const userData = await User.getById(userId);
+  return userData;
+});
+
+module.exports = userController;
 ```
+
+> Note: We can prefer to always return a promise from any controller function to maintain the asynchronous flow of the application.
 
 ### Folder and naming convention
 
-Controllers has a seperate folder in a Kvell Application and each file follows the following structure and naming convention:
+Controllers has a separate folder in a Kvell Application and each file follows the following structure and naming convention:
 
 ```
   ...
