@@ -58,7 +58,7 @@ const globalMiddlewares = (app, server) => {
 **dbSyncHandlers.js** exposes a function `onBeforeDbSync` which is a method which will run before your database is `synced`.
 This is mainly useful if you want to setup some table relationships globally and are using a library like `sequelize` which provides a `sync` method.
 
-You might not really need to use dbSyncHandlers generally.
+You might not really need to use dbSyncHandlers in general.
 
 Example:
 

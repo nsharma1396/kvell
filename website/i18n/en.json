@@ -10,7 +10,7 @@
       },
       "auto-templating/using-generate-scripts": {
         "title": "Generation Scripts in Kvell",
-        "sidebar_label": "Using Kvell's generation scripts"
+        "sidebar_label": "Using generation scripts"
       },
       "auto-templating/using-kvell-config-js": {
         "title": "Using kvell.config.js to generate templates",
@@ -49,6 +49,9 @@
       },
       "guide/apidocs": {
         "title": "Api Documentation"
+      },
+      "guide/custom-ports": {
+        "title": "Using Custom Ports in Development"
       },
       "guide/folder-structure": {
         "title": "Folder Structure"

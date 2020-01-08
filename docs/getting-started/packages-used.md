@@ -14,3 +14,7 @@ The packages are:
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - [helmet](https://www.npmjs.com/package/helmet)
 - [simple-node-logger](https://www.npmjs.com/package/simple-node-logger) <span style="color:red">*</span>
+
+<!-- ## Predefined Configurations -->
+<!-- 
+Kvell uses the above packages internally in the following  -->

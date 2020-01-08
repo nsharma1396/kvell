@@ -31,7 +31,7 @@ Each route in the array is defined by an object consisting of the following keys
   - controllers
   - routes
 
-- **path**: A **unique root url** for your route. This is the same path that you will provide to an express `Router`.
+- **path**: A **unique root url** for your route. This is the same root URL path that you will provide to an express `Router`.
 
 Example:
 

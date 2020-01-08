@@ -100,7 +100,7 @@ The purpose of `devLog` is to give you a simple mechanism wherein you can log an
 
 The implementation will probably change for the logger and will try to provide a very robust mechanism for logging in your applications.
 
-For more details on `router`, [simple-node-logger](https://www.npmjs.com/package/simple-node-logger)
+Internally, Kvell uses [simple-node-logger](https://www.npmjs.com/package/simple-node-logger) and exports it's logging function as `devLog`. Check the package for more details on how you can use devLog.
 
 ## `config`
 
