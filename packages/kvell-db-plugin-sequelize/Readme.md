@@ -1,8 +1,4 @@
----
-id: kvell-db-plugin-sequelize
-title: Sequelize Plugin for kvell
-sidebar_label: kvell-db-plugin-sequelize
----
+# Sequelize Plugin for kvell
 
 `Kvell-db-plugin-sequelize` wraps up [sequelize](https://sequelize.org/) and exposes all three values required to be exposed by a kvell database plugin.
 
