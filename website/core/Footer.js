@@ -31,9 +31,9 @@ function Footer(props) {
         </a>
         <div className="doc-links">
           <h5>Docs</h5>
-          <a href={docUrl("doc1.html", language)}>Getting Started (or other categories)</a>
-          <a href={docUrl("doc2.html", language)}>Guides (or other categories)</a>
-          <a href={docUrl("doc3.html", language)}>API Reference (or other categories)</a>
+          <a href={docUrl("getting-started/introduction", language)}>Getting Started</a>
+          <a href={docUrl("guide/folder-structure", language)}>Guides</a>
+          <a href={docUrl("database-plugins/overview", language)}>Database Plugins</a>
         </div>
         <div />
         <div className="social-links">
