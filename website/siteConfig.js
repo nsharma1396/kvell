@@ -1,12 +1,16 @@
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
+const path = require("path");
+
 const siteConfig = {
   title: "Kvell.js", // Title for the website.
   tagline:
     "Create Node.js applications with pre-defined configurations, app flow and abstractions.",
   url: "", // Website URL
   baseUrl: "/", // Base URL for your project */
+
+  customDocsPath: path.basename(__dirname) + "/docs",
 
   // Used for publishing and more
   projectName: "kvell",

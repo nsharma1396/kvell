@@ -1,25 +1,25 @@
-# Kvell.js
+---
+id: introduction
+title: Introduction
+sidebar_label: Introduction
+---
 
-Kvell creates Node.js applications with pre-defined configurations, app flow and abstractions.
+## What is Kvell ?
 
-It composes applications with a strong focus on:
-- [x] Code standards
-- [x] Abstracting out server and db configurations
-- [x] Multiple db availability
-- [x] Consistent folder structure
-- [x] Api documentation
-- [x] Auto-template creation
-- [x] Automatic git initialization
-- [x] Logging
+[Kvell.js](https://www.github.com/nsharma1396/kvell) is a family of packages using which you can create Node.js applications with pre-defined
+configurations, a fixed application flow and a set of abstractions. It bootstraps the node application with a set of popularly used npm packages and provides a minimal setup environment so that the developer can focus directly on writing the essential parts of the application.
 
-It tries to follow the "Twelve-factor app" methodology and will probably follow it in a much more improved manner with upcoming versions.
+## What does it do ?
 
-Kvell gives you access to scripts that run your applications in `development`, `testing` and `production` environments.
+- Maintains a proper code standard.
+- Abstracts out server configurations.
+- Abstracts out database related configurations.
+- Maintains a consistent top-level folder structure.
+- Provides support for writing and viewing API documentations without any setups.
+- Provides auto-template creation for routes and models.
+- Does automatic git initialization (if possible) on project setup.
+- Provides a very simple and basic logging mechanism.
 
-Kvell is currently in **beta** and the current status of the scripts pipeline is:
+`Kvell` takes inspiration from [create-react-app](https://www.create-react-app.dev) in it's implementation and shares some similarity with `create-react-app's` methodology and internal flow when it comes to how it works under the hood.
 
-- [x] Development
-- [ ] Testing
-- [ ] Build
-
-Docs are under development and will be updated soon.
+For complete docs of Kvell, visit [Kvell Docs](https://kvelljs.now.sh/)
