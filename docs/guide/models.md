@@ -46,7 +46,7 @@ module.exports = User;
 
 Models has a separate folder in a Kvell Application and each model follows the following structure and naming convention:
 
-```
+```text
   ...
   models/
     ...

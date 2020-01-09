@@ -21,7 +21,7 @@
         "sidebar_label": "kvell-db-plugin-mongoose"
       },
       "database-plugins/kvell-db-plugin-sequelize": {
-        "title": "Mongoose Plugin for kvell",
+        "title": "Sequelize Plugin for kvell",
         "sidebar_label": "kvell-db-plugin-sequelize"
       },
       "database-plugins/overview": {

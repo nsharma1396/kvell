@@ -31,7 +31,7 @@ userRouter.get("/:userid", async (request, response) => {
 
 Routes has a separate folder in a Kvell Application and each file follows the following structure and naming convention:
 
-```
+```text
   ...
   routes/
     home.js
@@ -69,7 +69,7 @@ module.exports = userController;
 
 Controllers has a separate folder in a Kvell Application and each file follows the following structure and naming convention:
 
-```
+```text
   ...
   controllers/
     home.js

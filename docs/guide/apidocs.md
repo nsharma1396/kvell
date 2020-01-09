@@ -13,7 +13,7 @@ Apidoc.js follows the `jsdoc` pattern and makes it easier to write documentation
 
 You can edit your application's Api Documentation in the `apidocs` folder which looks something like the following:
 
-```
+```text
   apidocs\
     example.js
     ...
