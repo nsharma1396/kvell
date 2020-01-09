@@ -1,8 +1,4 @@
----
-id: introduction
-title: Introduction
-sidebar_label: Introduction
----
+# Kvell.js
 
 ## What is Kvell ?
 
