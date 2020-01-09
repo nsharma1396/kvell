@@ -19,7 +19,7 @@ const siteConfig = {
     // { search: true }
   ],
 
-  editUrl: "https://github.com/nsharma1396/kvell/edit/docs/docs/",
+  editUrl: "https://github.com/nsharma1396/kvell/edit/master/docs/",
 
   /* path to images for header/footer */
   headerIcon: "img/favicon.png",

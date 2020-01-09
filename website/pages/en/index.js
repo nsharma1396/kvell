@@ -119,16 +119,25 @@ function Index(props) {
     <Block layout="fourColumn">
       {[
         {
-          content: "This is the content of my feature",
-          image: `${baseUrl}img/undraw_react.svg`,
+          content:
+            "There is only one dependency that you need to keep your application up-to-date. Kvell makes sure that any complications regarding updating is handled out of the box so that you can focus more on the business logic.",
+          image: `${baseUrl}img/undraw_dev_productivity_umsq.svg`,
           imageAlign: "top",
-          title: "Feature One"
+          title: "Easy to setup and maintain"
         },
         {
-          content: "The content of my second feature",
+          content:
+            "Internally, Kvell uses commonly used battle-tested packages/libraries to create a pre-configured modern application thus giving you a powerful base to begin your application in no time.",
           image: `${baseUrl}img/undraw_operating_system.svg`,
           imageAlign: "top",
-          title: "Feature Two"
+          title: "Modern Toolkit"
+        },
+        {
+          content:
+            "Kvell tries to strike a balance between abstracting out the common implementations and making some features configurable.",
+          image: `${baseUrl}img/undraw_options_2fvi.svg`,
+          imageAlign: "top",
+          title: "Configurable"
         }
       ]}
     </Block>
@@ -139,10 +148,10 @@ function Index(props) {
       <HomeSplash siteConfig={siteConfig} language={language} />
       <div className="mainContainer">
         <Features />
-        <FeatureCallout />
-        <LearnHow />
+        {/* <FeatureCallout /> */}
+        {/* <LearnHow />
         <TryOut />
-        <Description />
+        <Description /> */}
       </div>
     </div>
   );
