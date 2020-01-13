@@ -30,6 +30,16 @@ const cli = new LinterEngine({
 // const formatter = cli.getFormatter("codeframe");
 const formatter = customLintResultFormatter;
 
+const getLintWarnings = results => results.filter(result => result.warningCount);
+
+const consoleLintWarnings = errorResults => {
+  const formattedResults = formatter(errorResults, "warnings");
+  let fileErrorString = `\n${formattedResults}`;
+  // fileErrorString += "\n";
+  // log();
+  log(fileErrorString);
+};
+
 const consoleLintErrors = errorResults => {
   const formattedResults = formatter(errorResults);
   let fileErrorString = `\n${formattedResults}`;
@@ -46,7 +56,6 @@ const runLinter = () => {
   let spinner = ora();
   spinner = spinner.start(chalk.cyanBright("Compiling your app..."));
   const lintResult = cli.executeOnFiles(".");
-  const errorResults = LinterEngine.getErrorResults(lintResult.results);
 
   // if (errorResults.length) {
   //   const rules = [];
@@ -64,10 +73,25 @@ const runLinter = () => {
   // }
   // log();
 
-  if (!errorResults.length) {
-    spinner = spinner.succeed(chalk.greenBright("App compiled successfully!"));
+  if (!lintResult.errorCount) {
+    if (lintResult.warningCount) {
+      spinner = spinner.warn(
+        chalk.yellowBright(
+          `App compiled with ${lintResult.warningCount} warning${
+            lintResult.warningCount > 1 ? "s" : ""
+          }`
+        )
+      );
+      const warnings = getLintWarnings(lintResult.results);
+      consoleLintWarnings(warnings);
+      log();
+    } else {
+      spinner = spinner.succeed(chalk.greenBright("App compiled successfully!"));
+    }
     return "success";
   } else {
+    const errorResults = LinterEngine.getErrorResults(lintResult.results);
+
     spinner = spinner.fail(
       chalk.bold.redBright(
         `Couldn't compile successfully due to the following error${

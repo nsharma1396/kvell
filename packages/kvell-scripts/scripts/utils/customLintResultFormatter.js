@@ -2,9 +2,9 @@ const path = require("path");
 const chalk = require("chalk");
 const { codeFrameColumns } = require("@babel/code-frame");
 
-const customLintResultFormatter = errorResults => {
+const customLintResultFormatter = (results, level = "error") => {
   const errors = [];
-  errorResults.forEach(error => {
+  results.forEach(error => {
     const { filePath, messages } = error;
     const relativeFilePath = path.relative(process.cwd(), filePath);
     let fileErrorString = `${chalk.bold.cyanBright(`./${relativeFilePath}`)}\n`;
@@ -16,12 +16,14 @@ const customLintResultFormatter = errorResults => {
         message.ruleId !== null
           ? `  ${chalk.underline.bgWhite.blackBright.bold(` ${message.ruleId} `)}`
           : ""
-      }\n`;
+      }`;
 
-      const location = { start: { line: message.line, column: message.column } };
-      const errorCodeFrame = codeFrameColumns(error.source, location, { highlightCode: true });
+      if (level === "error") {
+        const location = { start: { line: message.line, column: message.column } };
+        const errorCodeFrame = codeFrameColumns(error.source, location, { highlightCode: true });
 
-      fileErrorString += `${errorCodeFrame}\n\n`;
+        fileErrorString += `\n${errorCodeFrame}\n\n`;
+      }
 
       // // Generate error string from source code
       // const sourceCode = error.source.split("\n");
