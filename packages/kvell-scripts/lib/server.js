@@ -5,7 +5,7 @@ const httpServer = require("http").createServer;
 const getServerUrls = require("./utils/getServerUrls");
 // const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
 const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
-const { updateAppRoutesAndModels } = require("./utils/updateAppRoutesAndModels");
+const { updateAppRoutesAndModels, attachApiDocRoute } = require("./utils/updateAppRoutesAndModels");
 
 const log = console.log;
 
@@ -30,6 +30,9 @@ const runServer = async (scriptConfig, onSuccess) => {
   // const server = isHTTP ? httpServer(app) : httpsServer(app);
   const server = httpServer(app);
 
+  // Attach api doc route before any other route or middleware
+  attachApiDocRoute(app);
+
   // add middlewares before starting the server
   require("./utils/attachGlobalMiddlewares")(app, server);
   // attachGlobalMiddlewares(app);
@@ -37,37 +40,34 @@ const runServer = async (scriptConfig, onSuccess) => {
   const shouldStartServer = await updateAppRoutesAndModels(app, routes, models, autoRequireRoutes);
 
   if (shouldStartServer) {
-    initHandler()
-      .then(() => {
-        log();
-        log(chalk.blue("Starting the server..."));
-        log();
+    try {
+      await initHandler();
+      log();
+      log(chalk.blue("Starting the server..."));
+      log();
 
-        server.listen(PORT, () => {
-          const ipDetails = getServerUrls();
-          log(
-            chalk.blue(`Server running on:`),
-            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}${ipDetails.localIp}:${PORT}`)
-          );
-          log(
-            chalk.blue(`You can also use: `),
-            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}`)
-          );
-          log(
-            chalk.blue(`Api Docs available on:`),
-            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}/docs`)
-          );
+      server.listen(PORT, () => {
+        const ipDetails = getServerUrls();
+        log(
+          chalk.blue(`Server running on:`),
+          chalk.yellowBright(`${isHTTP ? "http://" : "https://"}${ipDetails.localIp}:${PORT}`)
+        );
+        log(
+          chalk.blue(`You can also use: `),
+          chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}`)
+        );
+        log(
+          chalk.blue(`Api Docs available on:`),
+          chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}/docs`)
+        );
 
-          onSuccess();
-        });
-      })
-      .catch(e => {
-        log();
-        log(chalk.redBright(e.stack));
-        log();
+        onSuccess();
       });
-  } else {
-    // process.exit(1);
+    } catch (exception) {
+      log();
+      log(chalk.redBright(e.stack));
+      log();
+    }
   }
 };
 

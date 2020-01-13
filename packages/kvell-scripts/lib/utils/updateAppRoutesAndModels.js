@@ -50,9 +50,6 @@ const attachApiDocRoute = app => {
   app.use("(^/docs$)", (_req, res) => {
     res.sendFile(path.resolve(docSrc, "index.html"));
   });
-  app.use("/", (req, res) => {
-    res.send("hey");
-  });
 };
 
 const attachRoutes = (app, routes, routeFiles, autoRequireRoutes = true) => {
@@ -61,7 +58,6 @@ const attachRoutes = (app, routes, routeFiles, autoRequireRoutes = true) => {
       app.use(route.path, routeFiles[route.name]);
     });
   }
-  attachApiDocRoute(app);
   return true;
 };
 
@@ -147,6 +143,7 @@ const updateAppRoutesAndModels = (app, routes, models, autoRequireRoutes) => {
 module.exports = {
   requireRouteFiles,
   updateAppRoutesAndModels,
+  attachApiDocRoute,
   createRouteFiles,
   validateRouteFiles
 };
