@@ -16,10 +16,11 @@ const generateRouteFiles = async (routeName, routeRootUrl) => {
     const appRootDir = process.cwd();
     const pathToRoute = path.resolve(appRootDir, "routes", `${routeName}${fileExt}`);
     const pathToController = path.resolve(appRootDir, "controllers", `${routeName}${fileExt}`);
+    const pathToDocs = path.resolve(appRootDir, "apidocs", `${routeName}${fileExt}`);
     const parsedConfigs = await parseScriptConfig(appRootDir);
 
     const pathExists = (
-      await Promise.all([fs.pathExists(pathToRoute), fs.pathExists(pathToController)])
+      await Promise.all([fs.pathExists(pathToRoute), fs.pathExists(pathToController), fs.pathExists(pathToDocs)])
     ).reduce((result, exists) => exists || result, false);
 
     const pathExistsInConfig = parsedConfigs.routes.reduce((exists, route) => {
@@ -33,7 +34,7 @@ const generateRouteFiles = async (routeName, routeRootUrl) => {
       log();
       log(
         chalk.redBright(
-          `Error: '${routeName}' already exists in your routes/controllers directory.`
+          `Error: '${routeName}' already exists in your routes/controllers/apidocs directory.`
         )
       );
       log();
