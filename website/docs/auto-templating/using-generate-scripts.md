@@ -51,7 +51,7 @@ An example route path can be "**/user/:id**"
 
 This will register a route with root URL as "/user/:id" with your `routes/user.js` file so that any incoming request in this URL will be directed to the appropriate method handler (get, put, post, patch or delete) in the `user.js` route file.
 
-Internally, Kvell uses `[express.js](https://expressjs.com/)` for handling the routing in your application.
+Internally, Kvell uses [`express.js`](https://expressjs.com/) for handling the routing in your application.
 For more details on Routing, [click here](https://expressjs.com/en/guide/routing.html)
 
 ## Model

@@ -3,7 +3,7 @@ id: apidocs
 title: Api Documentation
 ---
 
-Kvell currently uses `(apidoc.js)[https://apidocjs.com/]` for providing API Documentation Mechanism in your application.
+Kvell currently uses [`apidoc.js`](https://apidocjs.com/) for providing API Documentation Mechanism in your application.
 
 > Note: The documentation library may change to some other package (like Swagger) in later versions.
 
@@ -61,7 +61,7 @@ When you start your server, Kvell will automatically parse the apidocs to a stat
 
 You can view the docs page in [http://localhost:5001/docs](http://localhost:5001/docs).
 
-_The docs mechanism has a separate folder so that it is relatively easier to plug-in any documentation library._ 
+_The docs mechanism has a separate folder so that it is relatively easier to plug-in any documentation library._
 
 ## Configuration in package.json
 

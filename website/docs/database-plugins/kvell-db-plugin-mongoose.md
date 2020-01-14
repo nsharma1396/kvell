@@ -41,6 +41,15 @@ The plugin exports these three values:
 
 Example Usage
 
+```sh
+# .env file
+
+DB_NAME=mongoose
+DB_PLUGIN_NAME=kvell-db-plugin-mongoose
+
+MONGO_CONNECTION_STRING=mongodb://localhost:27017/myapp
+```
+
 ```javascript
 // userModel.js
 const mongoose = require("kvell-db-plugin-mongoose").dbInstance;
@@ -57,5 +66,4 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-
 ```
