@@ -24,6 +24,8 @@ Once installed, you can create a kvell application by running:
 create-kvell-app example-app
 ```
 
+![create an application](assets/create-app.gif)
+
 ## Running the server
 
 Now, you can change your directory to `example-app` and run the application in `development` mode by running:
@@ -34,6 +36,8 @@ npm start
 ```
 
 That's it! This will start you server on [http://localhost:5001](http://localhost:5001).
+
+![starting the server](assets/start-server.gif)
 
 ## Optional Installation Method
 
