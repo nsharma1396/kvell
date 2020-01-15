@@ -50,7 +50,7 @@ function HomeSplash(props) {
         <ProjectTitle siteConfig={siteConfig} />
         {/* <PromoSection>
         </PromoSection> */}
-        <Button href={docUrl("getting-started/introduction")}>Get Started</Button>
+        <Button href={docUrl("getting-started/installation")}>Get Started</Button>
       </div>
     </SplashContainer>
   );
@@ -66,57 +66,59 @@ function Index(props) {
     </Container>
   );
 
-  const FeatureCallout = () => (
-    <div className="productShowcaseSection paddingBottom" style={{ textAlign: "center" }}>
-      <h2>Feature Callout</h2>
-      <MarkdownBlock>These are features of this project</MarkdownBlock>
-    </div>
-  );
+  // const FeatureCallout = () => (
+  //   <div className="productShowcaseSection paddingBottom" style={{ textAlign: "center" }}>
+  //     <h2>Feature Callout</h2>
+  //     <MarkdownBlock>These are features of this project</MarkdownBlock>
+  //   </div>
+  // );
 
-  const TryOut = () => (
-    <Block id="try">
+  const AutoTemplates = () => (
+    <Block id="try" background="light">
       {[
         {
           content:
-            "To make your landing page more attractive, use illustrations! Check out " +
-            "[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. " +
-            "The illustrations you see on this page are from unDraw.",
-          image: `${baseUrl}img/undraw_code_review.svg`,
+            "Auto templating helps you to create and maintain routes,controllers and models with " +
+            "predefined templates from a single configuration.",
+          image: `${baseUrl}img/generate_route.gif`,
           imageAlign: "left",
-          title: "Wonderful SVG Illustrations"
+          title: "Auto Templating"
         }
       ]}
     </Block>
   );
 
-  const Description = () => (
-    <Block background="dark">
+  const Compilation = () => (
+    <Block>
       {[
         {
-          content: "This is another description of how this project is useful",
-          image: `${baseUrl}img/undraw_note_list.svg`,
+          content:
+            "Kvell compiles your application before it starts the server using `Eslint` thus helping you" +
+            "catch potential errors in your application right away!",
+          image: `${baseUrl}img/compilation.gif`,
           imageAlign: "right",
-          title: "Description"
+          title: "Compilation"
         }
       ]}
     </Block>
   );
 
-  const LearnHow = () => (
-    <Block background="light">
+  const EasySetup = () => (
+    <Block>
       {[
         {
-          content: "Each new Docusaurus project has **randomly-generated** theme colors.",
-          image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
+          content:
+            "Setup your kvell app with just one command. Kvell wraps up common dependencies and implementations so you can focus on the main logic of your application.",
+          image: `${baseUrl}img/create-app.gif`,
           imageAlign: "right",
-          title: "Randomly Generated Theme Colors"
+          title: "Easily setup a ready to run application"
         }
       ]}
     </Block>
   );
 
   const Features = () => (
-    <Block layout="fourColumn">
+    <Block layout="fourColumn" background="light">
       {[
         {
           content:
@@ -149,9 +151,9 @@ function Index(props) {
       <div className="mainContainer">
         <Features />
         {/* <FeatureCallout /> */}
-        {/* <LearnHow />
-        <TryOut />
-        <Description /> */}
+        <EasySetup />
+        <AutoTemplates />
+        <Compilation />
       </div>
     </div>
   );
