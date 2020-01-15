@@ -37,7 +37,7 @@ const siteConfig = {
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  // copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} Neeraj Sharma.`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -60,11 +60,10 @@ const siteConfig = {
 
   // docsSideNavCollapsible: true,
 
-  // Show documentation's last contributor's name.
-
   twitter: true,
   twitterUsername: "nsharma1396",
 
+  // Show documentation's last contributor's name.
   enableUpdateBy: true,
 
   // Show documentation's last update time.

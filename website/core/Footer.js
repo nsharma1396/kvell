@@ -61,7 +61,7 @@ function Footer(props) {
         </div>
       </section>
 
-      {/* <section className="copyright">{config.copyright}</section> */}
+      <section className="copyright">{config.copyright}</section>
     </footer>
   );
 }
