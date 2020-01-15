@@ -14,6 +14,8 @@ It contains all the configurations that a kvell application needs to run success
 
 ## `routes`
 
+> Note: Instead of editing `routes` manually, you can try using the `generate` command provided by Kvell. You can read more about the `generate` command [**here**](auto-templating/using-generate-scripts.md)
+
 ```typescript
 routes: Array<{ name: string, path: string }>
 ```
@@ -36,6 +38,8 @@ Each route in the array is defined by an object consisting of the following keys
 Example:
 
 ```javascript
+// kvell.config.js
+module.exports = {
   ...
   routes: [
     {
@@ -48,6 +52,7 @@ Example:
     }
   ]
   ...
+}
 ```
 
 The folder structure for this `routes` configuration will look like the following:
@@ -70,6 +75,10 @@ Note: Kvell will always check (when it is running the server) if the the applica
 
 ## `models`
 
+> Note: Instead of editing `models` manually, you can try using the `generate` command provided by Kvell. You can read more about the `generate` command [**here**](auto-templating/using-generate-scripts.md)
+
+> **A Model file is only useful when you have a database plugin configured. To install and configure a database plugin in Kvell, view the [Database Plugins docs](database-plugins/overview.md). <span style="color: red">\*\*</span>**
+
 ```typescript
 models: Array<string>
 ```
@@ -90,9 +99,12 @@ Files with this name will be created in the following folders:
 Example:
 
 ```javascript
+// kvell.config.js
+module.exports = {
   ...
   models: ["user"]
   ...
+}
 ```
 
 The folder structure for this `models` configuration will look like the following:
@@ -121,9 +133,12 @@ The protocol key is used to get the configuration of whether the developer wants
 Example:
 
 ```javascript
-...
-protocol: "http"
-...
+// kvell.config.js
+module.exports = {
+  ...
+  protocol: "http"
+  ...
+}
 ```
 
 ## `autoRequireRoutes`
@@ -134,7 +149,75 @@ autoRequireRoutes: Boolean;
 
 **Default: true**
 
-Kvell will by default automatically register all the routes provided in the routes config object with the root url as the `path` variable given in each Route object. But often there is a need to have `middlewares` before some selected routes (like an `authentication` middleware). For these cases, you can switch `autoRequireRoutes` to `false` and register the routes yourselves in the `globalMiddlewares.js` file found in the `global` folder.
+Kvell will by default automatically register all the routes provided in the routes config object with the root url as the `path` variable given in each Route object. But often there is a need to have `middlewares` before some selected routes (like an `authentication` middleware).
+
+For example,
+
+Let's say that you need an authentication middleware to your application which checks if a user is authenticated and does the following,
+
+- If the user is not authenticated, the request will not be allowed to go through.
+- If the user is authenticated, the request goes through to the next middleware or the corresponding router.
+
+We will assume that this middleware is already implemented and being exported from a file named `middleware` in your `utils` directory. So we can add this middleware in the `globalMiddlewares` function in the following way,
+
+```javascript
+// `global/globalMiddlewares.js`
+
+const middlewares = require("../utils/middlewares");
+
+/**
+ * `globalMiddlewares` handles all the middlewares/functions/configurations that you need
+ * to declare/use in your application globally.
+ * @param {import ("kvell-scripts").KvellAppObject} app
+ * @param {import ("kvell-scripts").KvellServerObject} server
+ */
+const globalMiddlewares = (app, server) => {
+  app.use(middlewares.auth); // middleware to validate authenticated users
+};
+
+module.exports = globalMiddlewares;
+```
+
+As `globalMiddlewares` are registered before the `routes` in Kvell, this should work fine but we will face a problem here. The problem is that this will validate for every requests on every route. So, if we have a `\login` route in which the user is trying to login and thus is not authenticated yet, the request will never go through to hit the `loginRoute`!
+
+For these cases, we can switch `autoRequireRoutes` to `false` and register the routes yourselves in the `globalMiddlewares.js` file found in the `global` folder, like so,
+
+```javascript
+// kvell.config.js
+
+module.exports = {
+  ...
+  autoRequireRoutes: false
+  ...
+}
+```
+
+```javascript
+// `global/globalMiddlewares.js`
+
+const middlewares = require("../utils/middlewares");
+const routes = require("../routes");
+
+/**
+ * `globalMiddlewares` handles all the middlewares/functions/configurations that you need
+ * to declare/use in your application globally.
+ * @param {import ("kvell-scripts").KvellAppObject} app
+ * @param {import ("kvell-scripts").KvellServerObject} server
+ */
+const globalMiddlewares = (app, server) => {
+  app.use("/login", routes.login);
+  app.use("/register", routes.register);
+  app.use("/anyUnprotectedRoute", routes["anyUnprotectedRoute"]);
+
+  app.use(middlewares.auth); // middleware to validate authenticated users
+
+  app.use("/user", routes.user);
+  app.use("/project", routes.project);
+  app.use("/anyProtectedRoute", routes["anyProtectedRoute"]);
+};
+
+module.exports = globalMiddlewares;
+```
 
 ## Example Configuration Object
 

@@ -14,6 +14,8 @@ npx create-kvell-app example-app
 
 **Note**: [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher. If you use npm 5.1 or earlier, you need to install `create-kvell-app` globally instead:
 
+![create an application](assets/create-app.gif)
+
 ```sh
 npm i -g create-kvell-app
 ```
@@ -23,8 +25,6 @@ Once installed, you can create a kvell application by running:
 ```sh
 create-kvell-app example-app
 ```
-
-![create an application](assets/create-app.gif)
 
 ## Running the server
 

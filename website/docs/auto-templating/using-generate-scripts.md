@@ -56,7 +56,7 @@ For more details on Routing, [click here](https://expressjs.com/en/guide/routing
 
 ## Model
 
-> A Model file is only useful when you have a database plugin configured. To install and configure a database plugin in Kvell, view the [Database Plugins docs](database-plugins/overview.md)
+> **A Model file is only useful when you have a database plugin configured. To install and configure a database plugin in Kvell, view the [Database Plugins docs](database-plugins/overview.md). <span style="color: red">\*\*</span>**
 
 ```typescript
 models: Array<string>
