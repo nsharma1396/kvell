@@ -5,7 +5,7 @@ const chalk = require("chalk");
 // const writeFile = require("fs").writeFile;
 const lintBaseConfig = require("eslint-config-kvell-scripts");
 const rulesObject = require("../config/lintExtendedRules");
-const customLintResultFormatter = require("../utils/customLintResultFormatter");
+const customLintResultFormatter = require("./customLintResultFormatter");
 
 const log = console.log;
 

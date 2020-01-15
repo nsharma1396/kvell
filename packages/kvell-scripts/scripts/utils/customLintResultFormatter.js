@@ -7,15 +7,13 @@ const customLintResultFormatter = (results, level = "error") => {
   results.forEach(error => {
     const { filePath, messages } = error;
     const relativeFilePath = path.relative(process.cwd(), filePath);
-    let fileErrorString = `${chalk.bold.cyanBright(`./${relativeFilePath}`)}\n`;
+    let fileErrorString = `${chalk.bold.cyanBright(path.resolve(".", relativeFilePath))}\n`;
 
     messages.forEach(message => {
       fileErrorString += `  ${chalk.bold(
         `Line ${message.line}:${message.column}`
       )}: ${chalk.whiteBright(message.message)}${
-        message.ruleId !== null
-          ? `  ${chalk.underline.bgWhite.blackBright.bold(` ${message.ruleId} `)}`
-          : ""
+        message.ruleId !== null ? `  ${chalk.underline.whiteBright.bold(`${message.ruleId}`)}` : ""
       }`;
 
       if (level === "error") {
