@@ -28,7 +28,7 @@ const siteConfig = {
     indexName: "kvelljs"
   },
 
-  editUrl: "https://github.com/nsharma1396/kvell/edit/master/docs/",
+  editUrl: "https://github.com/nsharma1396/kvell/edit/master/website/docs/",
 
   /* path to images for header/footer */
   headerIcon: "img/favicon.png",
