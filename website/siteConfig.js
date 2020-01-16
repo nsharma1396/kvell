@@ -19,9 +19,14 @@ const siteConfig = {
   headerLinks: [
     { doc: "getting-started/installation", label: "Docs" },
     { doc: "database-plugins/overview", label: "Database Plugins" },
-    { href: "https://www.github.com/nsharma1396/kvell", label: "Github" }
-    // { search: true }
+    { href: "https://www.github.com/nsharma1396/kvell", label: "Github" },
+    { search: true }
   ],
+
+  algolia: {
+    apiKey: "27a07e425cb3479414dde03ae83d124b",
+    indexName: "kvelljs"
+  },
 
   editUrl: "https://github.com/nsharma1396/kvell/edit/master/docs/",
 
