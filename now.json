@@ -1,0 +1,18 @@
+{
+  "name": "kvell.js",
+  "builds": [
+    {
+      "src": "website/package.json",
+      "use": "@now/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/website/$1",
+      "headers": {
+        "x-request-path": "$1"
+      }
+    }
+  ]
+}
