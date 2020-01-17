@@ -56,7 +56,7 @@ const siteConfig = {
     "/js/code-block-buttons.js"
   ],
 
-  stylesheets: ["/css/code-block-buttons.css"],
+  separateCss: ["./static/css/code-block-buttons.css"],
 
   onPageNav: "separate",
 
@@ -73,6 +73,8 @@ const siteConfig = {
 
   // Show documentation's last update time.
   enableUpdateTime: true
+
+  // scrollToTop: true,
 };
 
 module.exports = siteConfig;

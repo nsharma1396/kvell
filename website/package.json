@@ -1,4 +1,7 @@
 {
+  "name": "kvelljs-website",
+  "repository": "https://github.com/nsharma1396/kvell/tree/master/website",
+  "license": "ISC",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
@@ -9,6 +12,6 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "^1.14.3"
+    "docusaurus": "^1.14.4"
   }
 }
