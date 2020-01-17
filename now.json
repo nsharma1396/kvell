@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "website/package.json",
-      "use": "@now/next"
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "build/kvell"
+      }
     }
   ],
   "routes": [
