@@ -9,7 +9,7 @@ const customLintResultFormatter = require("./customLintResultFormatter");
 
 const log = console.log;
 
-const nodeScriptsPath = path.resolve(path.parse(require.main.filename).dir, "..");
+const kvellScriptsPath = path.resolve(path.parse(require.main.filename).dir, "..");
 
 const cli = new LinterEngine({
   baseConfig: lintBaseConfig,
@@ -23,7 +23,7 @@ const cli = new LinterEngine({
   useEslintrc: false,
   cwd: process.cwd(),
   // plugins: ["node"],
-  resolvePluginsRelativeTo: nodeScriptsPath,
+  resolvePluginsRelativeTo: kvellScriptsPath,
   rules: rulesObject
 });
 
