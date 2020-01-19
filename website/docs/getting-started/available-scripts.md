@@ -12,7 +12,17 @@ Kvell.js has the following scripts available:
 1. Parses files from your `apidocs` directory to create an API documentation for your application.
 2. Compiles your code using [eslint](https://eslint.org/). If your code compiles successfully, then a server will be started on [http://localhost:5001](http://localhost:5001) (If a custom port is provided, the server will start on that port). If your code fails to compile due to some errors, Kvell will console those errors with brief description.
 
-Internally, kvell will use `nodemon` to run the server in the development mode.
+Internally, kvell uses `nodemon` to run the server in the development mode.
+
+![starting the server](assets/start-server.gif)
+
+### Disable `watch mode`
+
+The server will by default start with `watch mode` enabled, i.e, it will restart the server everytime you make a change in a file. To run the server without `watch mode`, run the server like so,
+
+```sh
+npm start -- --no-watch
+```
 
 ## npm run generate
 

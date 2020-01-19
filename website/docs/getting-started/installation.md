@@ -40,6 +40,14 @@ That's it! This will start you server on [http://localhost:5001](http://localhos
 
 ![starting the server](assets/start-server.gif)
 
+### Disable `watch mode`
+
+The server will by default start with `watch mode` enabled, i.e, it will restart the server everytime you make a change in a file. To run the server without `watch mode`, run the server like so,
+
+```sh
+npm start -- --no-watch
+```
+
 ## Optional Installation Method
 
 You can also create an application using the `npm init` script.
