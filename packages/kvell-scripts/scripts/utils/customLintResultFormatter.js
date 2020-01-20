@@ -21,6 +21,8 @@ const customLintResultFormatter = (results, level = "error") => {
         const errorCodeFrame = codeFrameColumns(error.source, location, { highlightCode: true });
 
         fileErrorString += `\n${errorCodeFrame}\n\n`;
+      } else {
+        fileErrorString += "\n";
       }
 
       // // Generate error string from source code
