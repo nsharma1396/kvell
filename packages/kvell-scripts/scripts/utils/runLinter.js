@@ -23,6 +23,8 @@ const cli = new LinterEngine({
   useEslintrc: false,
   cwd: process.cwd(),
   // plugins: ["node"],
+  cache: true,
+  cacheLocation: path.join(__dirname, "..", "..", ".eslintcache"), // to create the cache file in kvell-scripts directory
   resolvePluginsRelativeTo: kvellScriptsPath,
   rules: rulesObject
 });
