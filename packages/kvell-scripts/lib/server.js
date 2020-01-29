@@ -65,7 +65,7 @@ const runServer = async (scriptConfig, onSuccess) => {
       });
     } catch (exception) {
       log();
-      log(chalk.redBright(e.stack));
+      log(chalk.redBright(exception.stack));
       log();
     }
   }
