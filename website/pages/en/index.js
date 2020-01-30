@@ -93,7 +93,7 @@ function Index(props) {
       {[
         {
           content:
-            "Kvell compiles your application before it starts the server using `Eslint` thus helping you" +
+            "Kvell compiles your application before it starts the server using `Eslint` thus helping you " +
             "catch potential errors in your application right away!",
           image: `${baseUrl}img/compilation.gif`,
           imageAlign: "right",

@@ -21,7 +21,7 @@ const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : []; // So that o
 
 if (["start"].includes(script)) {
   parseApiDocs();
-  runStartScript(args, script, scriptIndex, nodeArgs);
+  runStartScript(script, nodeArgs);
 } else if (["build", "debug", "test"].includes(script)) {
   console.log("This option is under development.");
 } else {
