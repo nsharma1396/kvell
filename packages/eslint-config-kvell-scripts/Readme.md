@@ -17,19 +17,19 @@ Currently supported rules:
 9. https://eslint.org/docs/rules/no-const-assign
 10. https://eslint.org/docs/rules/no-constant-condition
 11. https://eslint.org/docs/rules/no-control-regex
-12. https://eslint.org/docs/rules/no-debugger
+12. https://eslint.org/docs/rules/no-debugger - [<span style="color: #ffc107">warning</span>]
 13. https://eslint.org/docs/rules/no-delete-var
 14. https://eslint.org/docs/rules/no-dupe-args
 15. https://eslint.org/docs/rules/no-dupe-class-members
 16. https://eslint.org/docs/rules/no-dupe-keys
 17. https://eslint.org/docs/rules/no-duplicate-case
-18. https://eslint.org/docs/rules/no-empty
+18. https://eslint.org/docs/rules/no-empty - [<span style="color: #ffc107">warning</span>]
 19. https://eslint.org/docs/rules/no-empty-character-class
 20. https://eslint.org/docs/rules/no-empty-pattern
 21. https://eslint.org/docs/rules/no-ex-assign
 22. https://eslint.org/docs/rules/no-extra-boolean-cast
-23. https://eslint.org/docs/rules/no-extra-semi
-24. https://eslint.org/docs/rules/no-fallthrough
+23. https://eslint.org/docs/rules/no-extra-semi - [<span style="color: #ffc107">warning</span>]
+24. https://eslint.org/docs/rules/no-fallthrough - [<span style="color: #ffc107">warning</span>]
 25. https://eslint.org/docs/rules/no-func-assign
 26. https://eslint.org/docs/rules/no-global-assign
 27. https://eslint.org/docs/rules/no-inner-declarations
@@ -45,7 +45,7 @@ Currently supported rules:
 37. https://eslint.org/docs/rules/no-regex-spaces
 38. https://eslint.org/docs/rules/no-self-assign
 39. https://eslint.org/docs/rules/no-shadow-restricted-names
-40. https://eslint.org/docs/rules/no-sparse-arrays
+40. https://eslint.org/docs/rules/no-sparse-arrays - [<span style="color: #ffc107">warning</span>]
 41. https://eslint.org/docs/rules/no-this-before-super
 42. https://eslint.org/docs/rules/no-undef
 43. https://eslint.org/docs/rules/no-unexpected-multiline
@@ -53,7 +53,7 @@ Currently supported rules:
 45. https://eslint.org/docs/rules/no-unsafe-finally
 46. https://eslint.org/docs/rules/no-unsafe-negation
 47. https://eslint.org/docs/rules/no-unused-labels
-48. https://eslint.org/docs/rules/no-unused-vars
+48. https://eslint.org/docs/rules/no-unused-vars - [<span style="color: #ffc107">warning</span>]
 49. https://eslint.org/docs/rules/no-useless-catch
 50. https://eslint.org/docs/rules/no-useless-escape
 51. https://eslint.org/docs/rules/no-with
