@@ -1,18 +1,31 @@
 const mongoose = require("mongoose");
 
-mongoose
-  .connect(process.env.MONGO_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(_ => {
-    // console.log("Connected to mongodb");
-  })
-  .catch(_ => {
-    console.log(e);
-  });
+class MongooseInstance {
+  constructor() {
+    this.instance = null;
+  }
+  createDBInstance = params => {
+    mongoose
+      .connect(params.mongoConnectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        ...params.options
+      })
+      .then(_ => {
+        if (params.showConnectionMessage) {
+          console.log("Connected to mongodb");
+        }
+      })
+      .catch(_ => {
+        console.log(e);
+      });
+  };
 
-// const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error:"));
-// db.once("open", function() {
-//   console.log("we're connected!");
-// });
+  getDBInstance = () => {
+    return this.instance;
+  };
+}
 
-module.exports = mongoose;
+const Instance = new MongooseInstance();
+
+module.exports = Instance;
