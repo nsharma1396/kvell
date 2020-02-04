@@ -1,6 +1,6 @@
 "use strict";
 const path = require("path");
-const sequelize = require("./init");
+const SequelizeInstance = require("./init");
 
 const getOnBeforeDbSync = () => {
   const pathToHandler = path.resolve(process.cwd(), "global", "dbSyncHandlers");
@@ -25,7 +25,7 @@ const initializeSequelizeDB = () => {
     onBeforeDBSync();
   }
 
-  return sequelize.sync();
+  return SequelizeInstance.getDBInstance().sync();
 };
 
 module.exports = initializeSequelizeDB;
