@@ -4,7 +4,7 @@ const parsedConfigInit = require("../config/appDefaultConfig");
 
 const configFileName = "kvell.config.js";
 
-const configErrorKeys = ["routes", "protocol", "models"];
+const configErrorKeys = ["routes", "protocol", "models", "databasePlugins"];
 
 // const isObject = obj => {
 //   return !Array.isArray(obj) && obj === Object(obj);
@@ -22,19 +22,20 @@ const createConfigObject = parsedConfigs => {
     },
     models: {
       valid: !parsedConfigs.models ? true : Array.isArray(parsedConfigs.models)
+    },
+    databasePlugins: {
+      valid: !parsedConfigs.databasePlugins ? true : Array.isArray(parsedConfigs.databasePlugins)
     }
-    // database: {
-    //   valid: !parsedConfigs.database ? true : isObject(parsedConfigs.database)
-    // }
   };
 
-  const { routes, protocol, models } = configKeysStatus;
+  const { routes, protocol, models, databasePlugins } = configKeysStatus;
 
   let configObject = {};
-  if (!routes.valid || !protocol.valid || !models.valid) {
+  if (!routes.valid || !protocol.valid || !models.valid || !databasePlugins.valid) {
     const errorString = `Your ./${configFileName} contains invalid config values for:\n${configErrorKeys
       .filter(configKey => !configKeysStatus[configKey].valid)
-      .join("\n")}`;
+      .map((errorKey, index) => `${index + 1}. ${errorKey}`)
+      .join("\n")}\n`;
     throw new Error(errorString);
   } else {
     configObject = {
@@ -44,8 +45,8 @@ const createConfigObject = parsedConfigs => {
       autoRequireRoutes:
         parsedConfigs.autoRequireRoutes === undefined
           ? parsedConfigInit.autoRequireRoutes
-          : parsedConfigs.autoRequireRoutes
-      // database: parsedConfigs.database || parsedConfigInit.database
+          : parsedConfigs.autoRequireRoutes,
+      databasePlugins: parsedConfigs.databasePlugins || parsedConfigInit.databasePlugins
     };
   }
   return configObject;
@@ -64,6 +65,7 @@ const createConfigObject = parsedConfigs => {
  * @property {string[]]} models
  * @property {("http" | "https")} protocol
  * @property {boolean} autoRequireRoutes
+ * @property {{}[]} databasePlugins
  */
 
 /**

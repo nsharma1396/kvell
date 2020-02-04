@@ -6,20 +6,20 @@ const getServerUrls = require("./utils/getServerUrls");
 // const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
 const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
 const { updateAppRoutesAndModels, attachApiDocRoute } = require("./utils/updateAppRoutesAndModels");
+const getDBPlugins = require("../scripts/utils/getDBPlugin");
 
 const log = console.log;
 
 /**
  * @function
  * @param {import ("../scripts/utils/parseScriptsConfig").ScriptsConfig} scriptConfig
- * @param {() => {}} onSuccess
  */
-const runServer = async (scriptConfig, onSuccess) => {
+const runServer = async scriptConfig => {
   parseEnvironmentVariables();
 
   const PORT = process.env.PORT || 5001;
 
-  const { initHandler } = require("../scripts/utils/getDBPlugin");
+  const syncHandlers = getDBPlugins(scriptConfig.databasePlugins);
 
   const app = express();
 
@@ -41,7 +41,7 @@ const runServer = async (scriptConfig, onSuccess) => {
 
   if (shouldStartServer) {
     try {
-      await initHandler();
+      await Promise.all(Object.keys(syncHandlers).map(handlerKey => syncHandlers[handlerKey]()));
       log();
       log(chalk.blue("Starting the server..."));
       log();
@@ -60,8 +60,6 @@ const runServer = async (scriptConfig, onSuccess) => {
           chalk.blue(`Api Docs available on:`),
           chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}/docs`)
         );
-
-        onSuccess();
       });
     } catch (exception) {
       log();

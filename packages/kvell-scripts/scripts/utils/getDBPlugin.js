@@ -1,35 +1,21 @@
 const path = require("path");
-const chalk = require("chalk");
-const resolveDBPlugin = require("./resolveDBPlugin");
 
-const pluginName = process.env.DB_PLUGIN_NAME;
+/**
+ * @param {{resolve: string, options: object}[]} pluginsArray
+ */
+const getDBPlugins = pluginsArray => {
+  const syncHandlers = {};
+  pluginsArray.forEach(plugin => {
+    // Import the instance from "plugin/init" first so that instance is created before the main is required
+    const pluginInstancePath = path.resolve(process.cwd(), "node_modules", plugin.resolve, "init");
+    const PluginInstance = require(pluginInstancePath);
+    PluginInstance.createDBInstance(plugin.options);
 
-if (pluginName) {
-  const pluginPath = path.resolve(process.cwd(), "node_modules", pluginName);
+    const pluginPath = path.resolve(process.cwd(), "node_modules", plugin.resolve);
+    const pluginExport = require(pluginPath);
+    syncHandlers[plugin.resolve] = pluginExport.initHandler;
+  });
+  return syncHandlers;
+};
 
-  let dbPlugin;
-  // try {
-  dbPlugin = resolveDBPlugin(pluginPath);
-  // } catch (exception) {}
-  if (!dbPlugin) {
-    const errorObject = new Error(
-      `The plugin '${chalk.bold(
-        pluginName
-      )}' is probably not installed. Please try installing it or check if you have installed a valid plugin`
-    );
-    errorObject.code = "MODULE_NOT_FOUND";
-    throw errorObject;
-  }
-
-  module.exports = {
-    // dbLib: dbPlugin.dbLib,
-    // dbInstance: dbPlugin.dbInstance,
-    initHandler: dbPlugin.initHandler
-  };
-} else {
-  module.exports = {
-    // dbLib: "No database plugin specified",
-    // dbInstance: "No database plugin specified",
-    initHandler: () => Promise.resolve()
-  };
-}
+module.exports = getDBPlugins;
