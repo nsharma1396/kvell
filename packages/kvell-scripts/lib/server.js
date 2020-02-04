@@ -4,7 +4,7 @@ const httpServer = require("http").createServer;
 // const httpsServer = require("https").createServer;
 const getServerUrls = require("./utils/getServerUrls");
 // const attachGlobalMiddlewares = require("./utils/attachGlobalMiddlewares");
-const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
+// const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
 const { updateAppRoutesAndModels, attachApiDocRoute } = require("./utils/updateAppRoutesAndModels");
 const getDBPlugins = require("../scripts/utils/getDBPlugin");
 
@@ -15,7 +15,7 @@ const log = console.log;
  * @param {import ("../scripts/utils/parseScriptsConfig").ScriptsConfig} scriptConfig
  */
 const runServer = async scriptConfig => {
-  parseEnvironmentVariables();
+  // parseEnvironmentVariables();
 
   const PORT = process.env.PORT || 5001;
 

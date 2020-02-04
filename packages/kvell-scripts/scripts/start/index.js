@@ -17,6 +17,9 @@ process.on("unhandledRejection", exception => {
 const appSrcDirectory = process.cwd();
 
 const executeStartScript = async () => {
+  const { parseEnvironmentVariables } = require("../../lib/utils/parseEnvironmentVariables");
+  parseEnvironmentVariables();
+
   const parsedConfig = await parseScriptsConfig(appSrcDirectory);
 
   const lintStatus = runLinter(appSrcDirectory);
