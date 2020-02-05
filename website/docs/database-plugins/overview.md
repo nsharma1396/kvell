@@ -3,8 +3,6 @@ id: overview
 title: Overview
 ---
 
-> To-do: Update with more details
-
 Kvell abstracts out database configurations via database plugins.Any database plugin exposes the following three items:
 
 - `dbLib`: The default export from the library.
@@ -15,20 +13,11 @@ Kvell abstracts out database configurations via database plugins.Any database pl
 
 All the configurations to be passed for the database instantiation of the required database are passed via the `databasePlugins` field in `kvell.config.js` file.
 
-<!-- ## Where to specify the plugin details ?
+To add a database-plugin, you need to add a `databasePluginObject` in the `databasePlugins` array.
 
-All the configurations to be passed for the database instantiation of the required database are passed via the `.env` file.
+Each `databasePluginObject` must consists of the following fields:
 
-## Plugin global environment variables
+- `resolve`: Name of the plugin
+- `options`: Any options that are required to be passed for instantiating the plugin.
 
-Kvell needs two db-plugin global values for proper usage of a plugin,
-
-```sh
-DB_NAME=mongoose
-DB_PLUGIN_NAME=kvell-db-plugin-mongoose
-```
-
-**DB_NAME** helps kvell create better `Model` templates.
-**DB_PLUGIN_NAME** is the value through which kvell will load the plugin.
-
-The rest of the values are plugin-specific and can be found in there specific pages. -->
+More fields may be added depending on the plugin's requirements.
