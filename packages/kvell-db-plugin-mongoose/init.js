@@ -4,7 +4,7 @@ class MongooseInstance {
   constructor() {
     this.instance = null;
   }
-  createDBInstance = params => {
+  createDBInstance(params) {
     mongoose
       .connect(params.mongoConnectionString, {
         useNewUrlParser: true,
@@ -19,11 +19,11 @@ class MongooseInstance {
       .catch(_ => {
         console.log(e);
       });
-  };
+  }
 
-  getDBInstance = () => {
+  getDBInstance() {
     return this.instance;
-  };
+  }
 }
 
 const Instance = new MongooseInstance();

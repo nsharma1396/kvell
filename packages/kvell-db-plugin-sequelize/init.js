@@ -4,8 +4,8 @@ class SequelizeInstance {
   constructor() {
     this.instance = null;
   }
-  createDBInstance = params => {
-    if (params.options.dialectModulePath || params.dialectModulePath) {
+  createDBInstance(params) {
+    if (params.options.dialectModulePath) {
       this.instance = new Sequelize(params.database, params.username, params.password, {
         ...params.options,
         dialectModulePath: params.options.dialectModulePath || params.dialectModulePath
@@ -15,11 +15,11 @@ class SequelizeInstance {
         "'dialectModulePath' is required by the sequelize plugin. Please provide the path. Refer to the documentation here https://kvelljs.now.sh/docs/database-plugins/kvell-db-plugin-sequelize#usage"
       );
     }
-  };
+  }
 
-  getDBInstance = () => {
+  getDBInstance() {
     return this.instance;
-  };
+  }
 }
 
 const Instance = new SequelizeInstance();
