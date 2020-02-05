@@ -3,7 +3,12 @@
   "version": "1.0.1-alpha.6.1",
   "description": "A barebones MongoDB Plugin using Mongoose ORM for kvell-scripts",
   "main": "index.js",
-  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-mongoose",
+  "homepage": "https://kvelljs.now.sh/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-mongoose"
+  },
+  "license": "MIT",
   "keywords": [
     "kvell-plugins",
     "kvell-scripts",
@@ -15,7 +20,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
-  "license": "ISC",
   "dependencies": {
     "mongoose": "^5.7.12"
   }

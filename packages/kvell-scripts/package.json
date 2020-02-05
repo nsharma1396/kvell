@@ -17,8 +17,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
-  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-scripts",
-  "license": "ISC",
+  "homepage": "https://kvelljs.now.sh/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsharma1396/kvell/tree/master/packages/kvell-scripts"
+  },
+  "license": "MIT",
   "dependencies": {
     "@babel/code-frame": "^7.5.5",
     "apidoc": "^0.18.0",

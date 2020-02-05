@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-sequelize",
+  "homepage": "https://kvelljs.now.sh/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-sequelize"
+  },
   "keywords": [
     "kvell-plugins",
     "kvell-scripts",
@@ -15,7 +19,7 @@
     "sequelize"
   ],
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "sequelize": "^5.21.2"
   }

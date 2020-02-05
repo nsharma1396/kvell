@@ -12,9 +12,13 @@
     "create-kvell-app",
     "kvell"
   ],
-  "repository": "https://github.com/nsharma1396/kvell/tree/master/packages/eslint-config-kvell-scripts",
+  "homepage": "https://kvelljs.now.sh/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsharma1396/kvell/tree/master/packages/eslint-config-kvell-scripts"
+  },
+  "license": "MIT",
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
-  "license": "ISC",
   "peerDependencies": {
     "eslint": ">=6.6.0",
     "eslint-plugin-node": ">=^10.0.0"
