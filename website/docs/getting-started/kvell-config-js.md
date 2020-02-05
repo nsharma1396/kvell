@@ -141,6 +141,46 @@ module.exports = {
 }
 ```
 
+## databasePlugins
+
+> To-do: Update with more details
+
+```typescript
+databasePlugins: Array<object>
+```
+
+Database plugins can be configured in kvell.config.js as an object with the following fields:
+
+```typescript
+databasePlugins: [
+  {
+    resolve: string,
+    options: object
+  }
+];
+```
+
+For example,
+
+```javascript
+databasePlugins: [
+  {
+    resolve: "kvell-db-plugin-sequelize",
+    options: {
+      database: process.env.DATABASE_NAME,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      options: {
+        dialect: "mysql",
+        host: "localhost",
+        logging: false
+      },
+      dialectModulePath: require.resolve("mysql2")
+    }
+  }
+];
+```
+
 ## `autoRequireRoutes`
 
 ```typescript
@@ -235,6 +275,22 @@ module.exports = {
     }
   ],
   models: ["product", "user", "cart", "cartItem"],
+  databasePlugins: [
+    {
+      resolve: "kvell-db-plugin-sequelize",
+      options: {
+        databaseName: process.env.DATABASE_NAME,
+        username: process.env.DATABASE_USERNAME,
+        password: process.env.DATABASE_PASSWORD,
+        options: {
+          dialect: "mysql",
+          host: "localhost",
+          logging: false
+        },
+        dialectModulePath: require.resolve("mysql2")
+      }
+    }
+  ]
   autoRequireRoutes: true
 };
 ```

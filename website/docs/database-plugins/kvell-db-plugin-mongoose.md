@@ -4,6 +4,8 @@ title: Mongoose Plugin for kvell
 sidebar_label: kvell-db-plugin-mongoose
 ---
 
+> To-do: Update with more details
+
 `Kvell-db-plugin-mongoose` wraps up [mongoose](https://mongoosejs.com/) and exposes all three values required to be exposed by a kvell database plugin.
 
 ## Install
