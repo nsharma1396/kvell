@@ -6,7 +6,7 @@ class SequelizeInstance {
   }
   createDBInstance = params => {
     if (params.options.dialectModulePath || params.dialectModulePath) {
-      this.instance = new Sequelize(params.databaseName, params.username, params.password, {
+      this.instance = new Sequelize(params.database, params.username, params.password, {
         ...params.options,
         dialectModulePath: params.options.dialectModulePath || params.dialectModulePath
       });
