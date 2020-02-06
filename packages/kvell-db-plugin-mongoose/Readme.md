@@ -11,24 +11,29 @@ npm i kvell-db-plugin-mongoose
 ## Configuration Variables
 
 Internally, `kvell-db-plugin-mongoose` will instantiate the database object using `mongoose.connect` method.
+
 [Documentation for mongoose](https://mongoosejs.com/docs/index.html)
-
-The following variables must be passed through `.env` to configure the the package:
-
-- **MONGO_CONNECTION_STRING**
-
-  ```text
-    Type: string
-    Description: The connection string for the mongoose server
-  ```
-
-> This will soon be updated to cover all possible config variables.
 
 ## Usage
 
-To use it, just install the package and update the .env with the [global environment variables](overview.md#plugin-global-environment-variables) and the [configuration variables](#configuration-variables)
+To use it, just install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
 
-The plugin exports these three values:
+- `resolve`: Name of the plugin, i.e, **kvell-db-plugin-mongoose**
+
+- `options`: All the parameters that you need to pass in the mongoose constructor. The following key is **<u>mandatory</u>**:
+
+  - `mongoConnectionString` (string): The connection string for the mongoose server.
+
+- `showConnectionMessage` (boolean): If set to `true`, a success message will be logged on the console once the connection is successfully established.
+
+By default, the following options are taken as true while instantiating the mongoose instance:
+
+- `useNewUrlParser`
+- `useUnifiedTopology`
+
+You may choose to override it by simply adding these keys as fields in the `options` field of the object.
+
+The plugin exports the following:
 
 - dbLib: The `mongoose` object. Check [mongoose docs](https://mongoosejs.com/docs/index.html) for complete api reference.
 - dbInstance: The instantiated `mongoose` instance. In this case, both dbLib and dbInstance will be basically the same objects.
@@ -37,17 +42,23 @@ The plugin exports these three values:
 
 Example Usage
 
-```sh
-# .env file
-
-DB_NAME=mongoose
-DB_PLUGIN_NAME=kvell-db-plugin-mongoose
-
-MONGO_CONNECTION_STRING=mongodb://localhost:27017/myapp
-```
+- **kvell.config.js**:
 
 ```javascript
-// userModel.js
+databasePlugins: [
+  {
+    resolve: "kvell-db-plugin-mongoose",
+    options: {
+      mongoConnectionString: "mongodb://localhost:27017/test",
+      options: {},
+      showConnectionMessage: false
+    }
+  }
+];
+```
+
+- **userModel.js**:
+```javascript
 const mongoose = require("kvell-db-plugin-mongoose").dbInstance;
 
 // Create your User model's schema here and export it.

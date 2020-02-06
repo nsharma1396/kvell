@@ -20,75 +20,67 @@ npm install --save tedious # Microsoft SQL Server
 
 ## Configuration Variables
 
-Internally, `kvell-db-plugin-sequelize` will instantiate the database object using `sequelize`'s contructor.\
-\
-[API reference for the sequelize constructor](https://sequelize.org/v5/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor)\
-[Documentation for sequelize](https://sequelize.org/v5/)
+Internally, `kvell-db-plugin-sequelize` will instantiate the database object using `sequelize`'s contructor.
 
-The following variables must be passed through `.env` to configure the your plugin:
+- [API reference for the sequelize constructor](https://sequelize.org/v5/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor)
 
-- **DATABASE_NAME**:
-  ```text
-    Type: string
-    Attribute: optional
-    Description: The name of the database
-  ```
-- **DATABASE_USERNAME**
-  ```text
-    Type: string
-    Attribute: optional
-    Description: The username which is used to authenticate against the database.
-  ```
-- **DATABASE_PASSWORD**
-  ```text
-    Type: string
-    Attribute: optional
-    Description: The password which is used to authenticate against the database. Supports SQLCipher encryption for SQLite.
-  ```
-- **DATABASE_DIALECT**
-  ```text
-    Type: string
-    Attribute: optional
-    Description: The dialect of the database you are connecting to. One of mysql, postgres, sqlite and mssql.
-  ```
-- **DATABASE_HOST**
-  ```text
-    Type: string
-    Attribute: optional
-    Description: The host of the relational database.
-  ```
-
-> This will soon be updated to cover all possible config variables.
+- [Documentation for sequelize](https://sequelize.org/v5/)
 
 ## Usage
 
-To use it, just install the package and update the .env with the [global environment variables](overview.md#plugin-global-environment-variables) and the [configuration variables](#configuration-variables)
+To use it, just install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
 
-The plugin exports these three values:
+- `resolve`: Name of the plugin, i.e, **kvell-db-plugin-sequelize**
+- `options`: All the parameters that you need to pass in the sequelize constructor. The following keys are accepted:
 
-- dbLib: The `sequelize` object. Check [sequelize docs](https://sequelize.org/v5/) for complete api reference.
-- dbInstance: The instantiated `sequelize` instance
+  - `database` (string): The name of the database
 
-- initHandler: (not for use)
+  - `username` (string): The username which is used to authenticate against the database.
+
+  - `password` (string): The password which is used to authenticate against the database. Supports SQLCipher encryption for SQLite.
+
+  - `options` (Object): An object with options, with the following mandatory keys:
+
+    - `dialect` (string): The dialect of the database you are connecting to. One of mysql, postgres, sqlite and mssql.
+
+    - `dialectModulePath`<sup style="color:red">\*</sup> (string): Path to the dialect module. This field is **mandatory**. For example, if you are using `mysql2` as your dialect module, you can specify it as follows:
+      ```javascript
+      dialectModulePath: require.resolve("mysql2");
+      ```
+
+  The plugin exports the following:
+
+- **dbLib**: The `sequelize` object. Check [sequelize docs](https://sequelize.org/v5/) for complete api reference.
+- **dbInstance**: The instantiated `sequelize` instance
+
+- _initHandler_: (not for use)
 
 Example usage:
 
-```sh
-# .env file
-
-DB_NAME=sequelize
-DB_PLUGIN_NAME=kvell-db-plugin-sequelize
-
-DATABASE_NAME=project
-DATABASE_USERNAME=root
-DATABASE_PASSWORD=12345
-DATABASE_DIALECT=postgres
-DATABASE_HOST=localhost
-```
+- **kvell.config.js**:
 
 ```javascript
-// userModel.js
+databasePlugins: [
+  {
+    resolve: "kvell-db-plugin-sequelize",
+    options: {
+      database: process.env.DATABASE_NAME,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      options: {
+        dialect: "mysql",
+        host: "localhost",
+        logging: false
+        dialectModulePath: require.resolve("mysql2")
+      },
+    }
+  }
+]
+```
 
+- **userModel.js**:
+
+```javascript
 const sequelize = require("kvell-db-plugin-sequelize").dbInstance;
 const Sequelize = require("kvell-db-plugin-sequelize").dbLib;
 
