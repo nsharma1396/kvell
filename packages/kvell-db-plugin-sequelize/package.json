@@ -9,7 +9,7 @@
   "homepage": "https://kvelljs.now.sh/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-sequelize"
+    "url": "https://github.com/nsharma1396/kvell/tree/master/packages/kvell-db-plugin-sequelize"
   },
   "keywords": [
     "kvell-plugins",

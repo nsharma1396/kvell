@@ -15,7 +15,7 @@
   "homepage": "https://kvelljs.now.sh/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nsharma1396/kvell/tree/master/packages/eslint-config-kvell-scripts"
+    "url": "https://github.com/nsharma1396/kvell/tree/master/packages/eslint-config-kvell-scripts"
   },
   "license": "MIT",
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
