@@ -20,31 +20,7 @@ Internally, `kvell-db-plugin-mongoose` will instantiate the database object usin
 
 ## Usage
 
-To use it, just install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
-
-- `resolve`: Name of the plugin, i.e, **kvell-db-plugin-mongoose**
-
-- `options`: All the parameters that you need to pass in the mongoose constructor. The following key is **<u>mandatory</u>**:
-
-  - `mongoConnectionString` (string): The connection string for the mongoose server.
-
-- `showConnectionMessage` (boolean): If set to `true`, a success message will be logged on the console once the connection is successfully established.
-
-By default, the following options are taken as true while instantiating the mongoose instance:
-
-- `useNewUrlParser`
-- `useUnifiedTopology`
-
-You may choose to override it by simply adding these keys as fields in the `options` field of the object.
-
-The plugin exports the following:
-
-- dbLib: The `mongoose` object. Check [mongoose docs](https://mongoosejs.com/docs/index.html) for complete api reference.
-- dbInstance: The instantiated `mongoose` instance. In this case, both dbLib and dbInstance will be basically the same objects.
-
-- initHandler: (not for use)
-
-Example Usage
+Example:
 
 - **kvell.config.js**:
 
@@ -62,6 +38,7 @@ databasePlugins: [
 ```
 
 - **userModel.js**:
+
 ```javascript
 const mongoose = require("kvell-db-plugin-mongoose").dbInstance;
 
@@ -78,3 +55,30 @@ const User = mongoose.model("User", userSchema);
 
 module.exports = User;
 ```
+
+To use it, install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
+
+- `resolve`: Name of the plugin, i.e, **kvell-db-plugin-mongoose**
+
+- `options`: All the parameters that you need to pass in the mongoose constructor. The following key is **<u>mandatory</u>**:
+
+  - `mongoConnectionString` (string): The connection string for the mongoose server.
+  
+  You can add more keys which conform to the `mongoose.connect` api's `options` object. You can read more on that [here](https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-connect).
+
+
+- `showConnectionMessage` (boolean): If set to `true`, a success message will be logged on the console once the connection is successfully established.
+
+By default, the following options are taken as true while instantiating the mongoose instance:
+
+- `useNewUrlParser`
+- `useUnifiedTopology`
+
+You may choose to override it by simply adding these keys as fields in the `options` field of the object.
+
+The plugin exports the following:
+
+- dbLib: The `mongoose` object. Check [mongoose docs](https://mongoosejs.com/docs/index.html) for complete api reference.
+- dbInstance: The instantiated `mongoose` instance. In this case, both dbLib and dbInstance will be basically the same objects.
+
+- initHandler: (not for use)

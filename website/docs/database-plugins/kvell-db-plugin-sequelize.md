@@ -32,34 +32,7 @@ Internally, `kvell-db-plugin-sequelize` will instantiate the database object usi
 
 ## Usage
 
-To use it, just install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
-
-- `resolve`: Name of the plugin, i.e, **kvell-db-plugin-sequelize**
-- `options`: All the parameters that you need to pass in the sequelize constructor. The following keys are accepted:
-
-  - `database` (string): The name of the database
-
-  - `username` (string): The username which is used to authenticate against the database.
-
-  - `password` (string): The password which is used to authenticate against the database. Supports SQLCipher encryption for SQLite.
-
-  - `options` (Object): An object with options, with the following mandatory keys:
-
-    - `dialect` (string): The dialect of the database you are connecting to. One of mysql, postgres, sqlite and mssql.
-
-    - `dialectModulePath`<sup style="color:red">\*</sup> (string): Path to the dialect module. This field is **mandatory**. For example, if you are using `mysql2` as your dialect module, you can specify it as follows:
-      ```javascript
-      dialectModulePath: require.resolve("mysql2");
-      ```
-
-  The plugin exports the following:
-
-- **dbLib**: The `sequelize` object. Check [sequelize docs](https://sequelize.org/v5/) for complete api reference.
-- **dbInstance**: The instantiated `sequelize` instance
-
-- _initHandler_: (not for use)
-
-Example usage:
+Example:
 
 - **kvell.config.js**:
 
@@ -74,12 +47,12 @@ databasePlugins: [
       options: {
         dialect: "mysql",
         host: "localhost",
-        logging: false
+        logging: false,
         dialectModulePath: require.resolve("mysql2")
-      },
+      }
     }
   }
-]
+];
 ```
 
 - **userModel.js**:
@@ -113,3 +86,31 @@ const User = sequelize.define("user", {
 
 module.exports = User;
 ```
+
+To use it, install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
+
+- `resolve`: Name of the plugin, i.e, **kvell-db-plugin-sequelize**
+- `options`: All the parameters that you need to pass in the sequelize constructor. The following keys are accepted:
+
+  - `database` (string): The name of the database
+
+  - `username` (string): The username which is used to authenticate against the database.
+
+  - `password` (string): The password which is used to authenticate against the database. Supports SQLCipher encryption for SQLite.
+
+  - `options` (Object): An object with options, with the following mandatory keys:
+
+    - `dialect` (string): The dialect of the database you are connecting to. One of mysql, postgres, sqlite and mssql.
+
+    - `dialectModulePath`<sup style="color:red">\*</sup> (string): Path to the dialect module. This field is **mandatory**. For example, if you are using `mysql2` as your dialect module, you can specify it as follows:
+      ```javascript
+      dialectModulePath: require.resolve("mysql2");
+      ```
+      You can add more keys that conform to the options object schema of sequelize's constructor api. You can read more on that [here](https://sequelize.org/v5/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor)
+
+  The plugin exports the following:
+
+- **dbLib**: The `sequelize` object. Check [sequelize docs](https://sequelize.org/v5/) for complete api reference.
+- **dbInstance**: The instantiated `sequelize` instance
+
+- _initHandler_: (not for use)

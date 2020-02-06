@@ -181,7 +181,7 @@ databasePlugins: [
       options: {
         dialect: "mysql",
         host: "localhost",
-        logging: false
+        logging: false,
         dialectModulePath: require.resolve("mysql2")
       },
     }
