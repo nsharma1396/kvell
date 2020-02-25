@@ -5,20 +5,26 @@ class MongooseInstance {
     this.instance = null;
   }
   createDBInstance(params) {
-    mongoose
-      .connect(params.mongoConnectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        ...params.options
-      })
-      .then(_ => {
-        if (params.showConnectionMessage) {
-          console.log("Connected to mongodb");
-        }
-      })
-      .catch(_ => {
-        console.log(e);
-      });
+    return new Promise(function(resolve, reject) {
+      // Merge the two objects
+      const mongooseOptions = Object.assign(
+        {},
+        { useNewUrlParser: true, useUnifiedTopology: true },
+        params.options || {}
+      );
+      mongoose
+        .connect(params.mongoConnectionString, mongooseOptions)
+        .then(mongooseInstance => {
+          this.instance = mongooseInstance;
+          if (params.showConnectionMessage) {
+            console.log("Connected to mongodb");
+          }
+          resolve();
+        })
+        .catch(e => {
+          reject(e);
+        });
+    });
   }
 
   getDBInstance() {

@@ -22,5 +22,9 @@
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
   "dependencies": {
     "mongoose": "^5.7.12"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-node": "^11.0.0"
   }
 }
