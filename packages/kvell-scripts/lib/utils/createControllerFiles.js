@@ -9,7 +9,7 @@ const log = console.log;
 const createControllerFiles = async (unresolvedFiles, allcontrollers) => {
   const appDirectoryPath = process.cwd();
   const controllerDirPath = path.resolve(appDirectoryPath, "controllers");
-  for await (const unresolvedFile of unresolvedFiles) {
+  for (const unresolvedFile of unresolvedFiles) {
     log();
     const fileName = unresolvedFile.name;
     const fileExt = ".js";

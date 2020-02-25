@@ -5,9 +5,12 @@ const fse = require("fs-extra");
 const writeToFile = fse.writeFile; // promisify(fs.writeFile);
 const readFromFile = fse.readFile; // promisify(fs.readFile);
 
-module.exports = {
-  readFromFile,
-  writeToFile,
+module.exports = Object.assign(
+  {},
+  {
+    readFromFile,
+    writeToFile
+  },
   // ensureDirSync: fse.ensureDirSync,
-  ...fse
-};
+  fse
+);

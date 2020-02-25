@@ -42,11 +42,12 @@ const generateModelFiles = async modelName => {
       const updatedConfigModels = parsedConfigs.models.slice();
 
       updatedConfigModels.push(modelName);
+      const updatedConfig = Object.assign({}, parsedConfigs, { models: updatedConfigModels });
 
-      const updatedConfig = {
-        ...parsedConfigs,
-        models: updatedConfigModels
-      };
+      // const updatedConfig = {
+      //   ...parsedConfigs,
+      //   models: updatedConfigModels
+      // };
 
       await createModelFiles([modelName], updatedConfigModels);
 

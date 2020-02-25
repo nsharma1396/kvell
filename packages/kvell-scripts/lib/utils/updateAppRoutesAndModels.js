@@ -20,7 +20,7 @@ const createRouteFiles = async (unresolvedFiles, allRoutes) => {
   const appDirectoryPath = process.cwd();
   const routeDirPath = path.resolve(appDirectoryPath, "routes");
   const apiDocDirPath = path.resolve(appDirectoryPath, "apidocs");
-  for await (const unresolvedFile of unresolvedFiles) {
+  for (const unresolvedFile of unresolvedFiles) {
     // Create a route file
     log();
     const fileName = unresolvedFile.name;

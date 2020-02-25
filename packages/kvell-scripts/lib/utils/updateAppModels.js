@@ -33,7 +33,7 @@ const validateModelFiles = models => {
 const createModelFiles = async (unresolvedFiles, allModels) => {
   const appDirectoryPath = process.cwd();
   const modelDirPath = path.resolve(appDirectoryPath, "models");
-  for await (const unresolvedFile of unresolvedFiles) {
+  for (const unresolvedFile of unresolvedFiles) {
     // Create a model file
     log();
     const fileName = unresolvedFile;

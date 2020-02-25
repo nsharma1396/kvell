@@ -5,7 +5,8 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: "kvell-scripts",
+  // extends: "kvell-scripts",
+  extends: ["eslint:recommended", "plugin:node/recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"
@@ -14,6 +15,7 @@ module.exports = {
     ecmaVersion: 2018
   },
   rules: {
-    "node/no-unpublished-require": "off"
+    "node/no-unpublished-require": "off",
+    "no-process-exit": "off"
   }
 };

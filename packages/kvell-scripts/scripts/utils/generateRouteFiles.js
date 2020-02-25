@@ -20,7 +20,11 @@ const generateRouteFiles = async (routeName, routeRootUrl) => {
     const parsedConfigs = await parseScriptConfig(appRootDir);
 
     const pathExists = (
-      await Promise.all([fs.pathExists(pathToRoute), fs.pathExists(pathToController), fs.pathExists(pathToDocs)])
+      await Promise.all([
+        fs.pathExists(pathToRoute),
+        fs.pathExists(pathToController),
+        fs.pathExists(pathToDocs)
+      ])
     ).reduce((result, exists) => exists || result, false);
 
     const pathExistsInConfig = parsedConfigs.routes.reduce((exists, route) => {
@@ -57,10 +61,7 @@ const generateRouteFiles = async (routeName, routeRootUrl) => {
 
       updatedConfigRoutes.push({ name: routeName, path: routeRootUrl });
 
-      const updatedConfig = {
-        ...parsedConfigs,
-        routes: updatedConfigRoutes
-      };
+      const updatedConfig = Object.assign({}, parsedConfigs, { routes: updatedConfigRoutes });
 
       await createRouteFiles([{ name: routeName, path: routeRootUrl }], updatedConfigRoutes);
 
