@@ -51,7 +51,7 @@ cd example-app
 npm start
 ```
 
-That's it! This will start you server on [http://localhost:5001](http://localhost:5001).
+That's it! This will start your server on [http://localhost:5001](http://localhost:5001).
 
 ![starting the server](website/docs/assets/start-server.gif)
 

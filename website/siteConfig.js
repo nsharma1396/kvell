@@ -31,14 +31,19 @@ const siteConfig = {
   editUrl: "https://github.com/nsharma1396/kvell/edit/master/website/docs/",
 
   /* path to images for header/footer */
-  headerIcon: "img/favicon.png",
-  footerIcon: "img/favicon.png",
-  favicon: "img/favicon.png",
+  headerIcon: "img/kvell-logo.png",
+  footerIcon: "img/kvell-logo.png",
+  // favicon: "img/favicon.png",
+  favicon: "img/kvell-logo.png",
 
   /* Colors for website */
   colors: {
-    primaryColor: "#199190",
-    secondaryColor: "#19b2b1"
+    // primaryColor: "#17223b",
+    // secondaryColor: "#263859"
+    // primaryColor: "#199190",
+    // secondaryColor: "#19b2b1"
+    primaryColor: "#133337",
+    secondaryColor: "#222"
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
