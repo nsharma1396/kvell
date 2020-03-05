@@ -5,6 +5,7 @@ const chalk = require("chalk");
 const runServer = require("../../lib/server");
 const runLinter = require("../utils/runLinter");
 const parseScriptsConfig = require("../utils/parseScriptsConfig");
+const parsePluginConfig = require("../utils/parsePluginConfig");
 
 process.on("unhandledRejection", exception => {
   console.log();
@@ -20,7 +21,12 @@ const executeStartScript = async () => {
   const { parseEnvironmentVariables } = require("../../lib/utils/parseEnvironmentVariables");
   parseEnvironmentVariables();
 
-  const parsedConfig = await parseScriptsConfig(appSrcDirectory);
+  const configResult = await Promise.all([
+    parseScriptsConfig(appSrcDirectory),
+    parsePluginConfig(appSrcDirectory)
+  ]);
+
+  const parsedConfig = Object.assign({}, configResult[0], configResult[1]);
 
   const lintStatus = runLinter(appSrcDirectory);
   if (lintStatus === "success") {

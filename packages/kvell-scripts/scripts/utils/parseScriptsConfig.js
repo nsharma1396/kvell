@@ -4,7 +4,7 @@ const parsedConfigInit = require("../config/appDefaultConfig");
 
 const configFileName = "kvell.config.js";
 
-const configErrorKeys = ["routes", "protocol", "models", "databasePlugins"];
+const configErrorKeys = ["routes", "protocol", "models"];
 
 // const isObject = obj => {
 //   return !Array.isArray(obj) && obj === Object(obj);
@@ -22,16 +22,13 @@ const createConfigObject = parsedConfigs => {
     },
     models: {
       valid: !parsedConfigs.models ? true : Array.isArray(parsedConfigs.models)
-    },
-    databasePlugins: {
-      valid: !parsedConfigs.databasePlugins ? true : Array.isArray(parsedConfigs.databasePlugins)
     }
   };
 
-  const { routes, protocol, models, databasePlugins } = configKeysStatus;
+  const { routes, protocol, models } = configKeysStatus;
 
   let configObject = {};
-  if (!routes.valid || !protocol.valid || !models.valid || !databasePlugins.valid) {
+  if (!routes.valid || !protocol.valid || !models.valid) {
     const errorString = `Your ./${configFileName} contains invalid config values for:\n${configErrorKeys
       .filter(configKey => !configKeysStatus[configKey].valid)
       .map((errorKey, index) => `${index + 1}. ${errorKey}`)
@@ -45,8 +42,7 @@ const createConfigObject = parsedConfigs => {
       autoRequireRoutes:
         parsedConfigs.autoRequireRoutes === undefined
           ? parsedConfigInit.autoRequireRoutes
-          : parsedConfigs.autoRequireRoutes,
-      databasePlugins: parsedConfigs.databasePlugins || parsedConfigInit.databasePlugins
+          : parsedConfigs.autoRequireRoutes
     };
   }
   return configObject;
@@ -65,7 +61,6 @@ const createConfigObject = parsedConfigs => {
  * @property {string[]]} models
  * @property {("http" | "https")} protocol
  * @property {boolean} autoRequireRoutes
- * @property {{}[]} databasePlugins
  */
 
 /**
