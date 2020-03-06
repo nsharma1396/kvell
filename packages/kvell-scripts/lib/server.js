@@ -19,7 +19,7 @@ const runServer = async scriptConfig => {
 
   const PORT = process.env.PORT || 5001;
 
-  const syncHandlers = getDBPlugins(scriptConfig.databasePlugins);
+  const syncHandlers = await getDBPlugins(scriptConfig.databasePlugins);
 
   const app = express();
 
