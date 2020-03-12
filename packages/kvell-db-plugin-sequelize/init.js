@@ -5,7 +5,7 @@ class SequelizeInstance {
     this.instance = null;
   }
   createDBInstance(params) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       try {
         const sequelizeOptions = Object.assign({}, params.options, {
           dialectModulePath: params.options.dialectModulePath || params.dialectModulePath

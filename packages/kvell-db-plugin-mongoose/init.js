@@ -5,7 +5,7 @@ class MongooseInstance {
     this.instance = null;
   }
   createDBInstance(params) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       // Merge the two objects
       const mongooseOptions = Object.assign(
         {},
