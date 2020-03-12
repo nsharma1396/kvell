@@ -1,6 +1,6 @@
 const path = require("path");
 const chalk = require("chalk");
-const pathExists = require("../scripts/utils/fsWrapper").pathExistsSync;
+const pathExists = require("../../scripts/utils/fsWrapper").pathExistsSync;
 
 function getDevLogger() {
   const log = console.log;
@@ -13,7 +13,7 @@ function getDevLogger() {
       log(
         `${chalk.bgYellowBright.blackBright(
           "WARN"
-        )} You tried using dev-logger, but there was no 'logs/appLog.log' file found. Please add a 'logs' folder and an 'appLog.log' file in it to use the logger.`
+        )} You tried using dev-logger, but there was no 'logs/appLog.log' file found.Please create a 'logs' folder and an 'appLog.log' file in it to use the logger.\n`
       );
     devLog = {
       trace: noFilePresent,
