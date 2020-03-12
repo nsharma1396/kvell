@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * @typedef {import ("express").Express} KvellAppObject
  */
@@ -14,13 +16,22 @@
  * @typedef {import ("express").Response} KvellResponseObject
  */
 
-const express = require("express"); //();
-const path = require("path");
-const devLog = require("simple-node-logger").createSimpleFileLogger(
-  path.resolve(process.cwd(), "logs", "appLog.log")
-);
+const express = require("express");
 
-// Export if anything is needed to be exported.
+/**
+ * @typedef {Object} Logger
+ * @property {Function} trace A trace level log
+ * @property {Function} debug A debug level log
+ * @property {Function} info An info level log
+ * @property {Function} warn A warn level log
+ * @property {Function} error An error level log
+ * @property {Function} fatal A fatal level log
+ */
+/**
+ * @type {Logger}
+ */
+const devLog = require("./utils/getDevLogger")();
+
 module.exports = {
   json: express.json,
   static: express.static,
