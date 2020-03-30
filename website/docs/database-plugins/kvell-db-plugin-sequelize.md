@@ -34,25 +34,27 @@ Internally, `kvell-db-plugin-sequelize` will instantiate the database object usi
 
 Example:
 
-- **kvell.config.js**:
+- **kvell-plugins.js**:
 
 ```javascript
-databasePlugins: [
-  {
-    resolve: "kvell-db-plugin-sequelize",
-    options: {
-      database: process.env.DATABASE_NAME,
-      username: process.env.DATABASE_USERNAME,
-      password: process.env.DATABASE_PASSWORD,
+module.exports = {
+  databasePlugins: [
+    {
+      resolve: "kvell-db-plugin-sequelize",
       options: {
-        dialect: "mysql",
-        host: "localhost",
-        logging: false,
-        dialectModulePath: require.resolve("mysql2")
+        database: process.env.DATABASE_NAME,
+        username: process.env.DATABASE_USERNAME,
+        password: process.env.DATABASE_PASSWORD,
+        options: {
+          dialect: "mysql",
+          host: "localhost",
+          logging: false,
+          dialectModulePath: require.resolve("mysql2")
+        }
       }
     }
-  }
-];
+  ]
+};
 ```
 
 - **userModel.js**:
@@ -87,7 +89,7 @@ const User = sequelize.define("user", {
 module.exports = User;
 ```
 
-To use it, install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
+To use it, install the package and add a `databasePlugin` object in `kvell-plugins.js` with the following fields:
 
 - `resolve`: Name of the plugin, i.e, **kvell-db-plugin-sequelize**
 - `options`: All the parameters that you need to pass in the sequelize constructor. The following keys are accepted:

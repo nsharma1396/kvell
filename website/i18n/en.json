@@ -44,6 +44,9 @@
       "getting-started/kvell-config-js": {
         "title": "kvell.config.js"
       },
+      "getting-started/kvell-plugins-js": {
+        "title": "kvell-plugins.js"
+      },
       "getting-started/packages-used": {
         "title": "Packages Used In Kvell"
       },

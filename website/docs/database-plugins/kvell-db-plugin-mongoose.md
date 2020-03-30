@@ -22,19 +22,21 @@ Internally, `kvell-db-plugin-mongoose` will instantiate the database object usin
 
 Example:
 
-- **kvell.config.js**:
+- **kvell-plugins.js**:
 
 ```javascript
-databasePlugins: [
-  {
-    resolve: "kvell-db-plugin-mongoose",
-    options: {
-      mongoConnectionString: "mongodb://localhost:27017/test",
-      options: {},
-      showConnectionMessage: false
+module.exports = {
+  databasePlugins: [
+    {
+      resolve: "kvell-db-plugin-mongoose",
+      options: {
+        mongoConnectionString: "mongodb://localhost:27017/test",
+        options: {},
+        showConnectionMessage: false
+      }
     }
-  }
-];
+  ]
+};
 ```
 
 - **userModel.js**:
@@ -56,18 +58,17 @@ const User = mongoose.model("User", userSchema);
 module.exports = User;
 ```
 
-To use it, install the package and add a `databasePlugin` object in `kvell.config.js` with the following fields:
+To use it, install the package and add a `databasePlugin` object in `kvell-plugins.js` with the following fields:
 
 - `resolve`: Name of the plugin, i.e, **kvell-db-plugin-mongoose**
 
 - `options`: All the parameters that you need to pass in the mongoose constructor. The following key is **<u>mandatory</u>**:
 
   - `mongoConnectionString` (string): The connection string for the mongoose server.
-  
+
   You can add more keys which conform to the `mongoose.connect` api's `options` object. You can read more on that [here](https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-connect).
 
-
-- `showConnectionMessage` (boolean): If set to `true`, a success message will be logged on the console once the connection is successfully established.
+* `showConnectionMessage` (boolean): If set to `true`, a success message will be logged on the console once the connection is successfully established.
 
 By default, the following options are taken as true while instantiating the mongoose instance:
 

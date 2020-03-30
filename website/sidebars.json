@@ -4,6 +4,7 @@
       "getting-started/introduction",
       "getting-started/installation",
       "getting-started/kvell-config-js",
+      "getting-started/kvell-plugins-js",
       "getting-started/available-scripts",
       "getting-started/packages-used",
       "getting-started/api"

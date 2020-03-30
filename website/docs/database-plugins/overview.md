@@ -11,7 +11,7 @@ Kvell abstracts out database configurations via database plugins.Any database pl
 
 ## Where to specify the plugin details ?
 
-All the configurations to be passed for the database instantiation of the required database are passed via the `databasePlugins` field in `kvell.config.js` file.
+All the plugin based configurations in kvell are required to be added to `kvell-plugins.js` file. The configuration for database instantiation of the required database are passed via the `databasePlugins` field in `kvell-plugins.js` file.
 
 To add a database-plugin, you need to add a `databasePluginObject` in the `databasePlugins` array.
 
@@ -19,5 +19,22 @@ Each `databasePluginObject` must consists of the following fields:
 
 - `resolve`: Name of the plugin
 - `options`: Any options that are required to be passed for instantiating the plugin.
+
+Your `kvell-plugins.js` should look like the following:
+
+```javascript
+// kvell-plugins.js
+
+module.exports = {
+  databasePlugins: [
+    {
+      resolve: `name-of-plugin`,
+      options: {
+        // ...anyDatabaseRelatedOptions
+      }
+    }
+  ]
+};
+```
 
 More fields may be added depending on the plugin's requirements.
