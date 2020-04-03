@@ -14,6 +14,7 @@ The packages are:
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - [apidoc.js](https://apidocjs.com)
 - [helmet](https://www.npmjs.com/package/helmet)
+- [nocache](https://www.npmjs.com/package/nocache)
 - [simple-node-logger](https://www.npmjs.com/package/simple-node-logger) <span style="color:red">*</span>
 
 <!-- ## Predefined Configurations -->
