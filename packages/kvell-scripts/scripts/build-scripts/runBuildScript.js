@@ -65,7 +65,7 @@ const runBuildScript = (script, nodeArgs) => {
             if (err) {
               throw err;
             }
-            log(chalk.green("Production server started."));
+            log(chalk.green("Production server started.\n"));
           }
         );
       } else if (buildScript === "status") {
@@ -87,7 +87,7 @@ const runBuildScript = (script, nodeArgs) => {
             }
             log(proc);
             log();
-            log(`Server status: ${chalk[chalkColor](processStatus)}`);
+            log(`Server status: ${chalk[chalkColor](processStatus)}\n`);
           } else {
             log(chalk.red(`No build processes found\n`));
           }
@@ -101,7 +101,7 @@ const runBuildScript = (script, nodeArgs) => {
           }
           log(proc);
           log();
-          log(`Successfully stopped the server.`);
+          log(`Successfully stopped the server.\n`);
         });
       } else if (buildScript === "delete") {
         log(chalk.green("Deleting pm2 process for production server...\n"));
@@ -114,7 +114,37 @@ const runBuildScript = (script, nodeArgs) => {
 
           log(proc);
           log();
-          log("Successfully deleted the pm2 process");
+          log("Successfully deleted the pm2 process\n");
+        });
+      } else if (buildScript === "restart") {
+        log(chalk.green("Restarting the production server...\n"));
+        pm2.restart(processName, (err, proc) => {
+          pm2.disconnect(); // Disconnects from PM2
+          if (err) {
+            throw err;
+          }
+          log(proc);
+          log();
+          log(`Successfully restarted the server.\n`);
+        });
+      } else if (buildScript === "reload") {
+        log(chalk.green("Restarting the production server...\n"));
+        pm2.reload(processName, (err, proc) => {
+          pm2.disconnect(); // Disconnects from PM2
+          if (err) {
+            throw err;
+          }
+          log(proc);
+          log();
+          log(`Successfully restarted the server.\n`);
+        });
+      } else if (buildScript === "startup") {
+        // log(chalk.green("Restarting the production server...\n"));
+        pm2.startup(nodeArgs[0], (err, proc) => {
+          pm2.disconnect(); // Disconnects from PM2
+          if (err) {
+            throw err;
+          }
         });
       }
     });
