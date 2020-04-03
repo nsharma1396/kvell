@@ -46,8 +46,12 @@ const createRouteFiles = async (unresolvedFiles, allRoutes) => {
 const attachApiDocRoute = app => {
   const libPath = path.dirname(path.dirname(__dirname));
   const docSrc = path.resolve(libPath, "apidocs");
-  app.use(express.static(docSrc));
-  app.use("(^/docs$)", (_req, res) => {
+  app.use(
+    express.static(docSrc, {
+      index: false // prevent serving of docs as index directory
+    })
+  );
+  app.get("docs", (_req, res) => {
     res.sendFile(path.resolve(docSrc, "index.html"));
   });
 };

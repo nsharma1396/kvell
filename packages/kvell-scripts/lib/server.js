@@ -30,12 +30,12 @@ const runServer = async scriptConfig => {
   // const server = isHTTP ? httpServer(app) : httpsServer(app);
   const server = httpServer(app);
 
-  // Attach api doc route before any other route or middleware
-  attachApiDocRoute(app);
-
   // add middlewares before starting the server
   require("./utils/attachGlobalMiddlewares")(app, server);
   // attachGlobalMiddlewares(app);
+
+  // Attach api doc route after attaching all other routes and middlewares
+  attachApiDocRoute(app);
 
   const shouldStartServer = await updateAppRoutesAndModels(app, routes, models, autoRequireRoutes);
 
