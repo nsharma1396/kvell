@@ -1,6 +1,6 @@
 {
   "name": "create-kvell-app",
-  "version": "1.0.1-alpha.8.1",
+  "version": "1.0.1-alpha.9",
   "description": "Command line tool to setup Node.js applications",
   "bin": {
     "create-kvell-app": "bin/make-node-app.js"

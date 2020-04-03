@@ -1,6 +1,6 @@
 {
   "name": "kvell-db-plugin-mongoose",
-  "version": "1.0.1-alpha.8.1",
+  "version": "1.0.1-alpha.9",
   "description": "A barebones MongoDB Plugin using Mongoose ORM for kvell-scripts",
   "main": "index.js",
   "homepage": "https://kvelljs.now.sh/",
