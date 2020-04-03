@@ -16,7 +16,9 @@ const runStartScript = (script, nodeArgs) => {
 
   const enableWatchMode = !parsedArgs["--no-watch"];
 
-  const scriptsArray = nodeArgs.concat(require.resolve("../../scripts/" + script));
+  const scriptsArray = nodeArgs.concat(
+    require.resolve(path.join(__dirname, "..", "..", "scripts", script))
+  );
   // .concat(args.slice(scriptIndex + 1));
 
   if (!enableWatchMode) {
