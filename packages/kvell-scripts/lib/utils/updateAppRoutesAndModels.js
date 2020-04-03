@@ -51,7 +51,7 @@ const attachApiDocRoute = app => {
       index: false // prevent serving of docs as index directory
     })
   );
-  app.get("docs", (_req, res) => {
+  app.get("/docs", (_req, res) => {
     res.sendFile(path.resolve(docSrc, "index.html"));
   });
 };
