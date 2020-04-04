@@ -45,7 +45,7 @@ const runBuildScript = (script, nodeArgs) => {
     if (processName || (buildScript === "startup" && buildScript === "list")) {
       pm2.connect(function(err) {
         if (err) {
-          error(err);
+          console.error(err);
           process.exit(2);
         }
 
@@ -69,11 +69,16 @@ const runBuildScript = (script, nodeArgs) => {
               // instances: 4, // Optional: Scales your app by 4
               // max_memory_restart: "100M" // Optional: Restarts your app if it reaches 100Mo
             },
-            function(err, apps) {
+            function(err, proc) {
               pm2.disconnect(); // Disconnects from PM2
               if (err) {
                 throw err;
               }
+
+              log("Process details:\n");
+
+              log(proc);
+              log();
               log(chalk.green("Production server started.\n"));
 
               log("You can check the logs in the following paths:\n");
@@ -160,7 +165,7 @@ const runBuildScript = (script, nodeArgs) => {
           //   });
         } else if (buildScript === "startup") {
           // log(chalk.green("Restarting the production server...\n"));
-          pm2.startup(nodeArgs[0], (err, proc) => {
+          pm2.startup(nodeArgs[0], err => {
             pm2.disconnect(); // Disconnects from PM2
             if (err) {
               throw err;
