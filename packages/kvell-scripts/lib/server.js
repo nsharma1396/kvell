@@ -35,7 +35,9 @@ const runServer = async scriptConfig => {
   // attachGlobalMiddlewares(app);
 
   // Attach api doc route after attaching all other routes and middlewares
-  attachApiDocRoute(app);
+  if (scriptConfig.registerDocsRoute) {
+    attachApiDocRoute(app);
+  }
 
   const shouldStartServer = await updateAppRoutesAndModels(app, routes, models, autoRequireRoutes);
 
@@ -56,10 +58,12 @@ const runServer = async scriptConfig => {
           chalk.blue(`You can also use: `),
           chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}`)
         );
-        log(
-          chalk.blue(`Api Docs available on:`),
-          chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}/docs`)
-        );
+        if (scriptConfig.registerDocsRoute) {
+          log(
+            chalk.blue(`Api Docs available on:`),
+            chalk.yellowBright(`${isHTTP ? "http://" : "https://"}localhost:${PORT}/docs`)
+          );
+        }
       });
     } catch (exception) {
       log();

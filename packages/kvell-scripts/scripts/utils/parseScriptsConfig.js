@@ -42,7 +42,11 @@ const createConfigObject = parsedConfigs => {
       autoRequireRoutes:
         parsedConfigs.autoRequireRoutes === undefined
           ? parsedConfigInit.autoRequireRoutes
-          : parsedConfigs.autoRequireRoutes
+          : parsedConfigs.autoRequireRoutes,
+      registerDocsRoute:
+        parsedConfigs.registerDocsRoute === undefined
+          ? parsedConfigInit.registerDocsRoute
+          : parsedConfigs.registerDocsRoute
     };
   }
   return configObject;
@@ -61,6 +65,7 @@ const createConfigObject = parsedConfigs => {
  * @property {string[]]} models
  * @property {("http" | "https")} protocol
  * @property {boolean} autoRequireRoutes
+ * @property {boolean} registerDocsRoute
  */
 
 /**

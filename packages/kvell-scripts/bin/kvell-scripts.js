@@ -21,10 +21,21 @@ const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
 const nodeArgs =
   scriptIndex >= 0 ? args.slice(0, scriptIndex).concat(args.slice(scriptIndex + 1)) : []; // So that other arguments do not get missed
 
+const appConfig = require(`${process.cwd()}/kvell.config.js`);
+const registerDocsRoute =
+  appConfig.registerDocsRoute !== undefined ? appConfig.registerDocsRoute : true;
+
 if (script === "start") {
-  parseApiDocs();
+  // Parse docs route only once
+  if (registerDocsRoute) {
+    parseApiDocs();
+  }
   runStartScript(script, nodeArgs);
 } else if (script === "build") {
+  // Parse docs route only once
+  if (registerDocsRoute) {
+    parseApiDocs();
+  }
   runBuildScript("build-scripts", nodeArgs);
 } else if (["debug", "test"].includes(script)) {
   console.log("This option is under development.");
