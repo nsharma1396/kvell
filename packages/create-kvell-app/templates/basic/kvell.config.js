@@ -2,5 +2,6 @@ module.exports = {
   protocol: "http",
   routes: [],
   models: [],
-  autoRequireRoutes: true
+  autoRequireRoutes: true,
+  registerDocsRoute: true
 };

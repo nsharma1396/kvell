@@ -53,7 +53,7 @@ const parsePluginConfig = async appSrcDirectory => {
     console.log();
     console.log(
       `${chalk.bgYellow.black("WARN")} ${chalk.yellowBright(
-        "No kvell-plugins.js found. Initializing plugins as an empty array."
+        "No kvell-plugins.js found. Initializing plugins as empty."
       )}`
     );
   }
