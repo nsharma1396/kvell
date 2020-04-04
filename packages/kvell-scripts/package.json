@@ -1,6 +1,6 @@
 {
   "name": "kvell-scripts",
-  "version": "1.0.1-alpha.9.1",
+  "version": "1.0.1-alpha.9.2",
   "description": "Scripts to run applications generated from create-kvell-app",
   "main": "lib/index.js",
   "bin": {
