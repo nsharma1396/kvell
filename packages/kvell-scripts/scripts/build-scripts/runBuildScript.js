@@ -42,7 +42,7 @@ const runBuildScript = (script, nodeArgs) => {
 
     const processName = args["--name"];
 
-    if (processName || (buildScript === "startup" && buildScript === "list")) {
+    if (processName || buildScript === "startup" || buildScript === "list") {
       pm2.connect(function(err) {
         if (err) {
           console.error(err);
