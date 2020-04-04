@@ -7,6 +7,29 @@ Kvell currently uses [`apidoc.js`](https://apidocjs.com/) for providing API Docu
 
 > Note: The documentation library may change to some other package (like Swagger) in later versions.
 
+## Enable/disable
+
+Kvell.js will automatically parse the `apidocs` directory to generate a documentation for your api endpoints. The documentation will be available at the `/docs` route.
+
+If you do not want this, you can switch the `registerDocsRoute` in [kvell.config.js](getting-started/kvell-config-js#registerdocsroute) to false which will then stop the parsing of the `apidocs` directory and unregister the `/docs` route in your application.
+
+```typescript
+registerDocsRoute: Boolean;
+```
+
+By default, `registerDocsRoute` will always be `true`.
+
+```javascript
+// kvell.config.js
+
+module.exports = {
+  ...
+  registerDocsRoute: false
+  ...
+};
+```
+
+
 ## Docs flow
 
 Apidoc.js follows the `jsdoc` pattern and makes it easier to write documentation for each of your routes.

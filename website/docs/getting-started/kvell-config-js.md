@@ -11,6 +11,7 @@ It contains all the configurations that a kvell application needs to run success
 - models
 - protocol
 - autoRequireRoutes
+- registerDocsRoute
 
 ## `routes`
 
@@ -189,7 +190,7 @@ module.exports = {
   ...
   autoRequireRoutes: false
   ...
-}
+};
 ```
 
 ```javascript
@@ -219,6 +220,28 @@ const globalMiddlewares = (app, server) => {
 module.exports = globalMiddlewares;
 ```
 
+## `registerDocsRoute`
+
+```typescript
+registerDocsRoute: Boolean;
+```
+
+**Default: true**
+
+Kvell.js will automatically parse the `apidocs` directory to generate a documentation for your api endpoints. The documentation will be available at the `/docs` route.
+
+If you do not want this, you can switch the `registerDocsRoute` to false which will then stop the parsing of the `apidocs` directory and unregister the `/docs` route in your application.
+
+```javascript
+// kvell.config.js
+
+module.exports = {
+  ...
+  registerDocsRoute: false
+  ...
+};
+```
+
 ## Example Configuration Object
 
 ```javascript
@@ -235,6 +258,7 @@ module.exports = {
     }
   ],
   models: ["product", "user", "cart", "cartItem"],
-  autoRequireRoutes: true
+  autoRequireRoutes: true,
+  registerDocsRoute: true
 };
 ```

@@ -24,6 +24,112 @@ The server will by default start with `watch mode` enabled, i.e, it will restart
 npm start -- --no-watch
 ```
 
+## npm run build
+
+This will run the application in the production environment by launching your kvell application [pm2](https://pm2.keymetrics.io/) process.
+
+You can perform any of the following operations for your production server:
+
+### Start the production server
+
+You can launch the production server for your kvell application using the following command:
+
+```sh
+npm run build start -- --name "your-process-name"
+```
+
+> --name is a mandatory argument as it will help you to keep track of your process later.
+
+This will start the production server as a pm2 process internally and the name for the process will be the one you pass with the `--name` argument.
+
+### Check status of your production server
+
+You can check the status of your production server process using the following command:
+
+```sh
+npm run build status -- --name "your-process-name"
+```
+
+> --name is a mandatory argument
+
+This will print the current status and other details of your production server process. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+
+### Stop the production server
+
+You can stop the production server using the following command:
+
+```sh
+npm run build stop -- --name "your-process-name"
+```
+
+> --name is a mandatory argument
+
+This will stop the production server process. Since it uses pm2, on stopping the process, pm2 will keep the process meta-data in it's list so that the process can be restarted later. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+
+### Restart the production server
+
+You can restart the production server using the following command:
+
+```sh
+npm run build restart -- --name "your-process-name"
+```
+
+> --name is a mandatory argument
+
+This will stop and restart the production server process. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+
+### Delete the production server process
+
+You can delete the production server process using the following command:
+
+```sh
+npm run build delete -- --name "your-process-name"
+```
+
+> --name is a mandatory argument
+
+This will stop the production server process and remove it from pm2's list so that the process can be restarted later. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+
+### Flush production server logs
+
+You can flush the production server logs using the following command:
+
+```sh
+npm run build flush -- --name "your-process-name"
+```
+
+> --name is a mandatory argument
+
+This will flush the production server logs. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+
+### List all running pm2 processes
+
+You can list all the running the pm2 processes using the following command:
+
+```sh
+npm run build list
+```
+
+### Register your production server to start on reboot
+
+```sh
+  npm run build startup [platform-name]
+```
+
+Registers your kvell application's production server as a process that will start on machine boot. Platform (**platform-name**) can currently be:
+
+- ubuntu
+- centos
+- redhat
+- gentoo
+- systemd
+- darwin
+- amazon.
+ 
+The current process list will be dumped and saved for resurrection on reboot.
+
+The production server is handled completely using pm2 internally. Refer [pm2 docs](https://pm2.keymetrics.io/docs/usage/quick-start/) for more information about how pm2 works.
+
 ## npm run generate
 
 `npm run generate` can be used to generate one of the following two things in your application:
@@ -44,9 +150,3 @@ This will run the application in a debug mode.
 > `npm test` is currently under development and currently non-functional in the application
 
 This will run the application in a test environment.
-
-## npm build
-
-> `npm run build` is currently under development and currently non-functional in the application
-
-This will run the application in the production environment.
