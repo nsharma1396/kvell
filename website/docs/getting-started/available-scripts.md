@@ -35,82 +35,83 @@ You can perform any of the following operations for your production server:
 You can launch the production server for your kvell application using the following command:
 
 ```sh
-npm run build start -- --name "your-process-name"
+npm run build start
 ```
 
-> --name is a mandatory argument as it will help you to keep track of your process later.
+This will start the production server as a pm2 process internally.
 
-This will start the production server as a pm2 process internally and the name for the process will be the one you pass with the `--name` argument.
+> On a successful start of the process, it will create a set of files in `logs/build-logs` directory. Developers are requested not to remove any `.pid` files from the build-logs as kvell will automatically manage the `.pid` files to keep track of the `pm2` process for that application and will also handle the removal and creation of the `.pid` files internally via pm2.
+
+The set of files that will be created are:
+
+- Output logs: /logs/build-logs/build_output.log
+- Error logs: /logs/build-logs/build_errors.log
+- Pid Logs (SHOULD NOT BE EDITED/REMOVED): 
+  - /build-logs/build-[pm2_id].pid
+  - /build-logs/build_pm.pid
+
 
 ### Check status of your production server
 
 You can check the status of your production server process using the following command:
 
 ```sh
-npm run build status -- --name "your-process-name"
+npm run build status
 ```
 
-> --name is a mandatory argument
-
-This will print the current status and other details of your production server process. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+This will print the current status and other details of your production server process.
 
 ### Stop the production server
 
 You can stop the production server using the following command:
 
 ```sh
-npm run build stop -- --name "your-process-name"
+npm run build stop
 ```
 
-> --name is a mandatory argument
-
-This will stop the production server process. Since it uses pm2, on stopping the process, pm2 will keep the process meta-data in it's list so that the process can be restarted later. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+This will stop the production server process. Since it uses pm2, on stopping the process, pm2 will keep the process meta-data in it's list so that the process can be restarted later.
 
 ### Restart the production server
 
 You can restart the production server using the following command:
 
 ```sh
-npm run build restart -- --name "your-process-name"
+npm run build restart
 ```
 
-> --name is a mandatory argument
-
-This will stop and restart the production server process. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+This will stop and restart the production server process.
 
 ### Delete the production server process
 
 You can delete the production server process using the following command:
 
 ```sh
-npm run build delete -- --name "your-process-name"
+npm run build delete
 ```
 
-> --name is a mandatory argument
-
-This will stop the production server process and remove it from pm2's list so that the process can be restarted later. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+This will stop the production server process and remove it from pm2's list so that the process can be restarted later.
 
 ### Flush production server logs
 
 You can flush the production server logs using the following command:
 
 ```sh
-npm run build flush -- --name "your-process-name"
+npm run build flush
 ```
 
-> --name is a mandatory argument
-
-This will flush the production server logs. The value that you pass to `--name` must be the same as the one you passed while running `npm run build start`.
+This will flush the production server logs.
 
 ### List all running pm2 processes
 
-You can list all the running the pm2 processes using the following command:
+You can list all the running pm2 processes using the following command:
 
 ```sh
 npm run build list
 ```
 
 ### Register your production server to start on reboot
+
+> This api ( `npm run build startup` ) is under development and is not yet available.
 
 ```sh
   npm run build startup [platform-name]
@@ -125,7 +126,7 @@ Registers your kvell application's production server as a process that will star
 - systemd
 - darwin
 - amazon.
- 
+
 The current process list will be dumped and saved for resurrection on reboot.
 
 The production server is handled completely using pm2 internally. Refer [pm2 docs](https://pm2.keymetrics.io/docs/usage/quick-start/) for more information about how pm2 works.
