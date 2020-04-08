@@ -1,6 +1,6 @@
 {
   "name": "kvell-scripts",
-  "version": "1.0.1-alpha.9.3",
+  "version": "1.0.1-alpha.9.3.1",
   "description": "Scripts to run applications generated from create-kvell-app",
   "main": "lib/index.js",
   "bin": {
@@ -32,7 +32,7 @@
     "cross-spawn": "^7.0.1",
     "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
-    "eslint-config-kvell-scripts": "^1.0.1-alpha.9",
+    "eslint-config-kvell-scripts": "^1.0.1-alpha.9.3.1",
     "eslint-plugin-node": "^11.0.0",
     "express": "^4.17.1",
     "fs-extra": "^9.0.0",
