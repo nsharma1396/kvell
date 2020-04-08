@@ -204,12 +204,15 @@ const runBuildScript = (script, nodeArgs) => {
           //   });
         } else if (buildScript === "startup") {
           // log(chalk.green("Restarting the production server...\n"));
-          pm2.startup(nodeArgs[0], (err) => {
-            pm2.disconnect(); // Disconnects from PM2
-            if (err) {
-              throw err;
-            }
-          });
+          log("Startup scripts are not available yet.");
+          pm2.disconnect(); // Disconnects from PM2
+          // pm2.startup(nodeArgs[0], (err) => {
+          //   console.log("here");
+          //   pm2.disconnect(); // Disconnects from PM2
+          //   if (err) {
+          //     throw err;
+          //   }
+          // });
         } else if (buildScript === "flush") {
           log(chalk.yellow("Flushing all the logs...\n"));
           pm2.flush(processPm_id, function (err, result) {
