@@ -46,10 +46,9 @@ The set of files that will be created are:
 
 - Output logs: /logs/build-logs/build_output.log
 - Error logs: /logs/build-logs/build_errors.log
-- Pid Logs (SHOULD NOT BE EDITED/REMOVED): 
+- Pid Logs (SHOULD NOT BE EDITED/REMOVED):
   - /build-logs/build-[pm2_id].pid
   - /build-logs/build_pm.pid
-
 
 ### Check status of your production server
 
@@ -139,12 +138,6 @@ The production server is handled completely using pm2 internally. Refer [pm2 doc
 2. Models
 
 The generate scripts are explained in detail [**here**](auto-templating/using-generate-scripts.md).
-
-## npm run debug
-
-> `npm run debug` is currently under development and currently non-functional in the application
-
-This will run the application in a debug mode.
 
 ## npm test
 

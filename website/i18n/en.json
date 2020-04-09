@@ -56,6 +56,9 @@
       "guide/custom-ports": {
         "title": "Using Custom Ports in Development"
       },
+      "guide/debugging": {
+        "title": "Debugging in Kvell"
+      },
       "guide/folder-structure": {
         "title": "Folder Structure"
       },

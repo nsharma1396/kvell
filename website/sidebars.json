@@ -16,7 +16,8 @@
       "guide/models",
       "guide/apidocs",
       "guide/logging",
-      "guide/custom-ports"
+      "guide/custom-ports",
+      "guide/debugging"
     ],
     "Auto-Templating": [
       "auto-templating/overview",
