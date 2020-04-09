@@ -42,7 +42,7 @@ module.exports = {
 - **userModel.js**:
 
 ```javascript
-const mongoose = require("kvell-db-plugin-mongoose").dbInstance;
+const mongoose = require("kvell-db-plugin-mongoose").dbLib;
 
 // Create your User model's schema here and export it.
 
@@ -80,6 +80,6 @@ You may choose to override it by simply adding these keys as fields in the `opti
 The plugin exports the following:
 
 - dbLib: The `mongoose` object. Check [mongoose docs](https://mongoosejs.com/docs/index.html) for complete api reference.
-- dbInstance: The instantiated `mongoose` instance. In this case, both dbLib and dbInstance will be basically the same objects.
+- dbInstance: The instantiated `mongoose` instance.
 
 - initHandler: (not for use)

@@ -20,12 +20,12 @@ const siteConfig = {
     { doc: "getting-started/installation", label: "Docs" },
     { doc: "database-plugins/overview", label: "Database Plugins" },
     { href: "https://www.github.com/nsharma1396/kvell", label: "Github" },
-    { search: true }
+    { search: true },
   ],
 
   algolia: {
     apiKey: "27a07e425cb3479414dde03ae83d124b",
-    indexName: "kvelljs"
+    indexName: "kvelljs",
   },
 
   editUrl: "https://github.com/nsharma1396/kvell/edit/master/website/docs/",
@@ -43,22 +43,24 @@ const siteConfig = {
     // primaryColor: "#199190",
     // secondaryColor: "#19b2b1"
     primaryColor: "#133337",
-    secondaryColor: "#185760"
+    secondaryColor: "#185760",
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} Neeraj Sharma.`,
 
+  gaTrackingId: "UA-160040520-2",
+
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: "railscasts"
+    theme: "railscasts",
   },
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
-    "/js/code-block-buttons.js"
+    "/js/code-block-buttons.js",
   ],
 
   separateCss: ["./static/css/code-block-buttons.css"],
@@ -77,7 +79,7 @@ const siteConfig = {
   enableUpdateBy: true,
 
   // Show documentation's last update time.
-  enableUpdateTime: true
+  enableUpdateTime: true,
 
   // scrollToTop: true,
 };
