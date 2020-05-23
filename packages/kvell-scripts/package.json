@@ -31,7 +31,7 @@
     "cors": "^2.8.5",
     "cross-spawn": "^7.0.1",
     "dotenv": "^8.2.0",
-    "eslint": "^6.6.0",
+    "eslint": "^7.0.0",
     "eslint-config-kvell-scripts": "^1.0.1-alpha.9.3.1",
     "eslint-plugin-node": "^11.0.0",
     "express": "^4.17.1",
