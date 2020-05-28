@@ -2,12 +2,12 @@
 process.env.NODE_ENV = "development";
 
 const chalk = require("chalk");
-const runServer = require("../../lib/server");
+const runServer = require("../../lib/server").runServer;
 const runLinter = require("../utils/runLinter");
 const parseScriptsConfig = require("../utils/parseScriptsConfig");
 const parsePluginConfig = require("../utils/parsePluginConfig");
 
-process.on("unhandledRejection", exception => {
+process.on("unhandledRejection", (exception) => {
   console.log();
   console.log(chalk.red(`${exception.stack}`));
   console.log();
@@ -23,7 +23,7 @@ const executeStartScript = async () => {
 
   const configResult = await Promise.all([
     parseScriptsConfig(appSrcDirectory),
-    parsePluginConfig(appSrcDirectory)
+    parsePluginConfig(appSrcDirectory),
   ]);
 
   const parsedConfig = Object.assign({}, configResult[0], configResult[1]);

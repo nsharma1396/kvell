@@ -18,6 +18,8 @@
 
 const express = require("express");
 
+const app = require("./server").app;
+
 /**
  * @typedef {Object} Logger
  * @property {Function} trace A trace level log
@@ -37,5 +39,6 @@ module.exports = {
   static: express.static,
   urlencoded: express.urlencoded,
   router: express.Router,
-  devLog
+  devLog,
+  app,
 };

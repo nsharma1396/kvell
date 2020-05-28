@@ -7,6 +7,7 @@ const getServerUrls = require("./utils/getServerUrls");
 // const { parseEnvironmentVariables } = require("./utils/parseEnvironmentVariables");
 const { updateAppRoutesAndModels, attachApiDocRoute } = require("./utils/updateAppRoutesAndModels");
 const getDBPlugins = require("../scripts/utils/getDBPlugin");
+const app = express();
 
 const log = console.log;
 
@@ -14,14 +15,12 @@ const log = console.log;
  * @function
  * @param {import ("../scripts/utils/parseScriptsConfig").ScriptsConfig} scriptConfig
  */
-const runServer = async scriptConfig => {
+const runServer = async (scriptConfig) => {
   // parseEnvironmentVariables();
 
   const PORT = process.env.PORT || 5001;
 
   const syncHandlers = await getDBPlugins(scriptConfig.databasePlugins);
-
-  const app = express();
 
   const { routes, protocol, models, autoRequireRoutes } = scriptConfig;
   const isHTTP = protocol === "http";
@@ -43,7 +42,7 @@ const runServer = async scriptConfig => {
 
   if (shouldStartServer) {
     try {
-      await Promise.all(Object.keys(syncHandlers).map(handlerKey => syncHandlers[handlerKey]()));
+      await Promise.all(Object.keys(syncHandlers).map((handlerKey) => syncHandlers[handlerKey]()));
       log();
       log(chalk.blue("Starting the server..."));
       log();
@@ -73,4 +72,7 @@ const runServer = async scriptConfig => {
   }
 };
 
-module.exports = runServer;
+module.exports = {
+  app,
+  runServer,
+};
