@@ -21,7 +21,7 @@
   "author": "Neeraj Sharma <n.sharma1396@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "sequelize": "^5.21.2"
+    "sequelize": "^6.2.4"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
