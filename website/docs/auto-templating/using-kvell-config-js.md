@@ -27,7 +27,7 @@ routes: [
 ]
 ```
 
-If your server is not already running, run it with `npm start`.\
+If your server is not already running, run it with `npm start`.
 
 You will see a prompt confirming that there are some new route(s) detected, and asking for permission to create the template files for the same. You can choose to allow Kvell to add the files or add them by yourself.
 
